@@ -1,5 +1,6 @@
 import dearpygui.dearpygui as dpg
 
+
 dpg.create_context()
 
 # callback runs when user attempts to connect attributes
@@ -22,9 +23,9 @@ def test(ds, aa):
     print(aa)
     print(dpg.get_item_info("a"))
 
-with dpg.window(label="Tutorial", width=500, height=500):
+with dpg.window(label="Tutorial", width=500, height=500, pos=[300,300], autosize=True):
     with dpg.node_editor(callback=link_callback, delink_callback=delink_callback, tag="a",width=500, height=500):
-        with dpg.node(label="Node 1"):
+        with dpg.node(label="Node 1", pos=[200, 0]):
             with dpg.node_attribute(label="Node A1"):
                 dpg.add_input_float(label="F1", width=150, callback=test)
 
