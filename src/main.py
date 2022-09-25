@@ -1,6 +1,6 @@
 import dearpygui.dearpygui as dpg
-from mainWindow import mainWindow
-from nodeClass import  nodeEditor
+from MainWindow import MainWindow
+from NodeEditor import NodeEditor
 
 
 def main():
@@ -16,8 +16,8 @@ def main():
         with dpg.menu(label="Placeholder"):
             dpg.add_menu_item(label="Placeholder")
 
-    mainWindow()
-    x=nodeEditor()
+    z = MainWindow()
+    x = NodeEditor()
 
     dpg.show_viewport()
     dpg.start_dearpygui()

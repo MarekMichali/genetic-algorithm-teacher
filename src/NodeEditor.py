@@ -3,7 +3,7 @@ import dearpygui.dearpygui as dpg
 poss_x = 300
 poss_y = 300
 
-class nodeEditor:
+class NodeEditor:
     def __init__(self):
         with dpg.window(label="Tutorial", tag="nodeEditor", pos=[poss_x, poss_y], autosize=True):
             dpg.hide_item("nodeEditor")
