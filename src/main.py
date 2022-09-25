@@ -2,6 +2,7 @@ import dearpygui.dearpygui as dpg
 from mainWindow import mainWindow
 from nodeClass import  nodeEditor
 
+
 def main():
     dpg.create_context()
     dpg.create_viewport(title='Custom Title', width=1920, height=1080)
