@@ -8,15 +8,15 @@ class MainWindow:
             dpg.add_spacer(height=50)
             dpg.add_text("Select what do you want to do", indent=120)
             dpg.add_spacer(height=50)
-            dpg.add_button(label="Start learning", width=500, height=50)
-            dpg.add_button(label="Continue learning", width=500, height=50)
-            dpg.add_button(label="Select chapter", width=500, height=50)
-            dpg.add_button(label="Open playground", width=500, height=50, callback=self.showNodeEditor)
-            dpg.add_button(label="Close", width=500, height=50, callback=self.closeMainWindow)
+            dpg.add_button(label="Start learning", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight)
+            dpg.add_button(label="Continue learning", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight)
+            dpg.add_button(label="Select chapter", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight)
+            dpg.add_button(label="Open playground", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight, callback=self.show_node_editor)
+            dpg.add_button(label="Close", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight, callback=self.close_main_window)
 
-    def closeMainWindow(self):
+    def close_main_window(self):
         dpg.delete_item("mainWindow")
 
-    def showNodeEditor(self):
+    def show_node_editor(self):
         dpg.show_item("nodeEditor")
         dpg.set_item_pos("mainWindow", [0, 25])

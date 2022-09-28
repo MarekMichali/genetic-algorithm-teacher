@@ -16,8 +16,8 @@ def main():
         with dpg.menu(label="Placeholder"):
             dpg.add_menu_item(label="Placeholder")
 
-    z = MainWindow()
-    x = NodeEditor()
+    mainWindow = MainWindow()
+    nodeEditor = NodeEditor()
 
     dpg.show_viewport()
     dpg.start_dearpygui()
