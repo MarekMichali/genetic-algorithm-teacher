@@ -1,6 +1,7 @@
 import dearpygui.dearpygui as dpg
 from MainWindow import MainWindow
 from NodeEditor import NodeEditor
+from Math import Math
 
 
 def main():
@@ -18,6 +19,7 @@ def main():
 
     mainWindow = MainWindow()
     nodeEditor = NodeEditor()
+    math = Math()
 
     dpg.show_viewport()
     dpg.start_dearpygui()

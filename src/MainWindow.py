@@ -12,6 +12,7 @@ class MainWindow:
             dpg.add_button(label="Continue learning", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight)
             dpg.add_button(label="Select chapter", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight)
             dpg.add_button(label="Open playground", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight, callback=self.show_node_editor)
+            dpg.add_button(label="Example", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight, callback=self.show_math)
             dpg.add_button(label="Close", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight, callback=self.close_main_window)
 
     def close_main_window(self):
@@ -19,4 +20,8 @@ class MainWindow:
 
     def show_node_editor(self):
         dpg.show_item("nodeEditor")
+        dpg.set_item_pos("mainWindow", [0, 25])
+
+    def show_math(self):
+        dpg.show_item("math")
         dpg.set_item_pos("mainWindow", [0, 25])
