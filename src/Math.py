@@ -9,8 +9,9 @@ class Math:
     def __init__(self):
         with dpg.window(label="Math", autosize=True, tag="math", pos=config.mainWindowDefaultPos):
             dpg.hide_item("math")
-            dpg.add_button(label="aaa", callback=self.start)
-
+            dpg.add_input_int(label="Number of generations", tag="NoG", default_value=100)
+            dpg.add_input_int(label="Number of parents", tag="NoP", default_value=7)
+            dpg.add_button(label="Execute", callback=self.start)
 
     def start(self):
         """
@@ -31,9 +32,8 @@ class Math:
             return fitness
 
         fitness_function = fitness_func
-
-        num_generations = 100  # Number of generations.
-        num_parents_mating = 7  # Number of solutions to be selected as parents in the mating pool.
+        num_generations = dpg.get_value("NoG")  # Number of generations.
+        num_parents_mating = dpg.get_value("NoP")  # Number of solutions to be selected as parents in the mating pool.
 
         # To prepare the initial population, there are 2 ways:
         # 1) Prepare it yourself and pass it to the initial_population parameter. This way is useful when the user wants to start the genetic algorithm with a custom initial population.
@@ -60,9 +60,8 @@ class Math:
 
         # Running the GA to optimize the parameters of the function.
         ga_instance.run()
-
         # After the generations complete, some plots are showed that summarize the how the outputs/fitenss values evolve over generations.
-        ga_instance.plot_fitness()
+        #ga_instance.plot_fitness()
 
         # Returning the details of the best solution.
         solution, solution_fitness, solution_idx = ga_instance.best_solution()
@@ -78,9 +77,28 @@ class Math:
                 best_solution_generation=ga_instance.best_solution_generation))
 
         # Saving the GA instance.
-        filename = 'genetic'  # The filename to which the instance is saved. The name is without extension.
-        ga_instance.save(filename=filename)
-
+       # filename = 'genetic'  # The filename to which the instance is saved. The name is without extension.
+        #ga_instance.save(filename=filename)
+        self.show_info("Rozwiazanie", solution, self.on_selection)
         # Loading the saved GA instance.
-        loaded_ga_instance = pygad.load(filename=filename)
-        loaded_ga_instance.plot_fitness()
+        #loaded_ga_instance = pygad.load(filename=filename)
+       # loaded_ga_instance.plot_fitness()
+    def show_info(self, title, message, selection_callback):
+        # guarantee these commands happen in the same frame
+        with dpg.mutex():
+            viewport_width = dpg.get_viewport_client_width()
+            viewport_height = dpg.get_viewport_client_height()
+
+            with dpg.window(label=title, modal=True, no_close=True) as modal_id:
+                dpg.add_text(message)
+                dpg.add_button(label="Ok", width=75, user_data=(modal_id, True), callback=selection_callback)
+                dpg.add_button(label="Cancel", width=75, user_data=(modal_id, False), callback=selection_callback)
+
+        # guarantee these commands happen in another frame
+        dpg.split_frame()
+        width = dpg.get_item_width(modal_id)
+        height = dpg.get_item_height(modal_id)
+        dpg.set_item_pos(modal_id, [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+
+    def on_selection(self, sender, unused, user_data):
+        dpg.delete_item(user_data[0])

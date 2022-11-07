@@ -2,7 +2,7 @@ import dearpygui.dearpygui as dpg
 from MainWindow import MainWindow
 from NodeEditor import NodeEditor
 from Math import Math
-
+from Presentation import Presentation
 
 def main():
     dpg.create_context()
@@ -20,6 +20,7 @@ def main():
     mainWindow = MainWindow()
     nodeEditor = NodeEditor()
     math = Math()
+    presentatin = Presentation()
 
     dpg.show_viewport()
     dpg.start_dearpygui()
