@@ -1,5 +1,6 @@
 import dearpygui.dearpygui as dpg
 import numpy
+import time
 
 import config
 import pygad
@@ -89,7 +90,7 @@ class Math:
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
 
-            with dpg.window(label=title, modal=True, no_close=True) as modal_id:
+            with dpg.window(label=title, modal=True, no_close=True, autosize=True, tag="gggg", pos=(9999,9999)) as modal_id:
                 dpg.add_text(message)
                 dpg.add_button(label="Ok", width=75, user_data=(modal_id, True), callback=selection_callback)
                 dpg.add_button(label="Cancel", width=75, user_data=(modal_id, False), callback=selection_callback)

@@ -1,5 +1,5 @@
 
-mainWindowDefaultPos = [710, 290]
+mainWindowDefaultPos = [710*0,75, 290*0,75]
 mainWinButtonWidth = 500
 mainWinButtonHeight = 50
 
