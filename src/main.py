@@ -4,8 +4,7 @@ from NodeEditor import NodeEditor
 from Math import Math
 from Presentation import Presentation
 from Dictionary import Dictionary
-
-
+from Crossover import Crossover
 
 
 def main():
@@ -15,6 +14,7 @@ def main():
     dpg.setup_dearpygui()
 
     dictionary = Dictionary()
+    crossover = Crossover()
 
     with dpg.font_registry():
         default_font = dpg.add_font("ArialNarrow7-JB8E.ttf", 20)
@@ -24,6 +24,7 @@ def main():
         with dpg.menu(label="Placeholder"):
             dpg.add_menu_item(label="Placeholder")
         dpg.add_menu_item(label="Dictionary", callback=lambda: dictionary.show())
+        dpg.add_menu_item(label="Crossover", callback=lambda: crossover.show())
 
     mainWindow = MainWindow()
     nodeEditor = NodeEditor()
