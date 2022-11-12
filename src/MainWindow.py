@@ -10,7 +10,14 @@ class MainWindow:
             viewport_height = dpg.get_viewport_client_height()
             print(viewport_height)
             with dpg.window(label="Main window", autosize=True, tag="mainWindow", pos=config.mainWindowDefaultPos):
+                width, height, channels, data = dpg.load_image("dna.png")
+
+                with dpg.texture_registry():
+                    texture_id = dpg.add_static_texture(width, height, data)
+
+                dpg.add_image(texture_id, width=200, height=100)
                 dpg.add_spacer(height=50)
+
                 dpg.add_text("Select what do you want to do", indent=120)
                 dpg.add_spacer(height=50)
                 dpg.add_button(label="Start learning", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight, callback=self.show_presentation)
