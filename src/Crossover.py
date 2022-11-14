@@ -1,3 +1,5 @@
+import math
+
 import dearpygui.dearpygui as dpg
 import config
 import time
@@ -21,7 +23,7 @@ class Crossover:
                 with dpg.table_row():
                     with dpg.table_cell():
                         dpg.add_spacer(height=20)
-                        with open('gen.txt') as f:
+                        with open('..//gen.txt') as f:
                             lines = f.readlines()
                             i = 0
                             for line in lines:
@@ -39,11 +41,12 @@ class Crossover:
                                     dpg.add_text(line, bullet=True)
 
                     with dpg.table_cell():
-                        with dpg.drawlist(width=800, height=500):
+                        with dpg.drawlist(width=800, height=500, tag="_demo_advanced_drawing"):
                             with dpg.draw_layer():
                                 dpg.draw_line((48, 50), (653, 50), color=self.color, thickness=5)
                                 dpg.draw_line((50, 50), (50, 103), color=self.color, thickness=5)
                                 dpg.draw_line((50, 100), (653, 100), color=self.color, thickness=5)
+
 
                                 x = 100
                                 y = 50
@@ -81,9 +84,28 @@ class Crossover:
                                     x += 50
                                     allelX += 50
 
+                                with dpg.draw_node(tag="_drawing_sun"):
+                                    dpg.apply_transform(dpg.last_item(), dpg.create_translation_matrix([550, 125]))
+                                    dpg.draw_circle([0, 0], 15, color=[255, 255, 0], fill=[255, 255, 0])
+                                    with dpg.draw_node(tag="_drawing_planet1", user_data=45.0):
+                                        dpg.apply_transform(dpg.last_item(),
+                                                            dpg.create_rotation_matrix(math.pi * 45.0 / 180.0, [0, 0,
+                                                                                                                -1]) * dpg.create_translation_matrix(
+                                                                [150, 0]))
+                                        dpg.draw_circle([0, 0], 10, color=[0, 255, 0], fill=[0, 255, 0])
+                                        dpg.draw_circle([0, 0], 25, color=[255, 0, 255])
 
+                                def _demo_live_drawing():
+                                    planet_rot1 = dpg.get_item_user_data("_drawing_planet1") + 1.0
+                                    dpg.apply_transform("_drawing_planet1",
+                                                        dpg.create_rotation_matrix(math.pi * planet_rot1 / 180.0, [0, 0,
+                                                                                                                   -1]) * dpg.create_translation_matrix(
+                                                            [150, 0]))
+                                    dpg.set_item_user_data("_drawing_planet1", planet_rot1)
 
-
+                                with dpg.item_handler_registry(tag="__demo_item_reg6"):
+                                    dpg.add_item_visible_handler(callback=_demo_live_drawing)
+                                dpg.bind_item_handler_registry("_demo_advanced_drawing", dpg.last_container())
 
     def show(self):
         if not dpg.is_item_visible("crossover"):
