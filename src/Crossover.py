@@ -96,18 +96,18 @@ class Crossover:
 
                                 with dpg.draw_node(tag="_drawing_sun"):
                                     dpg.apply_transform(dpg.last_item(), dpg.create_translation_matrix([550, 150]))
-                                    dpg.draw_circle([0, 0], 5, color=[0, 0, 0], fill=[0, 255, 0]) #sun
+                                    #dpg.draw_circle([0, 0], 5, color=[0, 0, 0], fill=[0, 255, 0]) #sun
                                     with dpg.draw_node(tag="_drawing_planet1", user_data=90.0):
                                         dpg.apply_transform(dpg.last_item(),
                                                             dpg.create_rotation_matrix(math.pi * 45.0 / 180.0, [0, 0,-1]) * dpg.create_translation_matrix([150, 0]))
-                                        dpg.draw_circle([0, 0], 10, color=[0, 255, 0], fill=[0, 255, 0]) #planeta
-                                        dpg.draw_circle([0, 0], 25, color=[255, 0, 255])
+                                       # dpg.draw_circle([0, 0], 10, color=[0, 255, 0], fill=[0, 255, 0]) #planeta
+                                        #dpg.draw_circle([0, 0], 25, color=[255, 0, 255])
 
                                         with dpg.draw_node(tag="_drawing_moon1", user_data=45.0):
                                             dpg.apply_transform(dpg.last_item(),
                                                                  dpg.create_translation_matrix(
                                                                     [25, 0]))
-                                            dpg.draw_circle([0, 0], 5, color=[255, 0, 255], fill=[255, 0, 255]) # ksiezyc
+                                           # dpg.draw_circle([0, 0], 5, color=[255, 0, 255], fill=[255, 0, 255]) # ksiezyc
                                             dpg.draw_line((0, 0), (77, 0), color=self.color, thickness=5)
                                             dpg.draw_line((0, 0), (-77, 0), color=self.color, thickness=5)
 
@@ -128,14 +128,14 @@ class Crossover:
                                     with dpg.draw_node(tag="_drawing_planet2", user_data=270.0):
                                         dpg.apply_transform(dpg.last_item(),
                                                             dpg.create_rotation_matrix(math.pi * 45.0 / 180.0, [0, 0,-1]) * dpg.create_translation_matrix([150, 0]))
-                                        dpg.draw_circle([0, 0], 10, color=[0, 255, 0], fill=[0, 255, 0]) #planeta
-                                        dpg.draw_circle([0, 0], 25, color=[255, 0, 255])
+                                       # dpg.draw_circle([0, 0], 10, color=[0, 255, 0], fill=[0, 255, 0]) #planeta
+                                        #dpg.draw_circle([0, 0], 25, color=[255, 0, 255])
 
                                         with dpg.draw_node(tag="_drawing_moon2", user_data=45.0):
                                             dpg.apply_transform(dpg.last_item(),
                                                                  dpg.create_translation_matrix(
                                                                     [25, 0]))
-                                            dpg.draw_circle([0, 0], 5, color=[255, 0, 255], fill=[255, 0, 255]) # ksiezyc
+                                            #dpg.draw_circle([0, 0], 5, color=[255, 0, 255], fill=[255, 0, 255]) # ksiezyc
                                             dpg.draw_line((0, 0), (77, 0), color=self.color, thickness=5)
                                             dpg.draw_line((0, 0), (-77, 0), color=self.color, thickness=5)
 
@@ -174,7 +174,7 @@ class Crossover:
 
                                     dpg.apply_transform("_drawing_moon1",
                                                         dpg.create_rotation_matrix(-math.pi * planet_rot1 / 180.0, [0, 0,-1]) * dpg.create_translation_matrix([25, 0]))
-                                   # print(dpg.create_rotation_matrix(-math.pi * planet_rot1 / 180.0, [0, 0,-1]) * dpg.create_translation_matrix([25, 0]) )
+                                    #print(dpg.create_rotation_matrix(-math.pi * planet_rot1 / 180.0, [0, 0,-1]) * dpg.create_translation_matrix([25, 0]) )
                                     dpg.set_item_user_data("_drawing_moon1", moon_rot1)
                                     #
 
