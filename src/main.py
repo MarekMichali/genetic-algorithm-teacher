@@ -5,7 +5,8 @@ from Math import Math
 from Presentation import Presentation
 from Dictionary import Dictionary
 from Crossover import Crossover
-
+from IntroSlide import IntroSlide
+from Mutation import Mutation
 
 def main():
     dpg.create_context()
@@ -15,9 +16,11 @@ def main():
 
     dictionary = Dictionary()
     crossover = Crossover()
+    introSlide = IntroSlide()
+    mutation = Mutation()
 
     with dpg.font_registry():
-        default_font = dpg.add_font("..//ArialNarrow7-JB8E.ttf", 20)
+        default_font = dpg.add_font("ArialNarrow7-JB8E.ttf", 20)
 
     dpg.bind_font(default_font)
     with dpg.viewport_menu_bar():
@@ -25,6 +28,8 @@ def main():
             dpg.add_menu_item(label="Placeholder")
         dpg.add_menu_item(label="Dictionary", callback=lambda: dictionary.show())
         dpg.add_menu_item(label="Crossover", callback=lambda: crossover.show())
+        dpg.add_menu_item(label="IntroSlide", callback=lambda: introSlide.show())
+        dpg.add_menu_item(label="Mutacja", callback=lambda: mutation.show())
 
     mainWindow = MainWindow()
     nodeEditor = NodeEditor()

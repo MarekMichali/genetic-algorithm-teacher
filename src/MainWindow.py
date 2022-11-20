@@ -10,7 +10,7 @@ class MainWindow:
             viewport_height = dpg.get_viewport_client_height()
             print(viewport_height)
             with dpg.window(label="Main window", autosize=True, tag="mainWindow", pos=config.mainWindowDefaultPos):
-                width, height, channels, data = dpg.load_image("..//dna.png")
+                width, height, channels, data = dpg.load_image("dna.png")
 
                 with dpg.texture_registry():
                     texture_id = dpg.add_static_texture(width, height, data)

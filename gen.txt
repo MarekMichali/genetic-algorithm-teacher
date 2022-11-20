@@ -1,6 +1,6 @@
 Gen: najmniejszy element niosacy informacje.
 Chromosom: zbior parametrow czyli genow, ktore okreslaja
-danego osobnika.
+cechy danego osobnika.
 Osobnik: pojedyncza propozycja rozwiazania, zawiera chromosom.
 Populacja: zbior osobnikow, na ktorych wykonywane sa operacje.
 Allel: mozliwe wartosci, jakie moze przyjac gen

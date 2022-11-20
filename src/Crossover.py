@@ -25,22 +25,11 @@ class Crossover:
                 with dpg.table_row():
                     with dpg.table_cell():
                         dpg.add_spacer(height=20)
-                        with open('..//gen.txt') as f:
+                        with open('crossover.txt') as f:
                             lines = f.readlines()
                             i = 0
                             for line in lines:
-                                i += 1
-                                if i == 3 or i == 8:
-                                    with dpg.group(horizontal=True):
-                                        dpg.add_text(line, indent=63)
-                                        continue
-                                if i == 6 or i == 7:
-                                    with dpg.group(horizontal=True):
-                                        dpg.add_text(line, indent=34, bullet=True)
-                                        continue
-                                with dpg.group(horizontal=True):
-
-                                    dpg.add_text(line, bullet=True)
+                                dpg.add_text(line, indent=20)
 
                     with dpg.table_cell():
                         with dpg.drawlist(width=800, height=500, tag="_demo_advanced_drawing"):

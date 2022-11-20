@@ -1,0 +1,2 @@
+Do opisu algorytmow genetycznych wykorzystuje sie slownictwo z genetyki naturalnej. Ponizszy przyklad ma pomoc
+zrozumiec podstawowe slownictwo na przykladzie wykorzystujacym kodowanie binarne dla wartosci genow.

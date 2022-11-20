@@ -3,9 +3,9 @@ import config as c
 
 class Presentation:
     def __init__(self):
-        with dpg.window(label="What is this", autosize=True, tag="ps", pos=[99999,99999], on_close=lambda: dpg.show_item("mainWindow")):
+        with dpg.window(label="Wprowadzenie", autosize=True, tag="ps", pos=[99999,99999], on_close=lambda: dpg.show_item("mainWindow")):
             dpg.hide_item("ps")
-            with open('..//1.txt') as f:
+            with open('1.txt') as f:
                 lines = f.readlines()
 
             s = ''.join(lines)

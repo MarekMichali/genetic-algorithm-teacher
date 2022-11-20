@@ -1,0 +1,8 @@
+Mutacja jest jednym z etapow generowania nowej populacji. Wprowadza
+dodatkowa roznorodnosc do procesu ewolucji i zmniejsza ryzyko
+pradwopodobienstwo przedwczesnego otrzymania wyniku. Mutacja moze
+zachodzic na kilka sposobow: zamiana losowych genow miejscami w
+chromosomie, zmiana wartosci jednego genu lub wielu.
+Prawdopodobienstwo mutacji nie moze byc zbyt duze. W przypadku
+zbyt czestego zachodzenia tego procesu otrzymywane rozwiazania
+moga byc dalekie od optymalnego.
