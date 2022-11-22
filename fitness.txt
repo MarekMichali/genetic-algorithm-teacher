@@ -1,0 +1,3 @@
+Funkcja przystosowania sluzy ocenie poszczegolnych osobnikow na podstawie ich genow. Zazwyczaj nalezy ja zdefiniowac
+samemu w zaleznosci od rozwiazywanego problemu. Zwraca wartosc liczbowa okreslajaca jakosc otrzymanego rozwiazania.
+Nastepnie ta liczba jest uzywana w przypadku selekcji osobnikow do utworzenia nowej populacji.

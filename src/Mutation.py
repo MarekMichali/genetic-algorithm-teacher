@@ -25,7 +25,7 @@ class Mutation:
                 with dpg.table_row():
                     with dpg.table_cell():
                         dpg.add_spacer(height=20)
-                        with open('mutation.txt') as f:
+                        with open('..//mutation.txt') as f:
                             lines = f.readlines()
                             i = 0
                             for line in lines:

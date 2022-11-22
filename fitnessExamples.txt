@@ -1,0 +1,2 @@
+ilosci "jedynek"
+umiejscowienia "jedynki"
