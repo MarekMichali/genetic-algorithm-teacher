@@ -23,7 +23,7 @@ def main():
     fitness = Fitness()
 
     with dpg.font_registry():
-        default_font = dpg.add_font("..//ArialNarrow7-JB8E.ttf", 20)
+        default_font = dpg.add_font("ArialNarrow7-JB8E.ttf", 20)
 
     dpg.bind_font(default_font)
     with dpg.viewport_menu_bar():

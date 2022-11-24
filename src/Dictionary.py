@@ -15,7 +15,7 @@ class Dictionary:
         with dpg.window(label="Dictionary", autosize=True, tag="dictionary", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow")):
             dpg.hide_item("dictionary")
-            with open('..//dictionarySlide.txt') as f:
+            with open('dictionarySlide.txt') as f:
                 lines = f.readlines()
 
             s = ''.join(lines)
@@ -29,7 +29,7 @@ class Dictionary:
                 with dpg.table_row():
                     with dpg.table_cell():
                         dpg.add_spacer(height=20)
-                        with open('..//gen.txt') as f:
+                        with open('gen.txt') as f:
                             lines = f.readlines()
                             i = 0
                             for line in lines:

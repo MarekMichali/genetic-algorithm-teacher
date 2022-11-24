@@ -18,7 +18,7 @@ class Fitness:
         with dpg.window(label="Fitness", autosize=True, tag="fitness", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow")):
             dpg.hide_item("fitness")
-            with open('..//fitness.txt') as f:
+            with open('fitness.txt') as f:
                 lines = f.readlines()
 
             s = ''.join(lines)
@@ -32,7 +32,7 @@ class Fitness:
                 with dpg.table_row():
                     with dpg.table_cell():
                         dpg.add_spacer(height=20)
-                        with open('..//fitnessExamples.txt') as f:
+                        with open('fitnessExamples.txt') as f:
                             lines = f.readlines()
                             i = 0
                             self.checkboxes.append((dpg.add_radio_button(lines, callback=self.wartosc)))
