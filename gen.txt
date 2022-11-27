@@ -3,6 +3,4 @@ Chromosom: zbior parametrow czyli genow, ktore okreslaja
 cechy danego osobnika.
 Osobnik: pojedyncza propozycja rozwiazania, zawiera chromosom.
 Populacja: zbior osobnikow, na ktorych wykonywane sa operacje.
-Allel: mozliwe wartosci, jakie moze przyjac gen
-Funkcja przystosowania: funkcja oceniajaca przystosowanie
-danego osobnika, czyli jak dobre jest otrzymane rozwiazanie.
+Allel: wszystkie mozliwe wartosci, jakie moze przyjac gen

@@ -1,0 +1,15 @@
+Znajac jakosc poszczegolnych rozwiazan mozna
+przystapic do selekcji poszczegolnych osobnikow
+w celu utworzenia kolejnego pokolenia. Istnieje
+wiele roznych selektorow, jednak ich wspolna
+cecha jest to, ze osobniki o najlepszej jakosci
+maja najwieksza szanse wziac udzial w reprodukcji.
+Przykladowe selektory:
+
+Selekcja rankingowa: n najlepszych osobnikow
+zostaje wybranych do rozrodu.
+
+Metoda kola ruletki: kolo jest dzielone na
+obszary odpowiadajace jakosci danego osobnika.
+Im lepsza jakos tym wiekszy obszar, a co za tym
+idzie wieksza szansa na wylosowanie do rozrodu.

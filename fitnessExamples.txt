@@ -1,2 +1,2 @@
-ilosci "jedynek"
-umiejscowienia "jedynki"
+ilosci "jedynek" w chromosomie
+umiejscowienia "jedynki" w chromosomie

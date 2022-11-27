@@ -8,6 +8,7 @@ from Crossover import Crossover
 from IntroSlide import IntroSlide
 from Mutation import Mutation
 from Fitness import Fitness
+from Selector import Selector
 
 
 def main():
@@ -21,7 +22,7 @@ def main():
     introSlide = IntroSlide()
     mutation = Mutation()
     fitness = Fitness()
-
+    selector = Selector()
     with dpg.font_registry():
         default_font = dpg.add_font("ArialNarrow7-JB8E.ttf", 20)
 
@@ -34,6 +35,7 @@ def main():
         dpg.add_menu_item(label="IntroSlide", callback=lambda: introSlide.show())
         dpg.add_menu_item(label="Mutacja", callback=lambda: mutation.show())
         dpg.add_menu_item(label="Fitness", callback=lambda: fitness.show())
+        dpg.add_menu_item(label="Selector", callback=lambda: selector.show())
 
     mainWindow = MainWindow()
     nodeEditor = NodeEditor()

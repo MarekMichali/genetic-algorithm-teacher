@@ -46,9 +46,9 @@ class MainWindow:
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
-        dpg.show_item("ps")
+        dpg.show_item("introSlide")
         dpg.split_frame()
-        width = dpg.get_item_width("ps")
-        height = dpg.get_item_height("ps")
-        dpg.set_item_pos("ps", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+        width = dpg.get_item_width("introSlide")
+        height = dpg.get_item_height("introSlide")
+        dpg.set_item_pos("introSlide", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
         dpg.hide_item("mainWindow")

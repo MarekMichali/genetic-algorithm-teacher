@@ -1,3 +1,16 @@
-Funkcja przystosowania sluzy ocenie poszczegolnych osobnikow na podstawie ich genow. Zazwyczaj nalezy ja zdefiniowac
-samemu w zaleznosci od rozwiazywanego problemu. Zwraca wartosc liczbowa okreslajaca jakosc otrzymanego rozwiazania.
-Nastepnie ta liczba jest uzywana w przypadku selekcji osobnikow do utworzenia nowej populacji.
+Po zakodowaniu kolejnym krokiem jest
+wygenerowanie populacji poczatkowej.
+Zazwyczaj tworzy sie populacje startowa
+o losowych cechach, jednak dla niektorych
+problemow mozna stworzyc populajcje
+o predefiniowanych cechach.
+
+Majac juz populacje nalezy teraz poddac kazdego jej
+osobnika ocenie. Sluzy do tego funkcja
+przystosowania. Nalezy ja zdefiniowac w taki sposob
+aby zwracala wartosc liczbowa okreslajaca jakosc
+otrzymanego rozwiazania. Nastepnie wartosc ta
+uzywana jest do selekcji osobnikow, ktore wezma
+udzial w tworzeniu nowej populacji.
+
+Przykladowe wartosci funkcji oceny w zaleznosci od:

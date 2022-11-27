@@ -2,7 +2,7 @@ import math
 from datetime import datetime
 
 import dearpygui.dearpygui as dpg
-import config
+import config as c
 import time
 import Presentation
 
@@ -144,6 +144,7 @@ class Crossover:
                                 def _demo_live_drawing():
                                     planet_rot1 = dpg.get_item_user_data("_drawing_planet1") + 1
                                     planet_rot2 = dpg.get_item_user_data("_drawing_planet2") + 1
+
                                    # print(planet_rot2)
                                     if planet_rot1 == 270:
                                         self.renderCount += 1
@@ -187,6 +188,12 @@ class Crossover:
                                     dpg.add_item_visible_handler(callback=_demo_live_drawing)
                                 dpg.bind_item_handler_registry("_demo_advanced_drawing", dpg.last_container())
                                 #_demo_live_drawing()
+
+            with dpg.group(horizontal=True):
+                dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left, indent=660)
+                # dpg.add_spacer(width=500)
+                dpg.add_button(width=200, height=20, arrow=True, direction=dpg.mvDir_Right,
+                           callback=lambda: self.next())
     def show(self):
         if not dpg.is_item_visible("crossover"):
             with dpg.mutex():
@@ -198,3 +205,15 @@ class Crossover:
             height = dpg.get_item_height("crossover")
             dpg.set_item_pos("crossover", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
             dpg.hide_item("mainWindow")
+
+    def next(self):
+        print("asggsaa")
+        with dpg.mutex():
+            viewport_width = dpg.get_viewport_client_width()
+            viewport_height = dpg.get_viewport_client_height()
+        dpg.show_item("mutation")
+        dpg.split_frame()
+        width = dpg.get_item_width("mutation")
+        height = dpg.get_item_height("mutation")
+        dpg.set_item_pos("mutation", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+        dpg.hide_item("crossover")

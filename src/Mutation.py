@@ -2,7 +2,7 @@ import math
 from datetime import datetime
 
 import dearpygui.dearpygui as dpg
-import config
+import config as c
 import time
 import Presentation
 
@@ -161,6 +161,11 @@ class Mutation:
                                     dpg.add_item_visible_handler(callback=_demo_live_drawing)
                                 dpg.bind_item_handler_registry("_demo_advanced_drawing2", dpg.last_container())
                                 #_demo_live_drawing()
+            with dpg.group(horizontal=True):
+                dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left, indent=660)
+                # dpg.add_spacer(width=500)
+                dpg.add_button(width=200, height=20, arrow=True, direction=dpg.mvDir_Right,
+                           callback=lambda: self.next())
     def show(self):
         if not dpg.is_item_visible("mutation"):
             with dpg.mutex():
