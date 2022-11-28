@@ -18,14 +18,14 @@ class Fitness:
         with dpg.window(label="Fitness", autosize=True, tag="fitness", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow")):
             dpg.hide_item("fitness")
-            with open('fitness.txt') as f:
+            with open('../fitness.txt') as f:
                 lines = f.readlines()
 
             s = ''.join(lines)
             #dpg.add_text(s)
             #for l in lines:
                 #dpg.add_text(l, indent=20)
-            with dpg.table(width=1440, height=610, header_row=False, borders_innerV=True, borders_outerV=True, borders_innerH=True, borders_outerH=True):
+            with dpg.table(width=1440, height=640, header_row=False):
                 dpg.add_table_column(width_fixed=True, init_width_or_weight=516)
                 dpg.add_table_column(init_width_or_weight=740)
                 #with open('gen.txt') as f:
@@ -34,7 +34,7 @@ class Fitness:
                 with dpg.table_row():
                     with dpg.table_cell():
                         dpg.add_spacer(height=20)
-                        with open('fitness.txt') as f:
+                        with open('../fitness.txt') as f:
                             lines = f.readlines()
 
                         s = ''.join(lines)
@@ -42,7 +42,7 @@ class Fitness:
                         for l in lines:
                             dpg.add_text(l, indent=20)
                         dpg.add_spacer(height=20)
-                        with open('fitnessExamples.txt') as f:
+                        with open('../fitnessExamples.txt') as f:
                             lines = f.readlines()
                             i = 0
                             self.checkboxes.append((dpg.add_radio_button(lines, callback=self.wartosc)))
@@ -169,7 +169,7 @@ class Fitness:
                                 dpg.draw_text((- 137 + self.xMove, 54 + 3*self.yOffset), "1259", color=(250, 250, 250, 255), size=50)
 
             with dpg.group(horizontal=True):
-                dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left, indent=660)
+                dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left, indent=660, callback=lambda: self.back())
                 # dpg.add_spacer(width=500)
                 dpg.add_button(width=200, height=20, arrow=True, direction=dpg.mvDir_Right,
                            callback=lambda: self.next())
@@ -207,4 +207,16 @@ class Fitness:
         width = dpg.get_item_width("selector")
         height = dpg.get_item_height("selector")
         dpg.set_item_pos("selector", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+        dpg.hide_item("fitness")
+
+    def back(self):
+        print("asggsaa")
+        with dpg.mutex():
+            viewport_width = dpg.get_viewport_client_width()
+            viewport_height = dpg.get_viewport_client_height()
+        dpg.show_item("dictionary")
+        dpg.split_frame()
+        width = dpg.get_item_width("dictionary")
+        height = dpg.get_item_height("dictionary")
+        dpg.set_item_pos("dictionary", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
         dpg.hide_item("fitness")

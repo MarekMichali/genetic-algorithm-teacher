@@ -16,23 +16,101 @@ class Crossover:
         self.firstChromo = (0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
         self.secondChromo = (1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0)
         self.renderCount = 0
+        self.renderCount3 = 0
         with dpg.window(label="Krzyzowanie", autosize=True, tag="crossover", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow")):
             dpg.hide_item("crossover")
-            with dpg.table(width=1440, height=610, header_row=False):
+            with dpg.table(width=1440, height=640, header_row=False):
                 dpg.add_table_column()
                 dpg.add_table_column()
                 with dpg.table_row():
                     with dpg.table_cell():
                         dpg.add_spacer(height=20)
-                        with open('crossover.txt') as f:
+                        with open('../crossover.txt') as f:
                             lines = f.readlines()
                             i = 0
+                          #  dpg.add_spacer(height=175)
                             for line in lines:
                                 dpg.add_text(line, indent=20)
 
                     with dpg.table_cell():
+                        dpg.add_spacer(height=50)
                         with dpg.drawlist(width=800, height=500, tag="_demo_advanced_drawing"):
+
+
+                            with dpg.draw_layer():
+                                dpg.draw_line((48, 250), (203, 250), color=self.color, thickness=5)
+                                dpg.draw_line((348, 250), (653, 250), color=self.color, thickness=5)
+                                dpg.draw_line((50, 250), (50, 303), color=self.color, thickness=5)
+
+                                dpg.draw_line((50, 300), (203, 300), color=self.color, thickness=5)
+                                dpg.draw_line((348, 300), (653, 300), color=self.color, thickness=5)
+
+
+
+
+                                x = 100
+                                y = 250
+                                allelX = 64
+                                allelY = 254
+                                counter = 0
+                                for i in self.firstChromo:
+                                    counter += 1
+                                    if counter == 4 or counter == 5 or counter == 6:
+                                        if counter == 6:
+                                            dpg.draw_line((x, y), (x, y + 50), color=self.color, thickness=5)
+                                        x += 50
+                                        allelX += 50
+                                        continue
+                                    dpg.draw_line((x, y), (x, y+50), color=self.color, thickness=5)
+                                    if i == 0:
+                                        dpg.draw_text((allelX, allelY), "0", color=(250, 250, 250, 255), size=50)
+                                    else:
+                                        dpg.draw_text((allelX + self.xOneOffset, allelY), "1", color=(250, 250, 250, 255),
+                                                      size=50)
+                                    x += 50
+                                    allelX += 50
+
+                            with dpg.draw_layer():
+                                dpg.draw_line((48, 250 + self.yOffset), (203, 250 + self.yOffset), color=self.color,
+                                              thickness=5)
+                                dpg.draw_line((348, 250 + self.yOffset), (653, 250 + self.yOffset), color=self.color,
+                                              thickness=5)
+                                dpg.draw_line((50, 250 + self.yOffset), (50, 303 + self.yOffset), color=self.color,
+                                              thickness=5)
+                                dpg.draw_line((50, 300 + self.yOffset), (203, 300 + self.yOffset), color=self.color,
+                                              thickness=5)
+                                dpg.draw_line((348, 300 + self.yOffset), (653, 300 + self.yOffset), color=self.color,
+                                              thickness=5)
+                                x = 100
+                                y = 250
+                                allelX = 64
+                                allelY = 254
+                                counter = 0
+                                for i in self.secondChromo:
+                                    counter += 1
+                                    if counter == 4 or counter == 5 or counter == 6:
+                                        if counter == 6:
+                                            dpg.draw_line((x, y + self.yOffset), (x, y + 50 + self.yOffset),
+                                                          color=self.color,
+                                                          thickness=5)
+                                        x += 50
+                                        allelX += 50
+                                        continue
+                                    dpg.draw_line((x, y + self.yOffset), (x, y + 50 + self.yOffset), color=self.color,
+                                                  thickness=5)
+                                    if i == 0:
+                                        dpg.draw_text((allelX, allelY + self.yOffset), "0", color=(250, 250, 250, 255),
+                                                      size=50)
+                                    else:
+                                        dpg.draw_text((allelX + self.xOneOffset, allelY + self.yOffset), "1",
+                                                      color=(250, 250, 250, 255),
+                                                      size=50)
+                                    x += 50
+                                    allelX += 50
+
+
+
                             with dpg.draw_layer():
                                 dpg.draw_line((48, 50), (503, 50), color=self.color, thickness=5)
                                 dpg.draw_line((50, 50), (50, 103), color=self.color, thickness=5)
@@ -141,9 +219,71 @@ class Crossover:
                                             dpg.draw_line((0, -50), (77, -50), color=self.color, thickness=5)
                                             dpg.draw_line((0, -50), (-77, -50), color=self.color, thickness=5)
 
+
+#----
+                                with dpg.draw_node(tag="_drawing_sun3"):
+                                    dpg.apply_transform(dpg.last_item(), dpg.create_translation_matrix([250, 350]))
+                                    #dpg.draw_circle([0, 0], 5, color=[0, 0, 0], fill=[0, 255, 0]) #sun
+                                    with dpg.draw_node(tag="_drawing_planet13", user_data=90.0):
+                                        dpg.apply_transform(dpg.last_item(),
+                                                            dpg.create_rotation_matrix(math.pi * 45.0 / 180.0, [0, 0,-1]) * dpg.create_translation_matrix([150, 0]))
+                                       # dpg.draw_circle([0, 0], 10, color=[0, 255, 0], fill=[0, 255, 0]) #planeta
+                                        #dpg.draw_circle([0, 0], 25, color=[255, 0, 255])
+
+                                        with dpg.draw_node(tag="_drawing_moon13", user_data=45.0):
+                                            dpg.apply_transform(dpg.last_item(),
+                                                                 dpg.create_translation_matrix(
+                                                                    [25, 0]))
+                                           # dpg.draw_circle([0, 0], 5, color=[255, 0, 255], fill=[255, 0, 255]) # ksiezyc
+                                            dpg.draw_line((0, 0), (77, 0), color=self.color, thickness=5)
+                                            dpg.draw_line((0, 0), (-77, 0), color=self.color, thickness=5)
+
+                                            dpg.draw_line((25, 2), (25, -52), color=self.color, thickness=5)
+                                            dpg.draw_text((-10 + self.xOneOffset, -46), "1", color=(250, 250, 250, 255), size=50)
+                                            dpg.draw_line((75, 2), (75, -52), color=self.color, thickness=5)
+                                            dpg.draw_text((-60 + self.xOneOffset, -46), "1", color=(250, 250, 250, 255), size=50)
+                                            dpg.draw_line((-25, 2), (-25, -52), color=self.color, thickness=5)
+                                            dpg.draw_text((40, -46 ), "0",
+                                                          color=(250, 250, 250, 255),
+                                                          size=50)
+                                            dpg.draw_line((-75, 2), (-75, -52), color=self.color, thickness=5)
+
+                                            dpg.draw_line((0, -50), (77, -50), color=self.color, thickness=5)
+                                            dpg.draw_line((0, -50), (-77, -50), color=self.color, thickness=5)
+
+                                    #
+                                    with dpg.draw_node(tag="_drawing_planet23", user_data=270.0):
+                                        dpg.apply_transform(dpg.last_item(),
+                                                            dpg.create_rotation_matrix(math.pi * 45.0 / 180.0, [0, 0,-1]) * dpg.create_translation_matrix([150, 0]))
+                                       # dpg.draw_circle([0, 0], 10, color=[0, 255, 0], fill=[0, 255, 0]) #planeta
+                                        #dpg.draw_circle([0, 0], 25, color=[255, 0, 255])
+
+                                        with dpg.draw_node(tag="_drawing_moon23", user_data=45.0):
+                                            dpg.apply_transform(dpg.last_item(),
+                                                                 dpg.create_translation_matrix(
+                                                                    [25, 0]))
+                                            #dpg.draw_circle([0, 0], 5, color=[255, 0, 255], fill=[255, 0, 255]) # ksiezyc
+                                            dpg.draw_line((0, 0), (77, 0), color=self.color, thickness=5)
+                                            dpg.draw_line((0, 0), (-77, 0), color=self.color, thickness=5)
+
+                                            dpg.draw_line((25, 2), (25, -52), color=self.color, thickness=5)
+                                            dpg.draw_text((-10, -46), "0", color=(250, 250, 250, 255), size=50)
+                                            dpg.draw_line((75, 2), (75, -52), color=self.color, thickness=5)
+                                            dpg.draw_text((-60 + + self.xOneOffset, -46), "1", color=(250, 250, 250, 255), size=50)
+                                            dpg.draw_line((-25, 2), (-25, -52), color=self.color, thickness=5)
+                                            dpg.draw_text((40, -46), "0",
+                                                          color=(250, 250, 250, 255),
+                                                          size=50)
+                                            dpg.draw_line((-75, 2), (-75, -52), color=self.color, thickness=5)
+
+                                            dpg.draw_line((0, -50), (77, -50), color=self.color, thickness=5)
+                                            dpg.draw_line((0, -50), (-77, -50), color=self.color, thickness=5)
+
                                 def _demo_live_drawing():
                                     planet_rot1 = dpg.get_item_user_data("_drawing_planet1") + 1
                                     planet_rot2 = dpg.get_item_user_data("_drawing_planet2") + 1
+                                    planet_rot13 = dpg.get_item_user_data("_drawing_planet13") + 1
+                                    planet_rot23 = dpg.get_item_user_data("_drawing_planet23") + 1
 
                                    # print(planet_rot2)
                                     if planet_rot1 == 270:
@@ -151,6 +291,8 @@ class Crossover:
                                         if self.renderCount == 270:
                                             planet_rot1 = 90
                                             planet_rot2 = 270
+                                            planet_rot13 = 90
+                                            planet_rot23 = 270
                                             self.renderCount = 0
                                         else:
                                             return
@@ -181,6 +323,38 @@ class Crossover:
                                                             [25, 0]))
                                    # print(dpg.create_rotation_matrix(math.pi * moon_rot2 / 180.0, [0, 0, -1]))
                                     dpg.set_item_user_data("_drawing_moon2", moon_rot2)
+                                    #---
+
+                                    dpg.apply_transform("_drawing_planet13",
+                                                        dpg.create_rotation_matrix(math.pi * planet_rot13 / 180.0, [0, 0,
+                                                                                                                   -1]) * dpg.create_translation_matrix(
+                                                            [50, 0]))
+                                    dpg.set_item_user_data("_drawing_planet13", planet_rot13)
+                                    moon_rot1 = dpg.get_item_user_data("_drawing_moon13") + 3.0
+                                    # print(moon_rot1)
+
+                                    dpg.apply_transform("_drawing_moon13",
+                                                        dpg.create_rotation_matrix(-math.pi * planet_rot13 / 180.0,
+                                                                                   [0, 0,
+                                                                                    -1]) * dpg.create_translation_matrix(
+                                                            [25, 0]))
+                                    # print(dpg.create_rotation_matrix(-math.pi * planet_rot1 / 180.0, [0, 0,-1]) * dpg.create_translation_matrix([25, 0]) )
+                                    dpg.set_item_user_data("_drawing_moon13", moon_rot1)
+                                    #
+
+                                    dpg.apply_transform("_drawing_planet23",
+                                                        dpg.create_rotation_matrix(math.pi * planet_rot23 / 180.0, [0, 0,
+                                                                                                                   -1]) * dpg.create_translation_matrix(
+                                                            [50, 0]))
+                                    dpg.set_item_user_data("_drawing_planet23", planet_rot23)
+                                    moon_rot2 = dpg.get_item_user_data("_drawing_moon23") + 3.0
+                                    dpg.apply_transform("_drawing_moon23",
+                                                        dpg.create_rotation_matrix(-math.pi * planet_rot23 / 180.0,
+                                                                                   [0, 0,
+                                                                                    -1]) * dpg.create_translation_matrix(
+                                                            [25, 0]))
+                                    # print(dpg.create_rotation_matrix(math.pi * moon_rot2 / 180.0, [0, 0, -1]))
+                                    dpg.set_item_user_data("_drawing_moon23", moon_rot2)
 
 
 
@@ -189,8 +363,12 @@ class Crossover:
                                 dpg.bind_item_handler_registry("_demo_advanced_drawing", dpg.last_container())
                                 #_demo_live_drawing()
 
+
+
+
+
             with dpg.group(horizontal=True):
-                dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left, indent=660)
+                dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left, indent=660, callback=lambda: self.back())
                 # dpg.add_spacer(width=500)
                 dpg.add_button(width=200, height=20, arrow=True, direction=dpg.mvDir_Right,
                            callback=lambda: self.next())
@@ -216,4 +394,16 @@ class Crossover:
         width = dpg.get_item_width("mutation")
         height = dpg.get_item_height("mutation")
         dpg.set_item_pos("mutation", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+        dpg.hide_item("crossover")
+
+    def back(self):
+        print("asggsaa")
+        with dpg.mutex():
+            viewport_width = dpg.get_viewport_client_width()
+            viewport_height = dpg.get_viewport_client_height()
+        dpg.show_item("selector")
+        dpg.split_frame()
+        width = dpg.get_item_width("selector")
+        height = dpg.get_item_height("selector")
+        dpg.set_item_pos("selector", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
         dpg.hide_item("crossover")

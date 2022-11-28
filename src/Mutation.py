@@ -19,13 +19,13 @@ class Mutation:
         with dpg.window(label="Mutacja", autosize=True, tag="mutation", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow")):
             dpg.hide_item("mutation")
-            with dpg.table(width=1440, height=610, header_row=False):
+            with dpg.table(width=1440, height=640, header_row=False):
                 dpg.add_table_column()
                 dpg.add_table_column()
                 with dpg.table_row():
                     with dpg.table_cell():
                         dpg.add_spacer(height=20)
-                        with open('mutation.txt') as f:
+                        with open('../mutation.txt') as f:
                             lines = f.readlines()
                             i = 0
                             for line in lines:
@@ -162,10 +162,10 @@ class Mutation:
                                 dpg.bind_item_handler_registry("_demo_advanced_drawing2", dpg.last_container())
                                 #_demo_live_drawing()
             with dpg.group(horizontal=True):
-                dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left, indent=660)
+                dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left, indent=660, callback=lambda: self.back())
                 # dpg.add_spacer(width=500)
                 dpg.add_button(width=200, height=20, arrow=True, direction=dpg.mvDir_Right,
-                           callback=lambda: self.next())
+                           )
     def show(self):
         if not dpg.is_item_visible("mutation"):
             with dpg.mutex():
@@ -177,3 +177,15 @@ class Mutation:
             height = dpg.get_item_height("mutation")
             dpg.set_item_pos("mutation", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
             dpg.hide_item("mainWindow")
+
+    def back(self):
+        print("asggsaa")
+        with dpg.mutex():
+            viewport_width = dpg.get_viewport_client_width()
+            viewport_height = dpg.get_viewport_client_height()
+        dpg.show_item("crossover")
+        dpg.split_frame()
+        width = dpg.get_item_width("crossover")
+        height = dpg.get_item_height("crossover")
+        dpg.set_item_pos("crossover", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+        dpg.hide_item("mutation")

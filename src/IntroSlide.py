@@ -6,12 +6,12 @@ class IntroSlide:
     def __init__(self):
         with dpg.window(label="Wprowadzenie", autosize=True, tag="introSlide", pos=[99999,99999], on_close=lambda: dpg.show_item("mainWindow"), height=7000):
             dpg.hide_item("introSlide")
-            with open('introSlide.txt') as f:
+            with open('../introSlide.txt') as f:
                 lines = f.readlines()
 
             s = ''.join(lines)
 
-            with dpg.table(width=1440, height=610, header_row=False,  borders_innerV=True, borders_outerV=True, borders_innerH=True, borders_outerH=True):
+            with dpg.table(width=1440, height=640, header_row=False):
                 dpg.add_table_column(width=200)
                 with dpg.table_row():
                     with dpg.table_cell():

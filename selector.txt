@@ -1,6 +1,7 @@
 Znajac jakosc poszczegolnych rozwiazan mozna
 przystapic do selekcji poszczegolnych osobnikow
-w celu utworzenia kolejnego pokolenia. Istnieje
+w celu utworzenia kolejnego pokolenia lub
+zakonczenia procesu ewolucji. Istnieje
 wiele roznych selektorow, jednak ich wspolna
 cecha jest to, ze osobniki o najlepszej jakosci
 maja najwieksza szanse wziac udzial w reprodukcji.

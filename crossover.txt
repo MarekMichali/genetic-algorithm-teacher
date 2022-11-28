@@ -1,6 +1,6 @@
-Krzyzowanie jest jednym z etapow generowania nowej populacji. Polega
-na utworzeniu potomstwa na podstawie genow rodzicow. Chromosomy sa
-rozcinane w losowym miejscu i ich fragmenty sa wymieniane
-pomiedzy soba. Rozcinanie moze rowniez zostac wykonane w wielu
-miejscach jednoczesnie. Jest to zalezne od implementacji
-algorytmu i rodzaju problemu, jaki jest rozwiazywany.
+Po wykonaniu selekcji wybrane osobniki sa poddawane krzyzowaniu.
+Krzyzowanie polega na utworzeniu potomstwa na podstawie genow
+rodzicow. Chromosomy sa rozcinane w losowym miejscu i ich
+fragmenty sa wymieniane pomiedzy soba. Rozcinanie moze rowniez
+zostac wykonane w wielu miejscach jednoczesnie. Jest to zalezne
+od implementacji algorytmu.

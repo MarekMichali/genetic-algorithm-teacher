@@ -10,7 +10,7 @@ class MainWindow:
             viewport_height = dpg.get_viewport_client_height()
             print(viewport_height)
             with dpg.window(label="Main window", autosize=True, tag="mainWindow", pos=config.mainWindowDefaultPos):
-                width, height, channels, data = dpg.load_image("dna.png")
+                width, height, channels, data = dpg.load_image("../dna.png")
 
                 with dpg.texture_registry():
                     texture_id = dpg.add_static_texture(width, height, data)
@@ -39,8 +39,18 @@ class MainWindow:
         dpg.set_item_pos("mainWindow", [0, 25])
 
     def show_math(self):
-        dpg.show_item("math")
-        dpg.set_item_pos("mainWindow", [0, 25])
+       # dpg.show_item("evolveOnes")
+        #dpg.set_item_pos("mainWindow", [0, 25])
+
+        with dpg.mutex():
+            viewport_width = dpg.get_viewport_client_width()
+            viewport_height = dpg.get_viewport_client_height()
+        dpg.show_item("evolveOnes")
+        dpg.split_frame()
+        width = dpg.get_item_width("evolveOnes")
+        height = dpg.get_item_height("evolveOnes")
+        dpg.set_item_pos("evolveOnes", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+        dpg.hide_item("mainWindow")
 
     def show_presentation(self):
         with dpg.mutex():

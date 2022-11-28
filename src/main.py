@@ -9,6 +9,7 @@ from IntroSlide import IntroSlide
 from Mutation import Mutation
 from Fitness import Fitness
 from Selector import Selector
+from EvolveOnes import EvolveOnes
 
 
 def main():
@@ -23,8 +24,9 @@ def main():
     mutation = Mutation()
     fitness = Fitness()
     selector = Selector()
+    evolveOnes = EvolveOnes()
     with dpg.font_registry():
-        default_font = dpg.add_font("ArialNarrow7-JB8E.ttf", 20)
+        default_font = dpg.add_font("../ArialNarrow7-JB8E.ttf", 20)
 
     dpg.bind_font(default_font)
     with dpg.viewport_menu_bar():
