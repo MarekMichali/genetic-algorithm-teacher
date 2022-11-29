@@ -24,7 +24,7 @@ class MainWindow:
                 dpg.add_button(label="Continue learning", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight)
                 dpg.add_button(label="Select chapter", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight)
                 dpg.add_button(label="Open playground", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight, callback=self.show_node_editor)
-                dpg.add_button(label="Example", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight, callback=self.show_math)
+                dpg.add_button(label="Ewolucja szczurow", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight, callback=self.show_math)
                 dpg.add_button(label="Close", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight, callback=self.close_main_window)
 
         #dpg.split_frame()

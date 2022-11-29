@@ -1,3 +1,5 @@
+from math import sin, cos
+
 import dearpygui.dearpygui as dpg
 import numpy
 import time
@@ -8,6 +10,16 @@ import pygad
 
 class EvolveOnes:
     def __init__(self):
+        self.color = (15, 86, 135, 255)
+        self.checkboxes = []
+        self.yOffset = 100
+        self.xOneOffset = 5
+        self.firstChromo = (0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
+        self.sindatax = []
+        self.sindatay = []
+        for i in range(0, 500):
+            self.sindatax.append(i / 1000)
+            self.sindatay.append(0.5 + 0.5 * sin(50 * i / 1000))
         with dpg.window(label="Krzyzowanie", autosize=True, tag="evolveOnes", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow")):
             dpg.hide_item("evolveOnes")
@@ -16,9 +28,15 @@ class EvolveOnes:
                 dpg.add_table_column()
                 with dpg.table_row():
                     with dpg.table_cell():
-                        dpg.add_input_int(label="Po ilu generacjach zatrzymac algorytm", tag="NoGe", default_value=100)
-                        dpg.add_input_int(label="Ilu rodzicow wybrac dla nowej populacji", tag="NoPe", default_value=7)
-                        dpg.add_button(label="Execute", callback=self.start)
+                        dpg.add_input_int(label=" Po ilu generacjach zatrzymac algorytm", tag="NoGe", default_value=100, width=140, min_value=1, min_clamped=True, indent=20)
+                        dpg.add_input_int(label=" Liczba osobnikow w generacji", tag="NoOs", default_value=20,
+                                          width=140, min_value=1, min_clamped=True, indent=20)
+                        dpg.add_input_int(label=" Ilu rodzicow wybrac dla nowej populacji", tag="NoPe", default_value=6, width=140, min_value=2, min_clamped=True, indent=20)
+                        dpg.add_input_int(label=" Procentowe prawdopodobienstwo mutacji", tag="MutProb", default_value=1,
+                                          width=140, min_value=0, min_clamped=True, max_value=100, max_clamped=True, indent=20)
+                        dpg.add_button(label="Execute", callback=self.start, indent=20)
+
+
 
 
 
@@ -43,11 +61,12 @@ class EvolveOnes:
         fitness_function = fitness_func
         num_generations = dpg.get_value("NoGe")  # Number of generations.
         num_parents_mating = dpg.get_value("NoPe")  # Number of solutions to be selected as parents in the mating pool.
+        mut_prop = dpg.get_value("NoOs")/100.0
 
         # To prepare the initial population, there are 2 ways:
         # 1) Prepare it yourself and pass it to the initial_population parameter. This way is useful when the user wants to start the genetic algorithm with a custom initial population.
         # 2) Assign valid integer values to the sol_per_pop and num_genes parameters. If the initial_population parameter exists, then the sol_per_pop and num_genes parameters are useless.
-        sol_per_pop = 4  # Number of solutions in the population.
+        sol_per_pop = dpg.get_value("NoPe")
         num_genes = len(function_inputs)
 
         self.last_fitness = 0
@@ -67,8 +86,8 @@ class EvolveOnes:
                                num_genes=num_genes,
                                on_generation=callback_generation,
                                gene_type=int,
-                               init_range_low=0,
-                               init_range_high=2
+                               gene_space=[0, 1],
+                               mutation_probability=mut_prop
                               )
 
         # Running the GA to optimize the parameters of the function.
@@ -88,25 +107,71 @@ class EvolveOnes:
         if ga_instance.best_solution_generation != -1:
             print("Best fitness value reached after {best_solution_generation} generations.".format(
                 best_solution_generation=ga_instance.best_solution_generation))
-
+        #ga_instance.plot_fitness()
         # Saving the GA instance.
        # filename = 'genetic'  # The filename to which the instance is saved. The name is without extension.
         #ga_instance.save(filename=filename)
-        self.show_info("Rozwiazanie", solution, self.on_selection)
+        self.show_info("Rozwiazanie", solution, self.on_selection, ga_instance.best_solutions_fitness)
+
+  #      cosdatax = []
+   #     cosdatay = []
+    #    for i in range(0, 500):
+     #       cosdatax.append(i / 1000)
+      #      cosdatay.append(0.5 + 0.5 * cos(50 * i / 1000))
+
+       # dpg.set_value('series_tag', [list(range(0,101)), ga_instance.best_solutions_fitness])
+        #dpg.set_item_label('series_tag', "0.5 + 0.5 * cos(x)")
         # Loading the saved GA instance.
         #loaded_ga_instance = pygad.load(filename=filename)
        # loaded_ga_instance.plot_fitness()
-    def show_info(self, title, message, selection_callback):
+    def show_info(self, title, message, selection_callback, best_sols):
         # guarantee these commands happen in the same frame
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
 
             with dpg.window(label=title, modal=True, no_close=True, autosize=True, tag="gggg", pos=(9999,9999)) as modal_id:
-                dpg.add_text(message)
-                dpg.add_button(label="Ok", width=75, user_data=(modal_id, True), callback=selection_callback)
-                dpg.add_button(label="Cancel", width=75, user_data=(modal_id, False), callback=selection_callback)
 
+                with dpg.plot(label="Jakosc rozwiazania w zaleznosci od generacji", width=1440, height=400, track_offset=5.0):
+                    # optionally create legend
+                    dpg.add_plot_legend()
+
+                    # REQUIRED: create x and y axes
+                    dpg.add_plot_axis(dpg.mvXAxis, label="Generacja")
+                    dpg.add_plot_axis(dpg.mvYAxis, label="Jakosc", tag="y_axis2")
+
+                    # series belong to a y axis
+                    dpg.add_line_series(list(range(0,101)), best_sols, label="0.5 + 0.5 * sin(x)", parent="y_axis2",
+                                        tag="series_tag2")
+
+
+                dpg.add_spacer(height=20)
+                dpg.add_text("Otrzymane rozwiazanie", indent=643)
+                with dpg.drawlist(width=1440, height=130):
+                    with dpg.draw_layer():
+                        dpg.draw_line((418, 5), (1023, 5), color=self.color, thickness=5)
+                       # dpg.draw_line((48, 50), (653, 50), color=self.color, thickness=5)
+                        dpg.draw_line((420, 5), (420, 58), color=self.color, thickness=5)
+                        dpg.draw_line((420, 55), (1023, 55), color=self.color, thickness=5)
+                        #dpg.draw_line((50, 100), (653, 100), color=self.color, thickness=5)
+
+                        x = 470
+                        y = 5
+                        allelX = 434
+                        allelY = 9
+                        for i in message:
+                            dpg.draw_line((x, y), (x, 50 + y), color=self.color, thickness=5)
+                            if i == 0:
+                                dpg.draw_text((allelX, allelY), "0", color=(250, 250, 250, 255), size=50)
+                            else:
+                                dpg.draw_text((allelX + self.xOneOffset, allelY), "1",
+                                              color=(250, 250, 250, 255),
+                                              size=50)
+                            x += 50
+                            allelX += 50
+                with dpg.group(horizontal=True):
+                    dpg.add_button(label="Ok", width=75, user_data=(modal_id, True), callback=selection_callback)
+                  #  dpg.add_button(label="Cancel", width=75, user_data=(modal_id, False), callback=selection_callback)
         # guarantee these commands happen in another frame
         dpg.split_frame()
         width = dpg.get_item_width(modal_id)
