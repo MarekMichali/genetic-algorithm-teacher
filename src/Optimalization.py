@@ -8,7 +8,7 @@ import config
 import pygad
 
 
-class EvolveOnes:
+class Optimalization:
     def __init__(self):
         self.color = (15, 86, 135, 255)
         self.checkboxes = []
@@ -20,9 +20,9 @@ class EvolveOnes:
         for i in range(0, 500):
             self.sindatax.append(i / 1000)
             self.sindatay.append(0.5 + 0.5 * sin(50 * i / 1000))
-        with dpg.window(label="Krzyzowanie", autosize=True, tag="evolveOnes", pos=[99999, 99999],
+        with dpg.window(label="optimalization", autosize=True, tag="optimalization", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow")):
-            dpg.hide_item("evolveOnes")
+            dpg.hide_item("optimalization")
             with dpg.table(width=820, height=310, header_row=False):
                 dpg.add_table_column()
                 with dpg.table_row():
@@ -31,11 +31,11 @@ class EvolveOnes:
                         dpg.add_text("Zadanie omawiane w prezentacji.", indent=240)
                         dpg.add_text("Pozwala sprawdzic jaki wplyw na przebieg ewolucji maja poszczegolne parametry.", indent=20)
                         dpg.add_spacer(height=20)
-                        dpg.add_input_int(label=" Liczba generacji do zatrzymania ewolucji", tag="NoGe", default_value=100, width=140, min_value=1, min_clamped=True, indent=140)
-                        dpg.add_input_int(label=" Liczba osobnikow w generacji", tag="NoOs", default_value=20,
+                        dpg.add_input_int(label=" Liczba generacji do zatrzymania ewolucji", tag="NoGo", default_value=100, width=140, min_value=1, min_clamped=True, indent=140)
+                        dpg.add_input_int(label=" Liczba osobnikow w generacji", tag="NoOso", default_value=20,
                                           width=140, min_value=1, min_clamped=True, indent=140)
-                        dpg.add_input_int(label=" Liczba rodzicow wybranych dla nowej populacji", tag="NoPe", default_value=6, width=140, min_value=2, min_clamped=True, indent=140)
-                        dpg.add_input_int(label=" Procentowe prawdopodobienstwo mutacji", tag="MutProb", default_value=1,
+                        dpg.add_input_int(label=" Liczba rodzicow wybranych dla nowej populacji", tag="NoPeo", default_value=6, width=140, min_value=2, min_clamped=True, indent=140)
+                        dpg.add_input_int(label=" Procentowe prawdopodobienstwo mutacji", tag="MutProbo", default_value=1,
                                           width=140, min_value=0, min_clamped=True, max_value=100, max_clamped=True, indent=140)
                         dpg.add_spacer(height=20)
                         dpg.add_button(label="Wykonaj", callback=self.start, indent=340)
@@ -54,24 +54,26 @@ class EvolveOnes:
         What are the best values for the 6 weights (w1 to w6)? We are going to use the genetic algorithm to optimize this function.
         """
 
-        function_inputs = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]  # Function inputs.
+        function_inputs = [4,-2,3.5,5,-11,-4.7]  # Function inputs.
 
         def fitness_func(solution, solution_idx):
             # Calculating the fitness value of each solution in the current population.
             # The fitness function calulates the sum of products between each input and its corresponding weight.
-            fitness = numpy.sum(solution * function_inputs)
-            print(solution_idx, solution, fitness)
+            output = numpy.sum(solution * function_inputs)
+            if numpy.abs(output - 10) == 0:
+                return 99999999
+            fitness = 1.0 / numpy.abs(output - 10)
             return fitness
 
         fitness_function = fitness_func
-        num_generations = dpg.get_value("NoGe")  # Number of generations.
-        num_parents_mating = dpg.get_value("NoPe")  # Number of solutions to be selected as parents in the mating pool.
-        mut_prop = dpg.get_value("NoOs")/100.0
+        num_generations = dpg.get_value("NoGo")  # Number of generations.
+        num_parents_mating = dpg.get_value("NoPeo")  # Number of solutions to be selected as parents in the mating pool.
+        mut_prop = dpg.get_value("NoOso")/100.0
 
         # To prepare the initial population, there are 2 ways:
         # 1) Prepare it yourself and pass it to the initial_population parameter. This way is useful when the user wants to start the genetic algorithm with a custom initial population.
         # 2) Assign valid integer values to the sol_per_pop and num_genes parameters. If the initial_population parameter exists, then the sol_per_pop and num_genes parameters are useless.
-        sol_per_pop = dpg.get_value("NoPe")
+        sol_per_pop = dpg.get_value("NoPeo")
         num_genes = len(function_inputs)
 
         self.last_fitness = 0
@@ -90,8 +92,6 @@ class EvolveOnes:
                                sol_per_pop=sol_per_pop,
                                num_genes=num_genes,
                                on_generation=callback_generation,
-                               gene_type=int,
-                               gene_space=[0, 1],
                                mutation_probability=mut_prop
                               )
 
@@ -135,7 +135,7 @@ class EvolveOnes:
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
 
-            with dpg.window(label=title, modal=True, no_close=True, autosize=True, tag="gggg", pos=(9999,9999)) as modal_id:
+            with dpg.window(label=title, modal=True, no_close=True, autosize=True, tag="ggggo", pos=(9999,9999)) as modal_id:
 
                 with dpg.plot(label="Jakosc rozwiazania w zaleznosci od generacji", width=1440, height=400, track_offset=5.0):
                     # optionally create legend
@@ -143,11 +143,11 @@ class EvolveOnes:
 
                     # REQUIRED: create x and y axes
                     dpg.add_plot_axis(dpg.mvXAxis, label="Generacja")
-                    dpg.add_plot_axis(dpg.mvYAxis, label="Jakosc", tag="y_axis2")
+                    dpg.add_plot_axis(dpg.mvYAxis, label="Jakosc", tag="y_axis2o")
 
                     # series belong to a y axis
-                    dpg.add_line_series(list(range(0,101)), best_sols, label="0.5 + 0.5 * sin(x)", parent="y_axis2",
-                                        tag="series_tag2")
+                    dpg.add_line_series(list(range(0,101)), best_sols, label="0.5 + 0.5 * sin(x)", parent="y_axis2o",
+                                        tag="series_tag2o")
 
 
                 dpg.add_spacer(height=20)

@@ -23,7 +23,7 @@ class MainWindow:
                 dpg.add_button(label="Start learning", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight, callback=self.show_presentation)
                 dpg.add_button(label="Continue learning", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight)
                 dpg.add_button(label="Select chapter", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight)
-                dpg.add_button(label="Open playground", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight, callback=self.show_node_editor)
+                dpg.add_button(label="Optymalizacja", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight, callback=self.show_opt)
                 dpg.add_button(label="Ewolucja szczurow", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight, callback=self.show_math)
                 dpg.add_button(label="Close", width=config.mainWinButtonWidth, height=config.mainWinButtonHeight, callback=self.close_main_window)
 
@@ -61,4 +61,18 @@ class MainWindow:
         width = dpg.get_item_width("introSlide")
         height = dpg.get_item_height("introSlide")
         dpg.set_item_pos("introSlide", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+        dpg.hide_item("mainWindow")
+
+    def show_opt(self):
+       # dpg.show_item("evolveOnes")
+        #dpg.set_item_pos("mainWindow", [0, 25])
+
+        with dpg.mutex():
+            viewport_width = dpg.get_viewport_client_width()
+            viewport_height = dpg.get_viewport_client_height()
+        dpg.show_item("optimalization")
+        dpg.split_frame()
+        width = dpg.get_item_width("optimalization")
+        height = dpg.get_item_height("optimalization")
+        dpg.set_item_pos("optimalization", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
         dpg.hide_item("mainWindow")

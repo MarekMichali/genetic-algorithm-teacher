@@ -10,6 +10,7 @@ from Mutation import Mutation
 from Fitness import Fitness
 from Selector import Selector
 from EvolveOnes import EvolveOnes
+from Optimalization import Optimalization
 
 
 def main():
@@ -25,6 +26,7 @@ def main():
     fitness = Fitness()
     selector = Selector()
     evolveOnes = EvolveOnes()
+    optimalization = Optimalization()
     with dpg.font_registry():
         default_font = dpg.add_font("../ArialNarrow7-JB8E.ttf", 20)
 
