@@ -10,6 +10,7 @@ import pygad
 
 class Optimalization:
     def __init__(self):
+        self.prediction = 0
         self.color = (15, 86, 135, 255)
         self.checkboxes = []
         self.yOffset = 100
@@ -28,8 +29,16 @@ class Optimalization:
                 with dpg.table_row():
                     with dpg.table_cell():
                         dpg.add_spacer(height=20)
-                        dpg.add_text("Zadanie omawiane w prezentacji.", indent=240)
-                        dpg.add_text("Pozwala sprawdzic jaki wplyw na przebieg ewolucji maja poszczegolne parametry.", indent=20)
+
+                        dpg.add_text("Znajdowanie wartosci argumentow x, y, z", indent=220)
+                        dpg.add_spacer(height=20)
+                        with dpg.group(horizontal=True):
+
+                            dpg.add_input_float(label="x", tag="inX", width=100, step=0, default_value=6, indent=170)
+                            dpg.add_input_float(label="y", tag="inY", width=100, step=0, default_value=-18)
+                            dpg.add_input_float(label="z", tag="inZ", width=100, step=0, default_value=49)
+                            dpg.add_text("=")
+                            dpg.add_input_float(tag="resultxyz", width=100, step=0, default_value=26)
                         dpg.add_spacer(height=20)
                         dpg.add_input_int(label=" Liczba generacji do zatrzymania ewolucji", tag="NoGo", default_value=100, width=140, min_value=1, min_clamped=True, indent=140)
                         dpg.add_input_int(label=" Liczba osobnikow w generacji", tag="NoOso", default_value=20,
@@ -54,26 +63,25 @@ class Optimalization:
         What are the best values for the 6 weights (w1 to w6)? We are going to use the genetic algorithm to optimize this function.
         """
 
-        function_inputs = [4,-2,3.5,5,-11,-4.7]  # Function inputs.
-
+        function_inputs = [dpg.get_value("inX"),dpg.get_value("inY"),dpg.get_value("inZ")] # Function inputs.
+        result = dpg.get_value("resultxyz")
         def fitness_func(solution, solution_idx):
             # Calculating the fitness value of each solution in the current population.
             # The fitness function calulates the sum of products between each input and its corresponding weight.
             output = numpy.sum(solution * function_inputs)
-            if numpy.abs(output - 10) == 0:
-                return 99999999
-            fitness = 1.0 / numpy.abs(output - 10)
+
+            fitness = 1.0 / numpy.abs(output - result)
             return fitness
 
         fitness_function = fitness_func
         num_generations = dpg.get_value("NoGo")  # Number of generations.
         num_parents_mating = dpg.get_value("NoPeo")  # Number of solutions to be selected as parents in the mating pool.
-        mut_prop = dpg.get_value("NoOso")/100.0
+        mut_prop = dpg.get_value("MutProbo")/100.0
 
         # To prepare the initial population, there are 2 ways:
         # 1) Prepare it yourself and pass it to the initial_population parameter. This way is useful when the user wants to start the genetic algorithm with a custom initial population.
         # 2) Assign valid integer values to the sol_per_pop and num_genes parameters. If the initial_population parameter exists, then the sol_per_pop and num_genes parameters are useless.
-        sol_per_pop = dpg.get_value("NoPeo")
+        sol_per_pop = dpg.get_value("NoOso")
         num_genes = len(function_inputs)
 
         self.last_fitness = 0
@@ -92,7 +100,8 @@ class Optimalization:
                                sol_per_pop=sol_per_pop,
                                num_genes=num_genes,
                                on_generation=callback_generation,
-                               mutation_probability=mut_prop
+                               mutation_probability=mut_prop,
+
                               )
 
         # Running the GA to optimize the parameters of the function.
@@ -106,8 +115,8 @@ class Optimalization:
         print("Fitness value of the best solution = {solution_fitness}".format(solution_fitness=solution_fitness))
         print("Index of the best solution : {solution_idx}".format(solution_idx=solution_idx))
 
-        prediction = numpy.sum(numpy.array(function_inputs) * solution)
-        print("Predicted output based on the best solution : {prediction}".format(prediction=prediction))
+        self.prediction = numpy.sum(numpy.array(function_inputs) * solution)
+        print("Predicted output based on the best solution : {prediction}".format(prediction=self.prediction))
 
         if ga_instance.best_solution_generation != -1:
             print("Best fitness value reached after {best_solution_generation} generations.".format(
@@ -146,35 +155,41 @@ class Optimalization:
                     dpg.add_plot_axis(dpg.mvYAxis, label="Jakosc", tag="y_axis2o")
 
                     # series belong to a y axis
-                    dpg.add_line_series(list(range(0,101)), best_sols, label="0.5 + 0.5 * sin(x)", parent="y_axis2o",
+                    dpg.add_line_series(list(range(0,101)), best_sols, parent="y_axis2o",
                                         tag="series_tag2o")
 
 
                 dpg.add_spacer(height=20)
                 dpg.add_text("Otrzymane rozwiazanie", indent=620)
                 dpg.add_spacer(height=10)
-                with dpg.drawlist(width=1440, height=130):
-                    with dpg.draw_layer():
-                        dpg.draw_line((418, 5), (1023, 5), color=self.color, thickness=5)
-                       # dpg.draw_line((48, 50), (653, 50), color=self.color, thickness=5)
-                        dpg.draw_line((420, 5), (420, 58), color=self.color, thickness=5)
-                        dpg.draw_line((420, 55), (1023, 55), color=self.color, thickness=5)
-                        #dpg.draw_line((50, 100), (653, 100), color=self.color, thickness=5)
-
-                        x = 470
-                        y = 5
-                        allelX = 434
-                        allelY = 9
-                        for i in message:
-                            dpg.draw_line((x, y), (x, 50 + y), color=self.color, thickness=5)
-                            if i == 0:
-                                dpg.draw_text((allelX, allelY), "0", color=(250, 250, 250, 255), size=50)
-                            else:
-                                dpg.draw_text((allelX + self.xOneOffset, allelY), "1",
-                                              color=(250, 250, 250, 255),
-                                              size=50)
-                            x += 50
-                            allelX += 50
+                with dpg.group(horizontal=True):
+                    dpg.add_spacer(width=20)
+                    j = 0
+                    for i in message:
+                        if j == 0:
+                            dpg.add_text("x = ")
+                        elif j ==1:
+                            dpg.add_text("y = ")
+                        else:
+                            dpg.add_text("z = ")
+                        dpg.add_text(i)
+                        dpg.add_spacer(width=10)
+                        j += 1
+                with dpg.group(horizontal=True):
+                    dpg.add_spacer(width=20)
+                    dpg.add_text(dpg.get_value("inX"))
+                    if dpg.get_value("inY") >= 0:
+                        dpg.add_text("* x + ")
+                    else:
+                        dpg.add_text("* x")
+                    dpg.add_text(dpg.get_value("inY"))
+                    if dpg.get_value("inZ") >= 0:
+                        dpg.add_text("* y +")
+                    else:
+                        dpg.add_text("* y")
+                    dpg.add_text(dpg.get_value("inZ"))
+                    dpg.add_text("* z =")
+                    dpg.add_text(self.prediction)
                 with dpg.group(horizontal=True):
                     dpg.add_button(label="Ok", width=75, user_data=(modal_id, True), callback=selection_callback, indent=685)
                   #  dpg.add_button(label="Cancel", width=75, user_data=(modal_id, False), callback=selection_callback)

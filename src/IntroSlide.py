@@ -6,7 +6,7 @@ class IntroSlide:
     def __init__(self):
         with dpg.window(label="Wprowadzenie", autosize=True, tag="introSlide", pos=[99999,99999], on_close=lambda: dpg.show_item("mainWindow"), height=7000):
             dpg.hide_item("introSlide")
-            with open('../introSlide.txt') as f:
+            with open('introSlide.txt') as f:
                 lines = f.readlines()
 
             s = ''.join(lines)

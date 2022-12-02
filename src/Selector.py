@@ -26,7 +26,7 @@ class Selector:
         with dpg.window(label="Selector", autosize=True, tag="selector", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow")):
             dpg.hide_item("selector")
-            with open('../fitness.txt') as f:
+            with open('fitness.txt') as f:
                 lines = f.readlines()
 
             s = ''.join(lines)
@@ -42,7 +42,7 @@ class Selector:
                 with dpg.table_row():
                     with dpg.table_cell():
                         dpg.add_spacer(height=20)
-                        with open('../selector.txt') as f:
+                        with open('selector.txt') as f:
                             lines = f.readlines()
 
                         s = ''.join(lines)
@@ -50,7 +50,7 @@ class Selector:
                         for l in lines:
                             dpg.add_text(l, indent=20)
                         dpg.add_spacer(height=20)
-                        with open('../selectorExamples.txt') as f:
+                        with open('selectorExamples.txt') as f:
                             lines = f.readlines()
                             i = 0
                             for l in lines:

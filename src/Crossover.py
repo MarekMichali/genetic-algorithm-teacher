@@ -26,7 +26,7 @@ class Crossover:
                 with dpg.table_row():
                     with dpg.table_cell():
                         dpg.add_spacer(height=20)
-                        with open('../crossover.txt') as f:
+                        with open('crossover.txt') as f:
                             lines = f.readlines()
                             i = 0
                           #  dpg.add_spacer(height=175)
