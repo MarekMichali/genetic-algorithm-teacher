@@ -10,7 +10,7 @@ class EvolveOnes:
         self.x_offset = 5
         self.first_chromo = (0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
         self.last_fitness = 0
-        with dpg.window(label="Krzyzowanie", autosize=True, tag="evolveOnes", pos=[99999, 99999],
+        with dpg.window(label="Ewolucja szczurow", autosize=True, tag="evolveOnes", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow")):
             dpg.hide_item("evolveOnes")
             with dpg.table(width=820, height=310, header_row=False):
@@ -47,6 +47,10 @@ class EvolveOnes:
         mut_prop = dpg.get_value("MutPe")/100.0
         sol_per_pop = dpg.get_value("NoOe")
         num_genes = len(function_inputs)
+
+        if num_parents_mating > sol_per_pop:
+            self.error("Blad", self.on_selection)
+            return
 
         ga_instance = pygad.GA(num_generations=num_generations,
                                num_parents_mating=num_parents_mating,
@@ -108,3 +112,18 @@ class EvolveOnes:
 
     def on_selection(self, sender, unused, user_data):
         dpg.delete_item(user_data[0])
+
+    def error(self, title, selection_callback):
+        with dpg.mutex():
+            viewport_width = dpg.get_viewport_client_width()
+            viewport_height = dpg.get_viewport_client_height()
+
+            with dpg.window(label=title, modal=True, no_close=True, autosize=True,
+                            pos=(9999, 9999)) as modal_id:
+                dpg.add_text("Nie moze byc wiecej rodzicow niz osobnikow w populacji!")
+                dpg.add_button(label="Ok", width=75, user_data=(modal_id, True), callback=selection_callback,
+                               indent=220)
+        dpg.split_frame()
+        width = dpg.get_item_width(modal_id)
+        height = dpg.get_item_height(modal_id)
+        dpg.set_item_pos(modal_id, [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])

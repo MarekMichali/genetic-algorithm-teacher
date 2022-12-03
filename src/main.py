@@ -7,7 +7,7 @@ from Mutation import Mutation
 from Fitness import Fitness
 from Selector import Selector
 from EvolveOnes import EvolveOnes
-from Optimalization import Optimalization
+from Optimization import Optimization
 from Tsp import Tsp
 
 
@@ -24,7 +24,7 @@ def main():
     fitness = Fitness()
     selector = Selector()
     evolve_ones = EvolveOnes()
-    optimalization = Optimalization()
+    optimization = Optimization()
     tsp = Tsp()
 
     with dpg.font_registry():
