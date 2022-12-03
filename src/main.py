@@ -1,8 +1,5 @@
 import dearpygui.dearpygui as dpg
 from MainWindow import MainWindow
-from NodeEditor import NodeEditor
-from Math import Math
-from Presentation import Presentation
 from Dictionary import Dictionary
 from Crossover import Crossover
 from IntroSlide import IntroSlide
@@ -22,13 +19,14 @@ def main():
 
     dictionary = Dictionary()
     crossover = Crossover()
-    introSlide = IntroSlide()
+    intro_slide = IntroSlide()
     mutation = Mutation()
     fitness = Fitness()
     selector = Selector()
-    evolveOnes = EvolveOnes()
+    evolve_ones = EvolveOnes()
     optimalization = Optimalization()
     tsp = Tsp()
+
     with dpg.font_registry():
         default_font = dpg.add_font("ArialNarrow7-JB8E.ttf", 20)
 
@@ -38,23 +36,16 @@ def main():
             dpg.add_menu_item(label="Placeholder")
         dpg.add_menu_item(label="Dictionary", callback=lambda: dictionary.show())
         dpg.add_menu_item(label="Crossover", callback=lambda: crossover.show())
-        dpg.add_menu_item(label="IntroSlide", callback=lambda: introSlide.show())
+        dpg.add_menu_item(label="IntroSlide", callback=lambda: intro_slide.show())
         dpg.add_menu_item(label="Mutacja", callback=lambda: mutation.show())
         dpg.add_menu_item(label="Fitness", callback=lambda: fitness.show())
         dpg.add_menu_item(label="Selector", callback=lambda: selector.show())
 
-    mainWindow = MainWindow()
-    nodeEditor = NodeEditor()
-    math = Math()
-    presentatin = Presentation()
-
+    main_window = MainWindow()
 
     dpg.show_viewport()
     dpg.start_dearpygui()
     dpg.destroy_context()
-
-
-
 
 
 if __name__ == '__main__':

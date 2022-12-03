@@ -1,22 +1,17 @@
 import math
-from datetime import datetime
-
 import dearpygui.dearpygui as dpg
 import config as c
-import time
-import Presentation
 
 
 class Crossover:
     def __init__(self):
-        self.color = (15, 86, 135, 255)
-        self.checkboxes = []
-        self.yOffset = 100
-        self.xOneOffset = 5
-        self.firstChromo = (0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
-        self.secondChromo = (1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0)
-        self.renderCount = 0
-        self.renderCount3 = 0
+        self.blue = (15, 86, 135, 255)
+        self.y_offset = 100
+        self.x_offset = 5
+        self.first_chromo = (0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
+        self.second_chromo = (1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0)
+        self.render_count = 0
+
         with dpg.window(label="Krzyzowanie", autosize=True, tag="crossover", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow")):
             dpg.hide_item("crossover")
@@ -28,350 +23,302 @@ class Crossover:
                         dpg.add_spacer(height=20)
                         with open('crossover.txt') as f:
                             lines = f.readlines()
-                            i = 0
-                          #  dpg.add_spacer(height=175)
                             for line in lines:
                                 dpg.add_text(line, indent=20)
 
                     with dpg.table_cell():
                         dpg.add_spacer(height=50)
-                        with dpg.drawlist(width=800, height=500, tag="_demo_advanced_drawing"):
-
-
+                        with dpg.drawlist(width=800, height=500, tag="cross_animation"):
                             with dpg.draw_layer():
-                                dpg.draw_line((48, 250), (203, 250), color=self.color, thickness=5)
-                                dpg.draw_line((348, 250), (653, 250), color=self.color, thickness=5)
-                                dpg.draw_line((50, 250), (50, 303), color=self.color, thickness=5)
-
-                                dpg.draw_line((50, 300), (203, 300), color=self.color, thickness=5)
-                                dpg.draw_line((348, 300), (653, 300), color=self.color, thickness=5)
-
-
-
+                                dpg.draw_line((48, 250), (203, 250), color=self.blue, thickness=5)
+                                dpg.draw_line((348, 250), (653, 250), color=self.blue, thickness=5)
+                                dpg.draw_line((50, 250), (50, 303), color=self.blue, thickness=5)
+                                dpg.draw_line((50, 300), (203, 300), color=self.blue, thickness=5)
+                                dpg.draw_line((348, 300), (653, 300), color=self.blue, thickness=5)
 
                                 x = 100
                                 y = 250
-                                allelX = 64
-                                allelY = 254
+                                allel_x = 64
+                                allel_y = 254
                                 counter = 0
-                                for i in self.firstChromo:
+                                for i in self.first_chromo:
                                     counter += 1
                                     if counter == 4 or counter == 5 or counter == 6:
                                         if counter == 6:
-                                            dpg.draw_line((x, y), (x, y + 50), color=self.color, thickness=5)
+                                            dpg.draw_line((x, y), (x, y + 50), color=self.blue, thickness=5)
                                         x += 50
-                                        allelX += 50
+                                        allel_x += 50
                                         continue
-                                    dpg.draw_line((x, y), (x, y+50), color=self.color, thickness=5)
+                                    dpg.draw_line((x, y), (x, y + 50), color=self.blue, thickness=5)
                                     if i == 0:
-                                        dpg.draw_text((allelX, allelY), "0", color=(250, 250, 250, 255), size=50)
+                                        dpg.draw_text((allel_x, allel_y), "0", color=(250, 250, 250, 255), size=50)
                                     else:
-                                        dpg.draw_text((allelX + self.xOneOffset, allelY), "1", color=(250, 250, 250, 255),
-                                                      size=50)
+                                        dpg.draw_text((allel_x + self.x_offset, allel_y), "1",
+                                                      color=(250, 250, 250, 255), size=50)
                                     x += 50
-                                    allelX += 50
+                                    allel_x += 50
 
                             with dpg.draw_layer():
-                                dpg.draw_line((48, 250 + self.yOffset), (203, 250 + self.yOffset), color=self.color,
+                                dpg.draw_line((48, 250 + self.y_offset), (203, 250 + self.y_offset), color=self.blue,
                                               thickness=5)
-                                dpg.draw_line((348, 250 + self.yOffset), (653, 250 + self.yOffset), color=self.color,
+                                dpg.draw_line((348, 250 + self.y_offset), (653, 250 + self.y_offset), color=self.blue,
                                               thickness=5)
-                                dpg.draw_line((50, 250 + self.yOffset), (50, 303 + self.yOffset), color=self.color,
+                                dpg.draw_line((50, 250 + self.y_offset), (50, 303 + self.y_offset), color=self.blue,
                                               thickness=5)
-                                dpg.draw_line((50, 300 + self.yOffset), (203, 300 + self.yOffset), color=self.color,
+                                dpg.draw_line((50, 300 + self.y_offset), (203, 300 + self.y_offset), color=self.blue,
                                               thickness=5)
-                                dpg.draw_line((348, 300 + self.yOffset), (653, 300 + self.yOffset), color=self.color,
+                                dpg.draw_line((348, 300 + self.y_offset), (653, 300 + self.y_offset), color=self.blue,
                                               thickness=5)
                                 x = 100
                                 y = 250
-                                allelX = 64
-                                allelY = 254
+                                allel_x = 64
+                                allel_y = 254
                                 counter = 0
-                                for i in self.secondChromo:
+                                for i in self.second_chromo:
                                     counter += 1
                                     if counter == 4 or counter == 5 or counter == 6:
                                         if counter == 6:
-                                            dpg.draw_line((x, y + self.yOffset), (x, y + 50 + self.yOffset),
-                                                          color=self.color,
-                                                          thickness=5)
+                                            dpg.draw_line((x, y + self.y_offset), (x, y + 50 + self.y_offset),
+                                                          color=self.blue, thickness=5)
                                         x += 50
-                                        allelX += 50
+                                        allel_x += 50
                                         continue
-                                    dpg.draw_line((x, y + self.yOffset), (x, y + 50 + self.yOffset), color=self.color,
+                                    dpg.draw_line((x, y + self.y_offset), (x, y + 50 + self.y_offset), color=self.blue,
                                                   thickness=5)
                                     if i == 0:
-                                        dpg.draw_text((allelX, allelY + self.yOffset), "0", color=(250, 250, 250, 255),
-                                                      size=50)
+                                        dpg.draw_text((allel_x, allel_y + self.y_offset), "0",
+                                                      color=(250, 250, 250, 255), size=50)
                                     else:
-                                        dpg.draw_text((allelX + self.xOneOffset, allelY + self.yOffset), "1",
-                                                      color=(250, 250, 250, 255),
-                                                      size=50)
+                                        dpg.draw_text((allel_x + self.x_offset, allel_y + self.y_offset), "1",
+                                                      color=(250, 250, 250, 255), size=50)
                                     x += 50
-                                    allelX += 50
-
-
+                                    allel_x += 50
 
                             with dpg.draw_layer():
-                                dpg.draw_line((48, 50), (503, 50), color=self.color, thickness=5)
-                                dpg.draw_line((50, 50), (50, 103), color=self.color, thickness=5)
-                                dpg.draw_line((50, 100), (503, 100), color=self.color, thickness=5)
-
+                                dpg.draw_line((48, 50), (503, 50), color=self.blue, thickness=5)
+                                dpg.draw_line((50, 50), (50, 103), color=self.blue, thickness=5)
+                                dpg.draw_line((50, 100), (503, 100), color=self.blue, thickness=5)
 
                                 x = 100
                                 y = 50
-                                allelX = 64
-                                allelY = 54
+                                allel_x = 64
+                                allel_y = 54
                                 counter = 0
-                                for i in self.firstChromo:
+                                for i in self.first_chromo:
                                     counter += 1
                                     if counter == 10:
                                         break
-                                    dpg.draw_line((x, y), (x, 2*y), color=self.color, thickness=5)
+                                    dpg.draw_line((x, y), (x, 2 * y), color=self.blue, thickness=5)
                                     if i == 0:
-                                        dpg.draw_text((allelX, allelY), "0", color=(250, 250, 250, 255), size=50)
+                                        dpg.draw_text((allel_x, allel_y), "0", color=(250, 250, 250, 255), size=50)
                                     else:
-                                        dpg.draw_text((allelX + self.xOneOffset, allelY), "1", color=(250, 250, 250, 255),
-                                                      size=50)
+                                        dpg.draw_text((allel_x + self.x_offset, allel_y), "1",
+                                                      color=(250, 250, 250, 255), size=50)
                                     x += 50
-                                    allelX += 50
+                                    allel_x += 50
 
                             with dpg.draw_layer():
-                                dpg.draw_line((48, 50 + self.yOffset), (503, 50 + self.yOffset), color=self.color,
+                                dpg.draw_line((48, 50 + self.y_offset), (503, 50 + self.y_offset), color=self.blue,
                                               thickness=5)
-                                dpg.draw_line((50, 50 + self.yOffset), (50, 103 + self.yOffset), color=self.color,
+                                dpg.draw_line((50, 50 + self.y_offset), (50, 103 + self.y_offset), color=self.blue,
                                               thickness=5)
-                                dpg.draw_line((50, 100 + self.yOffset), (503, 100 + self.yOffset), color=self.color,
+                                dpg.draw_line((50, 100 + self.y_offset), (503, 100 + self.y_offset), color=self.blue,
                                               thickness=5)
                                 x = 100
                                 y = 50
-                                allelX = 64
-                                allelY = 54
+                                allel_x = 64
+                                allel_y = 54
                                 counter = 0
-                                for i in self.secondChromo:
+                                for i in self.second_chromo:
                                     counter += 1
                                     if counter == 10:
                                         break
-                                    dpg.draw_line((x, y +  self.yOffset), (x, 2 * y +  self.yOffset), color=self.color, thickness=5)
+                                    dpg.draw_line((x, y + self.y_offset), (x, 2 * y + self.y_offset), color=self.blue,
+                                                  thickness=5)
                                     if i == 0:
-                                        dpg.draw_text((allelX, allelY + self.yOffset), "0", color=(250, 250, 250, 255), size=50)
+                                        dpg.draw_text((allel_x, allel_y + self.y_offset), "0",
+                                                      color=(250, 250, 250, 255), size=50)
                                     else:
-                                        dpg.draw_text((allelX + self.xOneOffset, allelY + self.yOffset), "1",
-                                                      color=(250, 250, 250, 255),
-                                                      size=50)
+                                        dpg.draw_text((allel_x + self.x_offset, allel_y + self.y_offset), "1",
+                                                      color=(250, 250, 250, 255), size=50)
                                     x += 50
-                                    allelX += 50
+                                    allel_x += 50
 
-                                with dpg.draw_node(tag="_drawing_sun"):
+                                with dpg.draw_node():
                                     dpg.apply_transform(dpg.last_item(), dpg.create_translation_matrix([550, 150]))
-                                    #dpg.draw_circle([0, 0], 5, color=[0, 0, 0], fill=[0, 255, 0]) #sun
-                                    with dpg.draw_node(tag="_drawing_planet1", user_data=90.0):
+                                    with dpg.draw_node(tag="cross_first_anim", user_data=90.0):
                                         dpg.apply_transform(dpg.last_item(),
-                                                            dpg.create_rotation_matrix(math.pi * 45.0 / 180.0, [0, 0,-1]) * dpg.create_translation_matrix([150, 0]))
-                                       # dpg.draw_circle([0, 0], 10, color=[0, 255, 0], fill=[0, 255, 0]) #planeta
-                                        #dpg.draw_circle([0, 0], 25, color=[255, 0, 255])
-
-                                        with dpg.draw_node(tag="_drawing_moon1", user_data=45.0):
+                                                            dpg.create_rotation_matrix(
+                                                                math.pi * 45.0 / 180.0, [0, 0, -1])
+                                                            * dpg.create_translation_matrix([150, 0]))
+                                        with dpg.draw_node(tag="cross_first_chromo", user_data=45.0):
                                             dpg.apply_transform(dpg.last_item(),
-                                                                 dpg.create_translation_matrix(
+                                                                dpg.create_translation_matrix(
                                                                     [25, 0]))
-                                           # dpg.draw_circle([0, 0], 5, color=[255, 0, 255], fill=[255, 0, 255]) # ksiezyc
-                                            dpg.draw_line((0, 0), (77, 0), color=self.color, thickness=5)
-                                            dpg.draw_line((0, 0), (-77, 0), color=self.color, thickness=5)
-
-                                            dpg.draw_line((25, 2), (25, -52), color=self.color, thickness=5)
+                                            dpg.draw_line((0, 0), (77, 0), color=self.blue, thickness=5)
+                                            dpg.draw_line((0, 0), (-77, 0), color=self.blue, thickness=5)
+                                            dpg.draw_line((25, 2), (25, -52), color=self.blue, thickness=5)
                                             dpg.draw_text((-10, -46), "0", color=(250, 250, 250, 255), size=50)
-                                            dpg.draw_line((75, 2), (75, -52), color=self.color, thickness=5)
+                                            dpg.draw_line((75, 2), (75, -52), color=self.blue, thickness=5)
                                             dpg.draw_text((-60, -46), "0", color=(250, 250, 250, 255), size=50)
-                                            dpg.draw_line((-25, 2), (-25, -52), color=self.color, thickness=5)
-                                            dpg.draw_text((40 + self.xOneOffset, -46 ), "1",
-                                                          color=(250, 250, 250, 255),
-                                                          size=50)
-                                            dpg.draw_line((-75, 2), (-75, -52), color=self.color, thickness=5)
+                                            dpg.draw_line((-25, 2), (-25, -52), color=self.blue, thickness=5)
+                                            dpg.draw_text((40 + self.x_offset, -46), "1",
+                                                          color=(250, 250, 250, 255), size=50)
+                                            dpg.draw_line((-75, 2), (-75, -52), color=self.blue, thickness=5)
+                                            dpg.draw_line((0, -50), (77, -50), color=self.blue, thickness=5)
+                                            dpg.draw_line((0, -50), (-77, -50), color=self.blue, thickness=5)
 
-                                            dpg.draw_line((0, -50), (77, -50), color=self.color, thickness=5)
-                                            dpg.draw_line((0, -50), (-77, -50), color=self.color, thickness=5)
-
-                                    #
-                                    with dpg.draw_node(tag="_drawing_planet2", user_data=270.0):
+                                    with dpg.draw_node(tag="cross_second_anim", user_data=270.0):
                                         dpg.apply_transform(dpg.last_item(),
-                                                            dpg.create_rotation_matrix(math.pi * 45.0 / 180.0, [0, 0,-1]) * dpg.create_translation_matrix([150, 0]))
-                                       # dpg.draw_circle([0, 0], 10, color=[0, 255, 0], fill=[0, 255, 0]) #planeta
-                                        #dpg.draw_circle([0, 0], 25, color=[255, 0, 255])
-
-                                        with dpg.draw_node(tag="_drawing_moon2", user_data=45.0):
+                                                            dpg.create_rotation_matrix(
+                                                                math.pi * 45.0 / 180.0, [0, 0, -1])
+                                                            * dpg.create_translation_matrix([150, 0]))
+                                        with dpg.draw_node(tag="cross_second_chromo", user_data=45.0):
                                             dpg.apply_transform(dpg.last_item(),
-                                                                 dpg.create_translation_matrix(
-                                                                    [25, 0]))
-                                            #dpg.draw_circle([0, 0], 5, color=[255, 0, 255], fill=[255, 0, 255]) # ksiezyc
-                                            dpg.draw_line((0, 0), (77, 0), color=self.color, thickness=5)
-                                            dpg.draw_line((0, 0), (-77, 0), color=self.color, thickness=5)
+                                                                dpg.create_translation_matrix([25, 0]))
+                                            dpg.draw_line((0, 0), (77, 0), color=self.blue, thickness=5)
+                                            dpg.draw_line((0, 0), (-77, 0), color=self.blue, thickness=5)
 
-                                            dpg.draw_line((25, 2), (25, -52), color=self.color, thickness=5)
+                                            dpg.draw_line((25, 2), (25, -52), color=self.blue, thickness=5)
                                             dpg.draw_text((-10, -46), "0", color=(250, 250, 250, 255), size=50)
-                                            dpg.draw_line((75, 2), (75, -52), color=self.color, thickness=5)
-                                            dpg.draw_text((-60 + self.xOneOffset, -46), "1", color=(250, 250, 250, 255), size=50)
-                                            dpg.draw_line((-25, 2), (-25, -52), color=self.color, thickness=5)
-                                            dpg.draw_text((40, -46), "0",
-                                                          color=(250, 250, 250, 255),
+                                            dpg.draw_line((75, 2), (75, -52), color=self.blue, thickness=5)
+                                            dpg.draw_text((-60 + self.x_offset, -46), "1", color=(250, 250, 250, 255),
                                                           size=50)
-                                            dpg.draw_line((-75, 2), (-75, -52), color=self.color, thickness=5)
+                                            dpg.draw_line((-25, 2), (-25, -52), color=self.blue, thickness=5)
+                                            dpg.draw_text((40, -46), "0",
+                                                          color=(250, 250, 250, 255), size=50)
+                                            dpg.draw_line((-75, 2), (-75, -52), color=self.blue, thickness=5)
+                                            dpg.draw_line((0, -50), (77, -50), color=self.blue, thickness=5)
+                                            dpg.draw_line((0, -50), (-77, -50), color=self.blue, thickness=5)
 
-                                            dpg.draw_line((0, -50), (77, -50), color=self.color, thickness=5)
-                                            dpg.draw_line((0, -50), (-77, -50), color=self.color, thickness=5)
-
-
-#----
-                                with dpg.draw_node(tag="_drawing_sun3"):
+                                with dpg.draw_node():
                                     dpg.apply_transform(dpg.last_item(), dpg.create_translation_matrix([250, 350]))
-                                    #dpg.draw_circle([0, 0], 5, color=[0, 0, 0], fill=[0, 255, 0]) #sun
-                                    with dpg.draw_node(tag="_drawing_planet13", user_data=90.0):
+
+                                    with dpg.draw_node(tag="cross_third_anim", user_data=90.0):
                                         dpg.apply_transform(dpg.last_item(),
-                                                            dpg.create_rotation_matrix(math.pi * 45.0 / 180.0, [0, 0,-1]) * dpg.create_translation_matrix([150, 0]))
-                                       # dpg.draw_circle([0, 0], 10, color=[0, 255, 0], fill=[0, 255, 0]) #planeta
-                                        #dpg.draw_circle([0, 0], 25, color=[255, 0, 255])
-
-                                        with dpg.draw_node(tag="_drawing_moon13", user_data=45.0):
+                                                            dpg.create_rotation_matrix(
+                                                                math.pi * 45.0 / 180.0, [0, 0, -1])
+                                                            * dpg.create_translation_matrix([150, 0]))
+                                        with dpg.draw_node(tag="cross_third_chromo", user_data=45.0):
                                             dpg.apply_transform(dpg.last_item(),
-                                                                 dpg.create_translation_matrix(
-                                                                    [25, 0]))
-                                           # dpg.draw_circle([0, 0], 5, color=[255, 0, 255], fill=[255, 0, 255]) # ksiezyc
-                                            dpg.draw_line((0, 0), (77, 0), color=self.color, thickness=5)
-                                            dpg.draw_line((0, 0), (-77, 0), color=self.color, thickness=5)
+                                                                dpg.create_translation_matrix([25, 0]))
+                                            dpg.draw_line((0, 0), (77, 0), color=self.blue, thickness=5)
+                                            dpg.draw_line((0, 0), (-77, 0), color=self.blue, thickness=5)
 
-                                            dpg.draw_line((25, 2), (25, -52), color=self.color, thickness=5)
-                                            dpg.draw_text((-10 + self.xOneOffset, -46), "1", color=(250, 250, 250, 255), size=50)
-                                            dpg.draw_line((75, 2), (75, -52), color=self.color, thickness=5)
-                                            dpg.draw_text((-60 + self.xOneOffset, -46), "1", color=(250, 250, 250, 255), size=50)
-                                            dpg.draw_line((-25, 2), (-25, -52), color=self.color, thickness=5)
-                                            dpg.draw_text((40, -46 ), "0",
-                                                          color=(250, 250, 250, 255),
+                                            dpg.draw_line((25, 2), (25, -52), color=self.blue, thickness=5)
+                                            dpg.draw_text((-10 + self.x_offset, -46), "1", color=(250, 250, 250, 255),
                                                           size=50)
-                                            dpg.draw_line((-75, 2), (-75, -52), color=self.color, thickness=5)
+                                            dpg.draw_line((75, 2), (75, -52), color=self.blue, thickness=5)
+                                            dpg.draw_text((-60 + self.x_offset, -46), "1", color=(250, 250, 250, 255),
+                                                          size=50)
+                                            dpg.draw_line((-25, 2), (-25, -52), color=self.blue, thickness=5)
+                                            dpg.draw_text((40, -46), "0",
+                                                          color=(250, 250, 250, 255), size=50)
+                                            dpg.draw_line((-75, 2), (-75, -52), color=self.blue, thickness=5)
 
-                                            dpg.draw_line((0, -50), (77, -50), color=self.color, thickness=5)
-                                            dpg.draw_line((0, -50), (-77, -50), color=self.color, thickness=5)
+                                            dpg.draw_line((0, -50), (77, -50), color=self.blue, thickness=5)
+                                            dpg.draw_line((0, -50), (-77, -50), color=self.blue, thickness=5)
 
                                     #
-                                    with dpg.draw_node(tag="_drawing_planet23", user_data=270.0):
+                                    with dpg.draw_node(tag="cross_fourth_anim", user_data=270.0):
                                         dpg.apply_transform(dpg.last_item(),
-                                                            dpg.create_rotation_matrix(math.pi * 45.0 / 180.0, [0, 0,-1]) * dpg.create_translation_matrix([150, 0]))
-                                       # dpg.draw_circle([0, 0], 10, color=[0, 255, 0], fill=[0, 255, 0]) #planeta
-                                        #dpg.draw_circle([0, 0], 25, color=[255, 0, 255])
+                                                            dpg.create_rotation_matrix(
+                                                                math.pi * 45.0 / 180.0, [0, 0, -1])
+                                                            * dpg.create_translation_matrix([150, 0]))
 
-                                        with dpg.draw_node(tag="_drawing_moon23", user_data=45.0):
+                                        with dpg.draw_node(tag="cross_fourth_chromo", user_data=45.0):
                                             dpg.apply_transform(dpg.last_item(),
-                                                                 dpg.create_translation_matrix(
-                                                                    [25, 0]))
-                                            #dpg.draw_circle([0, 0], 5, color=[255, 0, 255], fill=[255, 0, 255]) # ksiezyc
-                                            dpg.draw_line((0, 0), (77, 0), color=self.color, thickness=5)
-                                            dpg.draw_line((0, 0), (-77, 0), color=self.color, thickness=5)
+                                                                dpg.create_translation_matrix([25, 0]))
+                                            dpg.draw_line((0, 0), (77, 0), color=self.blue, thickness=5)
+                                            dpg.draw_line((0, 0), (-77, 0), color=self.blue, thickness=5)
 
-                                            dpg.draw_line((25, 2), (25, -52), color=self.color, thickness=5)
+                                            dpg.draw_line((25, 2), (25, -52), color=self.blue, thickness=5)
                                             dpg.draw_text((-10, -46), "0", color=(250, 250, 250, 255), size=50)
-                                            dpg.draw_line((75, 2), (75, -52), color=self.color, thickness=5)
-                                            dpg.draw_text((-60 + + self.xOneOffset, -46), "1", color=(250, 250, 250, 255), size=50)
-                                            dpg.draw_line((-25, 2), (-25, -52), color=self.color, thickness=5)
-                                            dpg.draw_text((40, -46), "0",
-                                                          color=(250, 250, 250, 255),
+                                            dpg.draw_line((75, 2), (75, -52), color=self.blue, thickness=5)
+                                            dpg.draw_text((-60 + + self.x_offset, -46), "1", color=(250, 250, 250, 255),
                                                           size=50)
-                                            dpg.draw_line((-75, 2), (-75, -52), color=self.color, thickness=5)
+                                            dpg.draw_line((-25, 2), (-25, -52), color=self.blue, thickness=5)
+                                            dpg.draw_text((40, -46), "0",
+                                                          color=(250, 250, 250, 255), size=50)
+                                            dpg.draw_line((-75, 2), (-75, -52), color=self.blue, thickness=5)
 
-                                            dpg.draw_line((0, -50), (77, -50), color=self.color, thickness=5)
-                                            dpg.draw_line((0, -50), (-77, -50), color=self.color, thickness=5)
+                                            dpg.draw_line((0, -50), (77, -50), color=self.blue, thickness=5)
+                                            dpg.draw_line((0, -50), (-77, -50), color=self.blue, thickness=5)
 
-                                def _demo_live_drawing():
-                                    planet_rot1 = dpg.get_item_user_data("_drawing_planet1") + 1
-                                    planet_rot2 = dpg.get_item_user_data("_drawing_planet2") + 1
-                                    planet_rot13 = dpg.get_item_user_data("_drawing_planet13") + 1
-                                    planet_rot23 = dpg.get_item_user_data("_drawing_planet23") + 1
+                                def animate():
+                                    first_chromo_rot = dpg.get_item_user_data("cross_first_anim") + 1
+                                    second_chromo_rot = dpg.get_item_user_data("cross_second_anim") + 1
+                                    third_chromo_rot = dpg.get_item_user_data("cross_third_anim") + 1
+                                    fourth_chromo_rot = dpg.get_item_user_data("cross_fourth_anim") + 1
 
-                                   # print(planet_rot2)
-                                    if planet_rot1 == 270:
-                                        self.renderCount += 1
-                                        if self.renderCount == 270:
-                                            planet_rot1 = 90
-                                            planet_rot2 = 270
-                                            planet_rot13 = 90
-                                            planet_rot23 = 270
-                                            self.renderCount = 0
+                                    if first_chromo_rot == 270:
+                                        self.render_count += 1
+                                        if self.render_count == 270:
+                                            first_chromo_rot = 90
+                                            second_chromo_rot = 270
+                                            third_chromo_rot = 90
+                                            fourth_chromo_rot = 270
+                                            self.render_count = 0
                                         else:
                                             return
-                                    dpg.apply_transform("_drawing_planet1",
-                                                        dpg.create_rotation_matrix(math.pi * planet_rot1 / 180.0, [0, 0,
-                                                                                                                   -1]) * dpg.create_translation_matrix(
-                                                            [50, 0]))
-                                    dpg.set_item_user_data("_drawing_planet1", planet_rot1)
-                                    moon_rot1 = dpg.get_item_user_data("_drawing_moon1") + 3.0
-                                   # print(moon_rot1)
+                                    dpg.apply_transform("cross_first_anim",
+                                                        dpg.create_rotation_matrix(
+                                                            math.pi * first_chromo_rot / 180.0, [0, 0, -1])
+                                                        * dpg.create_translation_matrix([50, 0]))
+                                    dpg.set_item_user_data("cross_first_anim", first_chromo_rot)
+                                    first_anim_rot = dpg.get_item_user_data("cross_first_chromo") + 3.0
+                                    dpg.apply_transform("cross_first_chromo",
+                                                        dpg.create_rotation_matrix(
+                                                            -math.pi * first_chromo_rot / 180.0, [0, 0, -1])
+                                                        * dpg.create_translation_matrix([25, 0]))
+                                    dpg.set_item_user_data("cross_first_chromo", first_anim_rot)
 
-                                    dpg.apply_transform("_drawing_moon1",
-                                                        dpg.create_rotation_matrix(-math.pi * planet_rot1 / 180.0, [0, 0,-1]) * dpg.create_translation_matrix([25, 0]))
-                                    #print(dpg.create_rotation_matrix(-math.pi * planet_rot1 / 180.0, [0, 0,-1]) * dpg.create_translation_matrix([25, 0]) )
-                                    dpg.set_item_user_data("_drawing_moon1", moon_rot1)
-                                    #
+                                    dpg.apply_transform("cross_second_anim",
+                                                        dpg.create_rotation_matrix(
+                                                            math.pi * second_chromo_rot / 180.0, [0, 0, -1])
+                                                        * dpg.create_translation_matrix([50, 0]))
+                                    dpg.set_item_user_data("cross_second_anim", second_chromo_rot)
+                                    second_anim_rot = dpg.get_item_user_data("cross_second_chromo") + 3.0
+                                    dpg.apply_transform("cross_second_chromo",
+                                                        dpg.create_rotation_matrix(
+                                                            -math.pi * second_chromo_rot / 180.0, [0, 0, -1])
+                                                        * dpg.create_translation_matrix([25, 0]))
+                                    dpg.set_item_user_data("cross_second_chromo", second_anim_rot)
 
-                                    dpg.apply_transform("_drawing_planet2",
-                                                        dpg.create_rotation_matrix(math.pi * planet_rot2 / 180.0, [0, 0,
-                                                                                                                   -1]) * dpg.create_translation_matrix(
-                                                            [50, 0]))
-                                    dpg.set_item_user_data("_drawing_planet2", planet_rot2)
-                                    moon_rot2 = dpg.get_item_user_data("_drawing_moon2") + 3.0
-                                    dpg.apply_transform("_drawing_moon2",
-                                                        dpg.create_rotation_matrix(-math.pi * planet_rot2 / 180.0,
-                                                                                   [0, 0,
-                                                                                    -1]) * dpg.create_translation_matrix(
-                                                            [25, 0]))
-                                   # print(dpg.create_rotation_matrix(math.pi * moon_rot2 / 180.0, [0, 0, -1]))
-                                    dpg.set_item_user_data("_drawing_moon2", moon_rot2)
-                                    #---
+                                    dpg.apply_transform("cross_third_anim",
+                                                        dpg.create_rotation_matrix(
+                                                            math.pi * third_chromo_rot / 180.0, [0, 0, -1])
+                                                        * dpg.create_translation_matrix([50, 0]))
+                                    dpg.set_item_user_data("cross_third_anim", third_chromo_rot)
+                                    first_anim_rot = dpg.get_item_user_data("cross_third_chromo") + 3.0
+                                    dpg.apply_transform("cross_third_chromo",
+                                                        dpg.create_rotation_matrix(
+                                                            -math.pi * third_chromo_rot / 180.0, [0, 0, -1])
+                                                        * dpg.create_translation_matrix([25, 0]))
+                                    dpg.set_item_user_data("cross_third_chromo", first_anim_rot)
 
-                                    dpg.apply_transform("_drawing_planet13",
-                                                        dpg.create_rotation_matrix(math.pi * planet_rot13 / 180.0, [0, 0,
-                                                                                                                   -1]) * dpg.create_translation_matrix(
-                                                            [50, 0]))
-                                    dpg.set_item_user_data("_drawing_planet13", planet_rot13)
-                                    moon_rot1 = dpg.get_item_user_data("_drawing_moon13") + 3.0
-                                    # print(moon_rot1)
+                                    dpg.apply_transform("cross_fourth_anim",
+                                                        dpg.create_rotation_matrix(
+                                                            math.pi * fourth_chromo_rot / 180.0, [0, 0, -1])
+                                                        * dpg.create_translation_matrix([50, 0]))
+                                    dpg.set_item_user_data("cross_fourth_anim", fourth_chromo_rot)
+                                    second_anim_rot = dpg.get_item_user_data("cross_fourth_chromo") + 3.0
+                                    dpg.apply_transform("cross_fourth_chromo",
+                                                        dpg.create_rotation_matrix(
+                                                            -math.pi * fourth_chromo_rot / 180.0, [0, 0, -1])
+                                                        * dpg.create_translation_matrix([25, 0]))
+                                    dpg.set_item_user_data("cross_fourth_chromo", second_anim_rot)
 
-                                    dpg.apply_transform("_drawing_moon13",
-                                                        dpg.create_rotation_matrix(-math.pi * planet_rot13 / 180.0,
-                                                                                   [0, 0,
-                                                                                    -1]) * dpg.create_translation_matrix(
-                                                            [25, 0]))
-                                    # print(dpg.create_rotation_matrix(-math.pi * planet_rot1 / 180.0, [0, 0,-1]) * dpg.create_translation_matrix([25, 0]) )
-                                    dpg.set_item_user_data("_drawing_moon13", moon_rot1)
-                                    #
-
-                                    dpg.apply_transform("_drawing_planet23",
-                                                        dpg.create_rotation_matrix(math.pi * planet_rot23 / 180.0, [0, 0,
-                                                                                                                   -1]) * dpg.create_translation_matrix(
-                                                            [50, 0]))
-                                    dpg.set_item_user_data("_drawing_planet23", planet_rot23)
-                                    moon_rot2 = dpg.get_item_user_data("_drawing_moon23") + 3.0
-                                    dpg.apply_transform("_drawing_moon23",
-                                                        dpg.create_rotation_matrix(-math.pi * planet_rot23 / 180.0,
-                                                                                   [0, 0,
-                                                                                    -1]) * dpg.create_translation_matrix(
-                                                            [25, 0]))
-                                    # print(dpg.create_rotation_matrix(math.pi * moon_rot2 / 180.0, [0, 0, -1]))
-                                    dpg.set_item_user_data("_drawing_moon23", moon_rot2)
-
-
-
-                                with dpg.item_handler_registry(tag="__demo_item_reg6"):
-                                    dpg.add_item_visible_handler(callback=_demo_live_drawing)
-                                dpg.bind_item_handler_registry("_demo_advanced_drawing", dpg.last_container())
-                                #_demo_live_drawing()
-
-
-
-
+                                with dpg.item_handler_registry(tag="cross_item_registry"):
+                                    dpg.add_item_visible_handler(callback=animate)
+                                dpg.bind_item_handler_registry("cross_animation", dpg.last_container())
 
             with dpg.group(horizontal=True):
-                dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left, indent=660, callback=lambda: self.back())
-                # dpg.add_spacer(width=500)
+                dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left, indent=660,
+                               callback=lambda: self.back())
                 dpg.add_button(width=200, height=20, arrow=True, direction=dpg.mvDir_Right,
-                           callback=lambda: self.next())
+                               callback=lambda: self.next())
+
     def show(self):
         if not dpg.is_item_visible("crossover"):
             with dpg.mutex():
@@ -385,7 +332,6 @@ class Crossover:
             dpg.hide_item("mainWindow")
 
     def next(self):
-        print("asggsaa")
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
@@ -397,7 +343,6 @@ class Crossover:
         dpg.hide_item("crossover")
 
     def back(self):
-        print("asggsaa")
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
