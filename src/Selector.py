@@ -40,13 +40,13 @@ class Selector(metaclass=SingletonSelector):
                 with dpg.table_row():
                     with dpg.table_cell():
                         dpg.add_spacer(height=20)
-                        with open('selector.txt') as f:
+                        with open('data//selector.txt') as f:
                             lines = f.readlines()
                             for line in lines:
                                 dpg.add_text(line, indent=20)
 
                         dpg.add_spacer(height=20)
-                        with open('selectorExamples.txt') as f:
+                        with open('data//selectorExamples.txt') as f:
                             lines = f.readlines()
                             i = 0
                             for line in lines:

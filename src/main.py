@@ -13,7 +13,7 @@ from Tsp import Tsp
 
 def main():
     dpg.create_context()
-    dpg.create_viewport(title='Custom Title', width=1440, height=810)
+    dpg.create_viewport(title='Aplikacja do nauki zasad dzialania algorytmow genetycznych', width=1440, height=810)
     dpg.set_viewport_pos(pos=[0.0, 0.0])
     dpg.setup_dearpygui()
 
@@ -29,7 +29,7 @@ def main():
     main_window = MainWindow()
 
     with dpg.font_registry():
-        default_font = dpg.add_font("ArialNarrow7-JB8E.ttf", 20)
+        default_font = dpg.add_font("data//ArialNarrow7-JB8E.ttf", 20)
 
     dpg.bind_font(default_font)
     with dpg.viewport_menu_bar():
