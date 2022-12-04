@@ -52,7 +52,7 @@ class Dictionary(metaclass=SingletonDictionary):
                                     dpg.add_text(line, bullet=True)
 
                     with dpg.table_cell():
-                        dpg.add_spacer(height=100)
+                        dpg.add_spacer(height=50)
                         with dpg.drawlist(width=800, height=500):
                             with dpg.draw_layer():
                                 dpg.draw_line((48, 50), (653, 50), color=self.blue, thickness=5)

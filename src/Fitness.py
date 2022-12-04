@@ -42,6 +42,7 @@ class Fitness(metaclass=SingletonFitness):
                             self.checkboxes.append((dpg.add_radio_button(lines, callback=self.values)))
 
                     with dpg.table_cell():
+                        dpg.add_spacer(height=50)
                         with dpg.drawlist(width=1440, height=500):
                             with dpg.draw_layer():
                                 dpg.draw_line((48 + self.x_move, 50), (653 + self.x_move, 50), color=self.blue,

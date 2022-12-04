@@ -45,7 +45,6 @@ def main():
             dpg.add_menu_item(label="Znajdowanie argumentow", callback=lambda: optimization.show())
             dpg.add_menu_item(label="Problem komiwojazera", callback=lambda: tsp.show())
 
-
     dpg.show_viewport()
     dpg.start_dearpygui()
     dpg.destroy_context()

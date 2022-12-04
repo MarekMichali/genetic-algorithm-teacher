@@ -36,6 +36,7 @@ class Mutation(metaclass=SingletonMutation):
                                 dpg.add_text(line, indent=20)
 
                     with dpg.table_cell():
+                        dpg.add_spacer(height=50)
                         with dpg.drawlist(width=800, height=500, tag="mutation_animation"):
                             with dpg.draw_layer():
                                 dpg.draw_line((48, 50), (653, 50), color=self.blue, thickness=5)
