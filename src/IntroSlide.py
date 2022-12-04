@@ -2,7 +2,17 @@ import dearpygui.dearpygui as dpg
 import config as c
 
 
-class IntroSlide:
+class SingletonIntroSlide(type):
+    _instances = {}
+
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            instance = super().__call__(*args, **kwargs)
+            cls._instances[cls] = instance
+        return cls._instances[cls]
+
+
+class IntroSlide(metaclass=SingletonIntroSlide):
     def __init__(self):
         with dpg.window(label="Wprowadzenie", autosize=True, tag="introSlide", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow"), height=7000):

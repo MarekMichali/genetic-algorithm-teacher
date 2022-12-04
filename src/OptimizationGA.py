@@ -1,5 +1,5 @@
-import numpy
 import pygad
+from FitnessCalculator import FitnessCalculator
 
 
 class OptimizationGA:
@@ -15,17 +15,12 @@ class OptimizationGA:
         if self.num_parents_mating > self.sol_per_pop:
             return [-1], [-1], [-1]
 
-        def fitness_func(solution, solution_idx):
-            output = numpy.sum(solution * self.function_inputs)
-            fitness = 1.0 / numpy.abs(output - self.result)
-            return fitness
-
-        fitness_function = fitness_func
+        fitness_calculator = FitnessCalculator(self.function_inputs, self.result)
         num_genes = len(self.function_inputs)
 
         ga_instance = pygad.GA(num_generations=self.num_generations,
                                num_parents_mating=self.num_parents_mating,
-                               fitness_func=fitness_function,
+                               fitness_func=lambda solution, solution_idx: fitness_calculator.optimization(solution),
                                sol_per_pop=self.sol_per_pop,
                                num_genes=num_genes,
                                mutation_probability=self.mut_prop)

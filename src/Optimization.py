@@ -3,7 +3,17 @@ import numpy
 from OptimizationGA import OptimizationGA
 
 
-class Optimization:
+class SingletonOptimization(type):
+    _instances = {}
+
+    def __call__(cls, *args, **kwargs):
+        if cls not in cls._instances:
+            instance = super().__call__(*args, **kwargs)
+            cls._instances[cls] = instance
+        return cls._instances[cls]
+
+
+class Optimization(metaclass=SingletonOptimization):
     def __init__(self):
         self.prediction = 0
         with dpg.window(label="Znajdowanie argumentow", autosize=True, tag="optimalization", pos=[99999, 99999],
