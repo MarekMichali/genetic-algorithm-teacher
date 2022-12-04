@@ -111,12 +111,26 @@ class Dictionary(metaclass=SingletonDictionary):
                         dpg.add_text("dupa")
             with dpg.group(horizontal=True):
                 dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left, indent=660,
-                               callback=lambda: self.back())
+                               callback=lambda: self.back(), tag="dictionaryLeft", enabled=True)
                 dpg.add_button(width=200, height=20, arrow=True, direction=dpg.mvDir_Right,
-                               callback=lambda: self.next())
+                               callback=lambda: self.next(), tag="dictionaryRight")
 
     def show(self):
         if not dpg.is_item_visible("dictionary"):
+            with dpg.mutex():
+                viewport_width = dpg.get_viewport_client_width()
+                viewport_height = dpg.get_viewport_client_height()
+            dpg.show_item("dictionary")
+            dpg.split_frame()
+            width = dpg.get_item_width("dictionary")
+            height = dpg.get_item_height("dictionary")
+            dpg.set_item_pos("dictionary", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+            dpg.hide_item("mainWindow")
+
+    def show_ext(self):
+        if not dpg.is_item_visible("dictionary"):
+            dpg.disable_item("dictionaryLeft")
+            dpg.disable_item("dictionaryRight")
             with dpg.mutex():
                 viewport_width = dpg.get_viewport_client_width()
                 viewport_height = dpg.get_viewport_client_height()
@@ -142,6 +156,8 @@ class Dictionary(metaclass=SingletonDictionary):
             i += 1
 
     def next(self):
+        dpg.enable_item("fitnessLeft")
+        dpg.enable_item("fitnessRight")
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()

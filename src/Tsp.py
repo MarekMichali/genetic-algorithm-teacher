@@ -90,11 +90,11 @@ class Tsp(metaclass=SingletonTsp):
                     with dpg.table_cell():
                         dpg.add_spacer(height=20)
                         dpg.add_text(
-                            "Komiwojazer chce odwiedzic wszystkie miasta jeden raz i wrocic do miasta,"
+                            "Komiwojazer chce odwiedzic wszystkie miasta tylko jeden raz i wrocic do miasta,"
                             " z ktorego zaczynal pokonujac jak najkrotsza trase.",
                             indent=20)
                         dpg.add_text(
-                            "Rozmiesc punkty odpowidajace miastom przeciagajac je myszka i skonfiguruj dzialanie"
+                            "Rozmiesc punkty odpowiadajace miastom przeciagajac je myszka i skonfiguruj dzialanie"
                             " algorytmu genetycznego.",
                             indent=20)
                         dpg.add_spacer(height=20)
@@ -256,3 +256,14 @@ class Tsp(metaclass=SingletonTsp):
         width = dpg.get_item_width(modal_id)
         height = dpg.get_item_height(modal_id)
         dpg.set_item_pos(modal_id, [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+
+    def show(self):
+        with dpg.mutex():
+            viewport_width = dpg.get_viewport_client_width()
+            viewport_height = dpg.get_viewport_client_height()
+        dpg.show_item("tsp")
+        dpg.split_frame()
+        width = dpg.get_item_width("tsp")
+        height = dpg.get_item_height("tsp")
+        dpg.set_item_pos("tsp", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+        dpg.hide_item("mainWindow")

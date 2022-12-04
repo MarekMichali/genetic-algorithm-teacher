@@ -46,6 +46,8 @@ class IntroSlide(metaclass=SingletonIntroSlide):
             dpg.hide_item("mainWindow")
 
     def next(self):
+        dpg.enable_item("dictionaryLeft")
+        dpg.enable_item("dictionaryRight")
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()

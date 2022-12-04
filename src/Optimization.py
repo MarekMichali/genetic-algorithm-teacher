@@ -136,3 +136,14 @@ class Optimization(metaclass=SingletonOptimization):
         width = dpg.get_item_width(modal_id)
         height = dpg.get_item_height(modal_id)
         dpg.set_item_pos(modal_id, [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+
+    def show(self):
+        with dpg.mutex():
+            viewport_width = dpg.get_viewport_client_width()
+            viewport_height = dpg.get_viewport_client_height()
+        dpg.show_item("optimalization")
+        dpg.split_frame()
+        width = dpg.get_item_width("optimalization")
+        height = dpg.get_item_height("optimalization")
+        dpg.set_item_pos("optimalization", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+        dpg.hide_item("mainWindow")

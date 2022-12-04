@@ -22,6 +22,7 @@ class MainWindow(metaclass=SingletonMainWindow):
                 dpg.add_theme_color(dpg.mvThemeCol_ButtonActive, [101, 101, 105])
         dpg.bind_theme(disabled_theme)
         with dpg.mutex():
+            viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
             with dpg.window(label="Menu", autosize=True, tag="mainWindow", pos=config.mainWindowDefaultPos):
                 dpg.add_spacer(height=50)
@@ -29,28 +30,31 @@ class MainWindow(metaclass=SingletonMainWindow):
                 dpg.add_spacer(height=50)
                 dpg.add_button(label="Rozpocznij nauke", width=config.mainWinButtonWidth,
                                height=config.mainWinButtonHeight, callback=self.show_presentation)
-                #dpg.add_button(label="Continue learning", width=config.mainWinButtonWidth,
-                               #height=config.mainWinButtonHeight)
-                dpg.add_button(label="Problem komiwojazera", width=config.mainWinButtonWidth,
-                               height=config.mainWinButtonHeight, callback=self.show_tsp)
+                dpg.add_button(label="Ewolucja szczurow", width=config.mainWinButtonWidth,
+                               height=config.mainWinButtonHeight, callback=self.show_ones)
                 dpg.add_button(label="Znajdowanie argumentow", width=config.mainWinButtonWidth,
                                height=config.mainWinButtonHeight, callback=self.show_opt)
-                dpg.add_button(label="Ewolucja szczurow", width=config.mainWinButtonWidth,
-                               height=config.mainWinButtonHeight, callback=self.show_math)
-              #  dpg.add_button(label="Close", width=config.mainWinButtonWidth,
-                             #  height=config.mainWinButtonHeight, callback=self.close_main_window)
+                dpg.add_button(label="Problem komiwojazera", width=config.mainWinButtonWidth,
+                               height=config.mainWinButtonHeight, callback=self.show_tsp)
 
-        dpg.set_item_pos("mainWindow", [1440 // 2 - config.mainWinButtonWidth // 2,
-                                        viewport_height // 2 - config.mainWinButtonHeight - 400 // 2])
+        dpg.set_item_pos("mainWindow", [1408 // 2 - config.mainWinButtonWidth // 2,
+                                        viewport_height // 2 - config.mainWinButtonHeight - 323 // 2])
+
+    def show(self):
+        if not dpg.is_item_visible("mainWindow"):
+            with dpg.mutex():
+                viewport_width = dpg.get_viewport_client_width()
+                viewport_height = dpg.get_viewport_client_height()
+            dpg.show_item("mainWindow")
+            dpg.split_frame()
+            width = dpg.get_item_width("mainWindow")
+            height = dpg.get_item_height("mainWindow")
+            dpg.set_item_pos("mainWindow", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
 
     def close_main_window(self):
         dpg.delete_item("mainWindow")
 
-    def show_node_editor(self):
-        dpg.show_item("nodeEditor")
-        dpg.set_item_pos("mainWindow", [0, 25])
-
-    def show_math(self):
+    def show_ones(self):
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()

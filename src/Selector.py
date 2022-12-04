@@ -236,12 +236,26 @@ class Selector(metaclass=SingletonSelector):
 
             with dpg.group(horizontal=True):
                 dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left, indent=660,
-                               callback=lambda: self.back())
+                               callback=lambda: self.back(), tag="selectorLeft")
                 dpg.add_button(width=200, height=20, arrow=True, direction=dpg.mvDir_Right,
-                               callback=lambda: self.next())
+                               callback=lambda: self.next(), tag="selectorRight")
 
     def show(self):
         if not dpg.is_item_visible("selector"):
+            with dpg.mutex():
+                viewport_width = dpg.get_viewport_client_width()
+                viewport_height = dpg.get_viewport_client_height()
+            dpg.show_item("selector")
+            dpg.split_frame()
+            width = dpg.get_item_width("selector")
+            height = dpg.get_item_height("selector")
+            dpg.set_item_pos("selector", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+            dpg.hide_item("mainWindow")
+
+    def show_ext(self):
+        if not dpg.is_item_visible("selector"):
+            dpg.disable_item("selectorLeft")
+            dpg.disable_item("selectorRight")
             with dpg.mutex():
                 viewport_width = dpg.get_viewport_client_width()
                 viewport_height = dpg.get_viewport_client_height()
@@ -267,6 +281,8 @@ class Selector(metaclass=SingletonSelector):
             print(self.selected_chromo)
 
     def next(self):
+        dpg.enable_item("crossoverLeft")
+        dpg.enable_item("crossoverRight")
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
@@ -278,6 +294,8 @@ class Selector(metaclass=SingletonSelector):
         dpg.hide_item("selector")
 
     def back(self):
+        dpg.enable_item("fitnessLeft")
+        dpg.enable_item("fitnessRight")
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()

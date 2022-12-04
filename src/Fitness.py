@@ -23,7 +23,7 @@ class Fitness(metaclass=SingletonFitness):
         self.second_chromo = (1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0)
         self.third_chromo = (1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0)
         self.fourth_chromo = (0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1)
-        with dpg.window(label="Ocenanie rozwiazania", autosize=True, tag="fitness", pos=[99999, 99999],
+        with dpg.window(label="Ocena rozwiazania", autosize=True, tag="fitness", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow")):
             dpg.hide_item("fitness")
             with dpg.table(width=1440, height=640, header_row=False):
@@ -176,12 +176,26 @@ class Fitness(metaclass=SingletonFitness):
 
             with dpg.group(horizontal=True):
                 dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left,
-                               indent=660, callback=lambda: self.back())
+                               indent=660, callback=lambda: self.back(), tag="fitnessLeft")
                 dpg.add_button(width=200, height=20, arrow=True, direction=dpg.mvDir_Right,
-                               callback=lambda: self.next())
+                               callback=lambda: self.next(), tag="fitnessRight")
 
     def show(self):
         if not dpg.is_item_visible("fitness"):
+            with dpg.mutex():
+                viewport_width = dpg.get_viewport_client_width()
+                viewport_height = dpg.get_viewport_client_height()
+            dpg.show_item("fitness")
+            dpg.split_frame()
+            width = dpg.get_item_width("fitness")
+            height = dpg.get_item_height("fitness")
+            dpg.set_item_pos("fitness", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+            dpg.hide_item("mainWindow")
+
+    def show_ext(self):
+        if not dpg.is_item_visible("fitness"):
+            dpg.disable_item("fitnessLeft")
+            dpg.disable_item("fitnessRight")
             with dpg.mutex():
                 viewport_width = dpg.get_viewport_client_width()
                 viewport_height = dpg.get_viewport_client_height()
@@ -201,6 +215,8 @@ class Fitness(metaclass=SingletonFitness):
             dpg.configure_item("secondRadiLayer", show=True)
 
     def next(self):
+        dpg.enable_item("selectorLeft")
+        dpg.enable_item("selectorRight")
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
@@ -212,6 +228,8 @@ class Fitness(metaclass=SingletonFitness):
         dpg.hide_item("fitness")
 
     def back(self):
+        dpg.enable_item("dictionaryLeft")
+        dpg.enable_item("dictionaryRight")
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()

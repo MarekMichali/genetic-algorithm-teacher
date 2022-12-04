@@ -325,9 +325,9 @@ class Crossover(metaclass=SingletonCrossover):
 
             with dpg.group(horizontal=True):
                 dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left, indent=660,
-                               callback=lambda: self.back())
+                               callback=lambda: self.back(), tag="crossoverLeft")
                 dpg.add_button(width=200, height=20, arrow=True, direction=dpg.mvDir_Right,
-                               callback=lambda: self.next())
+                               callback=lambda: self.next(), tag="crossoverRight")
 
     def show(self):
         if not dpg.is_item_visible("crossover"):
@@ -341,7 +341,22 @@ class Crossover(metaclass=SingletonCrossover):
             dpg.set_item_pos("crossover", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
             dpg.hide_item("mainWindow")
 
+    def show_ext(self):
+        if not dpg.is_item_visible("crossover"):
+            dpg.disable_item("crossoverLeft")
+            dpg.disable_item("crossoverRight")
+            with dpg.mutex():
+                viewport_width = dpg.get_viewport_client_width()
+                viewport_height = dpg.get_viewport_client_height()
+            dpg.show_item("crossover")
+            dpg.split_frame()
+            width = dpg.get_item_width("crossover")
+            height = dpg.get_item_height("crossover")
+            dpg.set_item_pos("crossover", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+            dpg.hide_item("mainWindow")
+
     def next(self):
+        dpg.enable_item("mutationLeft")
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
@@ -353,6 +368,8 @@ class Crossover(metaclass=SingletonCrossover):
         dpg.hide_item("crossover")
 
     def back(self):
+        dpg.enable_item("selectorLeft")
+        dpg.enable_item("selectorRight")
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()

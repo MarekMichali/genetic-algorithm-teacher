@@ -26,22 +26,25 @@ def main():
     evolve_ones = EvolveOnes()
     optimization = Optimization()
     tsp = Tsp()
+    main_window = MainWindow()
 
     with dpg.font_registry():
         default_font = dpg.add_font("ArialNarrow7-JB8E.ttf", 20)
 
     dpg.bind_font(default_font)
     with dpg.viewport_menu_bar():
-        with dpg.menu(label="Placeholder"):
-            dpg.add_menu_item(label="Placeholder")
-        dpg.add_menu_item(label="Dictionary", callback=lambda: dictionary.show())
-        dpg.add_menu_item(label="Crossover", callback=lambda: crossover.show())
-        dpg.add_menu_item(label="IntroSlide", callback=lambda: intro_slide.show())
-        dpg.add_menu_item(label="Mutacja", callback=lambda: mutation.show())
-        dpg.add_menu_item(label="Fitness", callback=lambda: fitness.show())
-        dpg.add_menu_item(label="Selector", callback=lambda: selector.show())
+        dpg.add_menu_item(label="Menu", callback=lambda: main_window.show())
+        dpg.add_menu_item(label="Podstawowe pojecia", callback=lambda: dictionary.show_ext())
+        dpg.add_menu_item(label="Ocena rozwiazania", callback=lambda: fitness.show_ext())
+        dpg.add_menu_item(label="Selekcja", callback=lambda: selector.show_ext())
+        dpg.add_menu_item(label="Krzyzowanie", callback=lambda: crossover.show_ext())
+        dpg.add_menu_item(label="Mutacja", callback=lambda: mutation.show_ext())
+        dpg.add_menu_item(label="     ",)
+        with dpg.menu(label="Przyklady"):
+            dpg.add_menu_item(label="Ewolucja szczurow", callback=lambda: evolve_ones.show())
+            dpg.add_menu_item(label="Znajdowanie argumentow", callback=lambda: optimization.show())
+            dpg.add_menu_item(label="Problem komiwojazera", callback=lambda: tsp.show())
 
-    main_window = MainWindow()
 
     dpg.show_viewport()
     dpg.start_dearpygui()
