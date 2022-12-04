@@ -4,7 +4,7 @@ from FitnessCalculator import FitnessCalculator
 
 
 class TspGA:
-    def __init__(self, num_generations, num_parents_mating, sol_per_pop, x_location, y_location):
+    def __init__(self, num_generations=0, num_parents_mating=0, sol_per_pop=0, x_location=0, y_location=0):
         self.num_generations = num_generations
         self.num_parents_mating = num_parents_mating
         self.sol_per_pop = sol_per_pop

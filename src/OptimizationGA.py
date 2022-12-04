@@ -3,7 +3,8 @@ from FitnessCalculator import FitnessCalculator
 
 
 class OptimizationGA:
-    def __init__(self, num_generations, num_parents_mating, mut_prop, sol_per_pop, function_inputs, result):
+    def __init__(self, num_generations=0, num_parents_mating=0, mut_prop=0, sol_per_pop=0,
+                 function_inputs=None, result=0):
         self.num_generations = num_generations
         self.num_parents_mating = num_parents_mating
         self.mut_prop = mut_prop
@@ -29,4 +30,3 @@ class OptimizationGA:
         solution, solution_fitness, solution_idx = ga_instance.best_solution()
 
         return solution, solution_fitness, ga_instance.best_solutions_fitness
-
