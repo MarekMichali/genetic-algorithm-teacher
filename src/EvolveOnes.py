@@ -1,6 +1,5 @@
 import dearpygui.dearpygui as dpg
-import numpy
-import pygad
+from EvovleOnesGA import EvolveOnesGA
 
 
 class EvolveOnes:
@@ -32,38 +31,23 @@ class EvolveOnes:
                                           default_value=1, width=140, min_value=0, min_clamped=True, max_value=100,
                                           max_clamped=True, indent=140)
                         dpg.add_spacer(height=20)
-                        dpg.add_button(label="Wykonaj", callback=self.start, indent=340)
+                        dpg.add_button(label="Wykonaj", callback=self.start, indent=340, tag="evoStart")
 
     def start(self):
-        function_inputs = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-
-        def fitness_func(solution, solution_idx):
-            fitness = numpy.sum(solution * function_inputs)
-            return fitness
-
-        fitness_function = fitness_func
+        dpg.disable_item("evoStart")
         num_generations = dpg.get_value("NoGe")
         num_parents_mating = dpg.get_value("NoPe")
         mut_prop = dpg.get_value("MutPe")/100.0
         sol_per_pop = dpg.get_value("NoOe")
-        num_genes = len(function_inputs)
+        function_inputs = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
 
-        if num_parents_mating > sol_per_pop:
+        evolve_ones_ga = EvolveOnesGA(num_generations, num_parents_mating, mut_prop, sol_per_pop, function_inputs)
+        solution, solution_fitness, best_solutions_fitness = evolve_ones_ga.start()
+
+        if solution[0] == -1 and solution_fitness[0] == -1 and best_solutions_fitness[0] == -1:
             self.error("Blad", self.on_selection)
             return
-
-        ga_instance = pygad.GA(num_generations=num_generations,
-                               num_parents_mating=num_parents_mating,
-                               fitness_func=fitness_function,
-                               sol_per_pop=sol_per_pop,
-                               num_genes=num_genes,
-                               gene_type=int,
-                               gene_space=[0, 1],
-                               mutation_probability=mut_prop)
-
-        ga_instance.run()
-        solution, solution_fitness, solution_idx = ga_instance.best_solution()
-        self.show_info("Rozwiazanie", solution, self.on_selection, ga_instance.best_solutions_fitness)
+        self.show_info("Rozwiazanie", solution, self.on_selection, best_solutions_fitness)
 
     def show_info(self, title, message, selection_callback, best_sols):
         with dpg.mutex():
@@ -112,6 +96,7 @@ class EvolveOnes:
 
     def on_selection(self, sender, unused, user_data):
         dpg.delete_item(user_data[0])
+        dpg.enable_item("evoStart")
 
     def error(self, title, selection_callback):
         with dpg.mutex():

@@ -1,7 +1,6 @@
 import random
 import dearpygui.dearpygui as dpg
-import numpy
-import pygad
+from TspGA import TspGA
 
 
 class Tsp:
@@ -152,52 +151,19 @@ class Tsp:
 
     def start(self):
         dpg.disable_item("tspStart")
-        def fitness_func(solution, solution_idx):
-            total_length = 0
-            i = 0
-            for loc in solution:
-                if i == 0:
-                    city_one = loc - 1
-                    city_two = solution[len(solution) - 1] - 1
-                    total_length += ((self.x_location[city_one] - self.x_location[city_two]) ** 2
-                                     + (self.y_location[city_one] - self.y_location[city_two]) ** 2) ** (1 / 2)
-                else:
-                    city_one = loc - 1
-                    city_two = solution[i - 1] - 1
-                    total_length += ((self.x_location[city_one] - self.x_location[city_two]) ** 2
-                                     + (self.y_location[city_one] - self.y_location[city_two]) ** 2) ** (1 / 2)
-                i += 1
-            return total_length * -1
 
-        fitness_function = fitness_func
         num_generations = dpg.get_value("NoGt")
         num_parents_mating = dpg.get_value("NoPt")
         sol_per_pop = dpg.get_value("NoOt")
-        num_genes = len(self.x_location)
-        gene_space = [i for i in range(1, 13)]
-        population_list = []
 
-        if num_parents_mating > sol_per_pop:
+        tsp_ga = TspGA(num_generations, num_parents_mating, sol_per_pop, self.x_location, self.y_location)
+        solution, solution_fitness, best_solutions_fitness = tsp_ga.start()
+
+        if solution[0] == -1 and solution_fitness[0] == -1 and best_solutions_fitness[0] == -1:
             self.error("Blad", self.on_selection)
             return
 
-        for i in range(sol_per_pop):
-            nxm_random_num = list(numpy.random.permutation(gene_space))
-            population_list.append(nxm_random_num)
-
-        ga_instance = pygad.GA(num_generations=num_generations,
-                               num_parents_mating=num_parents_mating,
-                               initial_population=population_list,
-                               fitness_func=fitness_function,
-                               sol_per_pop=sol_per_pop,
-                               num_genes=num_genes,
-                               gene_type=int,
-                               gene_space=gene_space,
-                               allow_duplicate_genes=False)
-
-        ga_instance.run()
-        solution, solution_fitness, solution_idx = ga_instance.best_solution()
-        self.show_info("Rozwiazanie", solution, self.on_selection, ga_instance.best_solutions_fitness)
+        self.show_info("Rozwiazanie", solution, self.on_selection, best_solutions_fitness)
 
     def show_info(self, title, message, selection_callback, best_sols):
         y_invert = 505

@@ -127,7 +127,7 @@ class Mutation:
             with dpg.group(horizontal=True):
                 dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left, indent=660,
                                callback=lambda: self.back())
-                dpg.add_button(width=200, height=20, arrow=True, direction=dpg.mvDir_Right)
+                dpg.add_button(width=200, height=20, arrow=True, direction=dpg.mvDir_Right, enabled=False)
 
     def show(self):
         if not dpg.is_item_visible("mutation"):

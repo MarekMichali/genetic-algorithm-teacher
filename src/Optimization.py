@@ -1,7 +1,6 @@
 import dearpygui.dearpygui as dpg
 import numpy
-import pygad
-
+from OptimizationGA import OptimizationGA
 
 
 class Optimization:
@@ -38,37 +37,24 @@ class Optimization:
 
     def start(self):
         dpg.disable_item("optStart")
+
         function_inputs = [dpg.get_value("inX"), dpg.get_value("inY"), dpg.get_value("inZ")]
         result = dpg.get_value("resultxyz")
-
-        def fitness_func(solution, solution_idx):
-            output = numpy.sum(solution * function_inputs)
-            fitness = 1.0 / numpy.abs(output - result)
-            return fitness
-
-        fitness_function = fitness_func
         num_generations = dpg.get_value("NoGo")
         num_parents_mating = dpg.get_value("NoPo")
         mut_prop = dpg.get_value("MutPo")/100.0
         sol_per_pop = dpg.get_value("NoOo")
-        num_genes = len(function_inputs)
 
-        if num_parents_mating > sol_per_pop:
+        optimization_ga = OptimizationGA(num_generations, num_parents_mating, mut_prop, sol_per_pop, function_inputs,
+                                         result)
+        solution, solution_fitness, best_solutions_fitness = optimization_ga.start()
+
+        if solution[0] == -1 and solution_fitness[0] == -1 and best_solutions_fitness[0] == -1:
             self.error("Blad", self.on_selection)
             return
 
-        ga_instance = pygad.GA(num_generations=num_generations,
-                               num_parents_mating=num_parents_mating,
-                               fitness_func=fitness_function,
-                               sol_per_pop=sol_per_pop,
-                               num_genes=num_genes,
-                               mutation_probability=mut_prop)
-
-        ga_instance.run()
-
-        solution, solution_fitness, solution_idx = ga_instance.best_solution()
         self.prediction = numpy.sum(numpy.array(function_inputs) * solution)
-        self.show_info("Rozwiazanie", solution, self.on_selection, ga_instance.best_solutions_fitness)
+        self.show_info("Rozwiazanie", solution, self.on_selection, best_solutions_fitness)
 
     def show_info(self, title, message, selection_callback, best_sols):
         with dpg.mutex():
