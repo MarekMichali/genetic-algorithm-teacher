@@ -70,7 +70,7 @@ class EvolveOnes(metaclass=SingletonEvolveOnes):
                               track_offset=5.0):
                     dpg.add_plot_axis(dpg.mvXAxis, label="Numer generacji")
                     dpg.add_plot_axis(dpg.mvYAxis, label="Jakość", tag="y_axis_ones")
-                    dpg.add_line_series(list(range(0, 101)), best_sols, parent="y_axis_ones")
+                    dpg.add_line_series(list(range(0, dpg.get_value("NoGe") + 1)), best_sols, parent="y_axis_ones")
 
                 dpg.add_spacer(height=20)
                 dpg.add_text("Otrzymane rozwiązanie", indent=620)

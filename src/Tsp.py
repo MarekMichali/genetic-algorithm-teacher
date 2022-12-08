@@ -199,7 +199,7 @@ class Tsp(metaclass=SingletonTsp):
                                   track_offset=5.0):
                         dpg.add_plot_axis(dpg.mvXAxis, label="Numer generacji")
                         dpg.add_plot_axis(dpg.mvYAxis, label="Długość trasy", tag="y_axis_tsp")
-                        dpg.add_line_series(list(range(0, 101)), plot_data, parent="y_axis_tsp")
+                        dpg.add_line_series(list(range(0, dpg.get_value("NoGt")+1)), plot_data, parent="y_axis_tsp")
                     dpg.add_spacer(width=20)
                     with dpg.drawlist(width=700, height=560):
                         with dpg.draw_layer():
