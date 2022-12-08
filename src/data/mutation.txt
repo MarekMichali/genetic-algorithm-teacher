@@ -1,14 +1,14 @@
-Mutacja jest kolejnym etapem tworzenia potomstwa. MA miec
-miejsce po krzyzowaniu. Wprowadza dodatkowa roznorodnosc
+Mutacja jest kolejnym etapem tworzenia potomstwa. Ma mieć
+miejsce po krzyżowaniu. Wprowadza dodatkowa różnorodność
 do procesu ewolucji i zmniejsza ryzyko przedwczesnego otrzymania
-wyniku, ktory jest daleko od optymalnego. Mutacja moze zachodzic
-na kilka sposobow:
-zamiana losowych genow miejscami w chromosomie,
-zmiana wartosci jednego genu lub wielu.
+wyniku, który jest daleko od optymalnego. Mutacja może zachodzić
+na kilka sposobów:
+zamiana losowych genów miejscami w chromosomie,
+zmiana wartości jednego genu lub wielu.
 
-Prawdopodobienstwo mutacji nie moze byc zbyt duze. W przypadku
-zbyt czestego zachodzenia tego procesu otrzymywane rozwiazania
-beda losowe i dalekie od optymalnego
+Prawdopodobieństwo mutacji nie może być zbyt duże. W przypadku
+zbyt częstego zachodzenia tego procesu otrzymywane rozwiązania
+będą losowe i dalekie od optymalnego
 
-Po mutacji nastepuje kolejna selekcja i kazdy krok jest powtarzany
-az do konca dzialania algorytmu
+Po mutacji następuje kolejna selekcja i każdy krok jest powtarzany
+aż do końca działania algorytmu

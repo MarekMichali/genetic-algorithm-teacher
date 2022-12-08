@@ -20,7 +20,7 @@ class Dictionary(metaclass=SingletonDictionary):
         self.x_offset = -1
         self.first_chromo = (0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
         self.second_chromo = (1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0)
-        with dpg.window(label="Podstawowe pojecia", autosize=True, tag="dictionary", pos=[99999, 99999],
+        with dpg.window(label="Podstawowe pojęcia", autosize=True, tag="dictionary", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow")):
             dpg.hide_item("dictionary")
             with dpg.table(width=1440, height=640, header_row=False):
@@ -29,12 +29,12 @@ class Dictionary(metaclass=SingletonDictionary):
                 with dpg.table_row():
                     with dpg.table_cell():
                         dpg.add_spacer(height=20)
-                        with open('data//dictionarySlide.txt') as f:
+                        with open('data//dictionarySlide.txt', encoding="utf-8") as f:
                             lines = f.readlines()
                             for line in lines:
                                 dpg.add_text(line, indent=20)
                         dpg.add_spacer(height=5)
-                        with open('data//gen.txt') as f:
+                        with open('data//gen.txt', encoding="utf-8") as f:
                             lines = f.readlines()
                             i = 0
                             for line in lines:
@@ -107,8 +107,6 @@ class Dictionary(metaclass=SingletonDictionary):
                                 dpg.draw_ellipse((25, 25), (675, 125 + self.y_offset), color=(255, 242, 0, 200),
                                                  thickness=5)
 
-                    with dpg.table_cell(height=10):
-                        dpg.add_text("dupa")
             with dpg.group(horizontal=True):
                 dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left, indent=660,
                                callback=lambda: self.back(), tag="dictionaryLeft", enabled=True)

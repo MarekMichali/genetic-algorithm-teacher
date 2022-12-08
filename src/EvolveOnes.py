@@ -19,7 +19,7 @@ class EvolveOnes(metaclass=SingletonEvolveOnes):
         self.x_offset = -1
         self.first_chromo = (0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
         self.last_fitness = 0
-        with dpg.window(label="Ewolucja szczurow", autosize=True, tag="evolveOnes", pos=[99999, 99999],
+        with dpg.window(label="Ewolucja szczurów", autosize=True, tag="evolveOnes", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow")):
             dpg.hide_item("evolveOnes")
             with dpg.table(width=820, height=310, header_row=False):
@@ -28,16 +28,16 @@ class EvolveOnes(metaclass=SingletonEvolveOnes):
                     with dpg.table_cell():
                         dpg.add_spacer(height=20)
                         dpg.add_text("Zadanie omawiane w prezentacji.", indent=240)
-                        dpg.add_text("Pozwala sprawdzic jaki wplyw na przebieg ewolucji maja poszczegolne parametry.",
+                        dpg.add_text("Pozwala sprawdzić jaki wpływ na przebieg ewolucji maja poszczególne parametry.",
                                      indent=20)
                         dpg.add_spacer(height=20)
                         dpg.add_input_int(label=" Liczba generacji do zatrzymania ewolucji", tag="NoGe",
                                           default_value=100, width=140, min_value=1, min_clamped=True, indent=140)
-                        dpg.add_input_int(label=" Liczba osobnikow w generacji", tag="NoOe", default_value=20,
+                        dpg.add_input_int(label=" Liczba osobników w generacji", tag="NoOe", default_value=20,
                                           width=140, min_value=1, min_clamped=True, indent=140)
-                        dpg.add_input_int(label=" Liczba rodzicow wybranych dla nowej populacji", tag="NoPe",
+                        dpg.add_input_int(label=" Liczba rodziców wybranych dla nowej populacji", tag="NoPe",
                                           default_value=6, width=140, min_value=2, min_clamped=True, indent=140)
-                        dpg.add_input_int(label=" Procentowe prawdopodobienstwo mutacji", tag="MutPe",
+                        dpg.add_input_int(label=" Procentowe prawdopodobieństwo mutacji", tag="MutPe",
                                           default_value=1, width=140, min_value=0, min_clamped=True, max_value=100,
                                           max_clamped=True, indent=140)
                         dpg.add_spacer(height=20)
@@ -55,9 +55,9 @@ class EvolveOnes(metaclass=SingletonEvolveOnes):
         solution, solution_fitness, best_solutions_fitness = evolve_ones_ga.start()
 
         if solution[0] == -1 and solution_fitness[0] == -1 and best_solutions_fitness[0] == -1:
-            self.error("Blad", self.on_selection)
+            self.error("Błąd", self.on_selection)
             return
-        self.show_info("Rozwiazanie", solution, self.on_selection, best_solutions_fitness)
+        self.show_info("Rozwiązanie", solution, self.on_selection, best_solutions_fitness)
 
     def show_info(self, title, message, selection_callback, best_sols):
         with dpg.mutex():
@@ -66,14 +66,14 @@ class EvolveOnes(metaclass=SingletonEvolveOnes):
 
             with dpg.window(label=title, modal=True, no_close=True, autosize=True, tag="ones_plot",
                             pos=(9999, 9999)) as modal_id:
-                with dpg.plot(label="Jakosc rozwiazania w zaleznosci od numer generacji", width=1440, height=400,
+                with dpg.plot(label="Jakość rozwiązania w zależności od numer generacji", width=1440, height=400,
                               track_offset=5.0):
                     dpg.add_plot_axis(dpg.mvXAxis, label="Numer generacji")
-                    dpg.add_plot_axis(dpg.mvYAxis, label="Jakosc", tag="y_axis_ones")
+                    dpg.add_plot_axis(dpg.mvYAxis, label="Jakość", tag="y_axis_ones")
                     dpg.add_line_series(list(range(0, 101)), best_sols, parent="y_axis_ones")
 
                 dpg.add_spacer(height=20)
-                dpg.add_text("Otrzymane rozwiazanie", indent=620)
+                dpg.add_text("Otrzymane rozwiązanie", indent=620)
                 dpg.add_spacer(height=10)
                 with dpg.drawlist(width=1440, height=130):
                     with dpg.draw_layer():
@@ -115,7 +115,7 @@ class EvolveOnes(metaclass=SingletonEvolveOnes):
 
             with dpg.window(label=title, modal=True, no_close=True, autosize=True,
                             pos=(9999, 9999)) as modal_id:
-                dpg.add_text("Nie moze byc wiecej rodzicow niz osobnikow w populacji!")
+                dpg.add_text("Nie może być więcej rodziców niż osobników w populacji!")
                 dpg.add_button(label="Ok", width=75, user_data=(modal_id, True), callback=selection_callback,
                                indent=220)
         dpg.split_frame()

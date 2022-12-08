@@ -30,7 +30,7 @@ class Mutation(metaclass=SingletonMutation):
                 with dpg.table_row():
                     with dpg.table_cell():
                         dpg.add_spacer(height=20)
-                        with open('data//mutation.txt') as f:
+                        with open('data//mutation.txt', encoding="utf-8") as f:
                             lines = f.readlines()
                             for line in lines:
                                 dpg.add_text(line, indent=20)
@@ -76,10 +76,6 @@ class Mutation(metaclass=SingletonMutation):
                                 for i in self.second_chromo:
                                     counter += 1
                                     dpg.draw_line((x, y), (x, 50 + y), color=self.blue, thickness=5)
-                                    #if counter == 9 or counter == 11:
-                                     #   x += 50
-                                      #  allel_x += 50
-                                       # continue
                                     if i == 0:
                                         dpg.draw_text((allel_x, allel_y), "0", color=(250, 250, 250, 255), size=50)
                                     else:
@@ -135,7 +131,6 @@ class Mutation(metaclass=SingletonMutation):
                                 def animate():
                                     first_chromo_rot = dpg.get_item_user_data("mutation_first_anim") + 1
                                     second_chromo_rot = dpg.get_item_user_data("mutation_second_anim") + 1
-
 
                                     if first_chromo_rot == 240:
                                         dpg.configure_item("shadowMut", show=True)

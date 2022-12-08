@@ -17,7 +17,7 @@ class IntroSlide(metaclass=SingletonIntroSlide):
         with dpg.window(label="Wprowadzenie", autosize=True, tag="introSlide", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow"), height=7000):
             dpg.hide_item("introSlide")
-            with open('data//introSlide.txt') as f:
+            with open('data//introSlide.txt' , encoding="utf-8") as f:
                 lines = f.readlines()
 
             with dpg.table(width=1440, height=640, header_row=False):

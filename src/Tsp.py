@@ -81,7 +81,7 @@ class Tsp(metaclass=SingletonTsp):
             dpg.set_value("rzym", value=[self.x_location[10], self.y_location[10]])
             dpg.set_value("berno", value=[self.x_location[11], self.y_location[11]])
 
-        with dpg.window(label="Problem komiwojazera", autosize=True, tag="tsp", pos=[99999, 99999],
+        with dpg.window(label="Problem komiwojażera", autosize=True, tag="tsp", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow")):
             dpg.hide_item("tsp")
             with dpg.table(width=1440, height=600, header_row=False):
@@ -90,32 +90,32 @@ class Tsp(metaclass=SingletonTsp):
                     with dpg.table_cell():
                         dpg.add_spacer(height=20)
                         dpg.add_text(
-                            "Komiwojazer chce odwiedzic wszystkie miasta tylko jeden raz i wrocic do miasta,"
-                            " z ktorego zaczynal pokonujac jak najkrotsza trase.",
+                            "Komiwojażer chce odwiedzić wszystkie miasta tylko jeden raz i wrócić do miasta,"
+                            " z którego zaczynał pokonując jak najkrótsza trasę.",
                             indent=20)
                         dpg.add_text(
-                            "Rozmiesc punkty odpowiadajace miastom przeciagajac je myszka i skonfiguruj dzialanie"
+                            "Rozmieść punkty odpowiadające miastom przeciągając je myszka i skonfiguruj działanie"
                             " algorytmu genetycznego.",
                             indent=20)
                         dpg.add_spacer(height=20)
                         with dpg.group(horizontal=True):
                             with dpg.group():
                                 dpg.add_spacer(height=100)
-                                dpg.add_button(label="Losuj polozenie miast", callback=shuffle, indent=187)
+                                dpg.add_button(label="Losuj położenie miast", callback=shuffle, indent=187)
                                 dpg.add_spacer(height=20)
                                 dpg.add_input_int(label=" Liczba generacji do zatrzymania ewolucji", tag="NoGt",
                                                   default_value=100, width=140, min_value=1,
                                                   min_clamped=True, indent=40)
-                                dpg.add_input_int(label=" Liczba osobnikow w generacji", tag="NoOt", default_value=20,
+                                dpg.add_input_int(label=" Liczba osobników w generacji", tag="NoOt", default_value=20,
                                                   width=140, min_value=1, min_clamped=True, indent=40)
-                                dpg.add_input_int(label=" Liczba rodzicow wybranych dla nowej populacji", tag="NoPt",
+                                dpg.add_input_int(label=" Liczba rodziców wybranych dla nowej populacji", tag="NoPt",
                                                   default_value=6, width=140, min_value=2, min_clamped=True, indent=40)
                                 dpg.add_spacer(height=20)
                                 dpg.add_button(label="Wykonaj", callback=self.start, indent=240, tag="tspStart")
                                 dpg.add_spacer(width=700)
 
                             with dpg.group():
-                                with dpg.plot(label="Polozenie miast", height=550, width=550):
+                                with dpg.plot(label="Położenie miast", height=550, width=550):
                                     dpg.add_plot_legend()
                                     dpg.add_plot_axis(dpg.mvXAxis, label="x")
                                     dpg.set_axis_limits(dpg.last_item(), 0, 100)
@@ -170,10 +170,10 @@ class Tsp(metaclass=SingletonTsp):
         solution, solution_fitness, best_solutions_fitness = tsp_ga.start()
 
         if solution[0] == -1 and solution_fitness[0] == -1 and best_solutions_fitness[0] == -1:
-            self.error("Blad", self.on_selection)
+            self.error("Błąd", self.on_selection)
             return
 
-        self.show_info("Rozwiazanie", solution, self.on_selection, best_solutions_fitness)
+        self.show_info("Rozwiązanie", solution, self.on_selection, best_solutions_fitness)
 
     def show_info(self, title, message, selection_callback, best_sols):
         y_invert = 505
@@ -192,13 +192,13 @@ class Tsp(metaclass=SingletonTsp):
             with dpg.window(label=title, modal=True, no_close=True, autosize=True, tag="tsp_plot",
                             pos=(9999, 9999)) as modal_id:
                 dpg.add_spacer(height=20)
-                dpg.add_text("Otrzymane rozwiazanie", indent=620)
+                dpg.add_text("Otrzymane rozwiązanie", indent=620)
                 dpg.add_spacer(height=10)
                 with dpg.group(horizontal=True):
-                    with dpg.plot(label="Dlugosc trasy w zaleznosci od numeru generacji", width=700, height=500,
+                    with dpg.plot(label="Długość trasy w zależności od numeru generacji", width=700, height=500,
                                   track_offset=5.0):
                         dpg.add_plot_axis(dpg.mvXAxis, label="Numer generacji")
-                        dpg.add_plot_axis(dpg.mvYAxis, label="Dlugosc trasy", tag="y_axis_tsp")
+                        dpg.add_plot_axis(dpg.mvYAxis, label="Długość trasy", tag="y_axis_tsp")
                         dpg.add_line_series(list(range(0, 101)), plot_data, parent="y_axis_tsp")
                     dpg.add_spacer(width=20)
                     with dpg.drawlist(width=700, height=560):
@@ -249,7 +249,7 @@ class Tsp(metaclass=SingletonTsp):
 
             with dpg.window(label=title, modal=True, no_close=True, autosize=True,
                             pos=(9999, 9999)) as modal_id:
-                dpg.add_text("Nie moze byc wiecej rodzicow niz osobnikow w populacji!")
+                dpg.add_text("Nie może być więcej rodziców niż osobników w populacji!")
                 dpg.add_button(label="Ok", width=75, user_data=(modal_id, True), callback=selection_callback,
                                indent=220)
         dpg.split_frame()

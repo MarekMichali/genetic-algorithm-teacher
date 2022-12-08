@@ -1,8 +1,8 @@
-Dla wielu zadan nadal nie opracowano dotad dostatecznie szybkich algorytmow. Wykorzystujac algorytmy genetyczne mozliwe jest uzyskanie
-rozwiazania, jednak nie ma gwarancji ze jest optymalne, a jedynie w przyblizeniu optymalne.
+Dla wielu zadań nadal nie opracowano dotąd dostatecznie szybkich algorytmów. Wykorzystując algorytmy genetyczne możliwe jest uzyskanie
+rozwiązania, jednak nie ma gwarancji ze jest optymalne, a jedynie w przybliżeniu optymalne.
 
-Algorytmy genetyczne wykorzystuja procesy znane z natury. Wezmy dla przykladu populacje myszy. Poszczegolne osobniki roznia sie miedzy
-innymi sprytem i szybkoscia. Sprytniejsze i szybsze myszy maja wieksza szanse uniknac kota i zastawionych pulapek. Ocalale osobniki
-rozmnazaja sie i tworza nowa populacje. Oczywiscie niektore wolniejsze i mniej sprytne myszy przetrwaja i rowniez wezma udzial
-w tworzeniu nowej populacji. Dodatkowo dochodzi jeszcze mutacja materialu genetycznego wprowadzajac wiecej losowosci. Otrzymane w takim
-procesie potomstwo bedzie srednio szybsze i sprytniejsze niz osobniki z poprzedniej populacji
+Algorytmy genetyczne wykorzystują procesy znane z natury. Weźmy dla przykładu populacje myszy. Poszczególne osobniki różnią się miedzy
+innymi sprytem i szybkością. Sprytniejsze i szybsze myszy maja większa szanse uniknąć kota i zastawionych pułapek. Ocalałe osobniki
+rozmnażają się i tworzą nowa populacje. Oczywiście niektóre wolniejsze i mniej sprytne myszy przetrwają i również wezmą udział
+w tworzeniu nowej populacji. Dodatkowo dochodzi jeszcze mutacja materiału genetycznego wprowadzając więcej losowości. Otrzymane w takim
+procesie potomstwo będzie średnio szybsze i sprytniejsze niż osobniki z poprzedniej populacji

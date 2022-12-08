@@ -16,7 +16,7 @@ class SingletonOptimization(type):
 class Optimization(metaclass=SingletonOptimization):
     def __init__(self):
         self.prediction = 0
-        with dpg.window(label="Znajdowanie argumentow", autosize=True, tag="optimalization", pos=[99999, 99999],
+        with dpg.window(label="Znajdowanie argumentów", autosize=True, tag="optimalization", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow")):
             dpg.hide_item("optimalization")
             with dpg.table(width=820, height=310, header_row=False):
@@ -24,7 +24,7 @@ class Optimization(metaclass=SingletonOptimization):
                 with dpg.table_row():
                     with dpg.table_cell():
                         dpg.add_spacer(height=20)
-                        dpg.add_text("Znajdowanie wartosci argumentow x, y, z", indent=220)
+                        dpg.add_text("Znajdowanie wartości argumentów x, y, z", indent=220)
                         dpg.add_spacer(height=20)
                         with dpg.group(horizontal=True):
                             dpg.add_input_float(label="x", tag="inX", width=100, step=0, default_value=6, indent=170)
@@ -35,11 +35,11 @@ class Optimization(metaclass=SingletonOptimization):
                         dpg.add_spacer(height=20)
                         dpg.add_input_int(label=" Liczba generacji do zatrzymania ewolucji", tag="NoGo",
                                           default_value=100, width=140, min_value=1, min_clamped=True, indent=140)
-                        dpg.add_input_int(label=" Liczba osobnikow w generacji", tag="NoOo", default_value=20,
+                        dpg.add_input_int(label=" Liczba osobników w generacji", tag="NoOo", default_value=20,
                                           width=140, min_value=1, min_clamped=True, indent=140)
-                        dpg.add_input_int(label=" Liczba rodzicow wybranych dla nowej populacji", tag="NoPo",
+                        dpg.add_input_int(label=" Liczba rodziców wybranych dla nowej populacji", tag="NoPo",
                                           default_value=6, width=140, min_value=2, min_clamped=True, indent=140)
-                        dpg.add_input_int(label=" Procentowe prawdopodobienstwo mutacji", tag="MutPo",
+                        dpg.add_input_int(label=" Procentowe prawdopodobieństwo mutacji", tag="MutPo",
                                           default_value=1, width=140, min_value=0, min_clamped=True, max_value=100,
                                           max_clamped=True, indent=140)
                         dpg.add_spacer(height=20)
@@ -60,11 +60,11 @@ class Optimization(metaclass=SingletonOptimization):
         solution, solution_fitness, best_solutions_fitness = optimization_ga.start()
 
         if solution[0] == -1 and solution_fitness[0] == -1 and best_solutions_fitness[0] == -1:
-            self.error("Blad", self.on_selection)
+            self.error("Błąd", self.on_selection)
             return
 
         self.prediction = numpy.sum(numpy.array(function_inputs) * solution)
-        self.show_info("Rozwiazanie", solution, self.on_selection, best_solutions_fitness)
+        self.show_info("Rozwiązanie", solution, self.on_selection, best_solutions_fitness)
 
     def show_info(self, title, message, selection_callback, best_sols):
         with dpg.mutex():
@@ -73,14 +73,14 @@ class Optimization(metaclass=SingletonOptimization):
 
             with dpg.window(label=title, modal=True, no_close=True, autosize=True, tag="opt_plot",
                             pos=(9999, 9999)) as modal_id:
-                with dpg.plot(label="Jakosc rozwiazania w zaleznosci od numeru generacji", width=1440, height=400,
+                with dpg.plot(label="Jakość rozwiązania w zależności od numeru generacji", width=1440, height=400,
                               track_offset=5.0):
                     dpg.add_plot_axis(dpg.mvXAxis, label="Numer generacji")
-                    dpg.add_plot_axis(dpg.mvYAxis, label="Jakosc", tag="y_axis_opt")
+                    dpg.add_plot_axis(dpg.mvYAxis, label="Jakość", tag="y_axis_opt")
                     dpg.add_line_series(list(range(0, 101)), best_sols, parent="y_axis_opt")
 
                 dpg.add_spacer(height=20)
-                dpg.add_text("Otrzymane rozwiazanie", indent=620)
+                dpg.add_text("Otrzymane rozwiązanie", indent=620)
                 dpg.add_spacer(height=10)
                 with dpg.group(horizontal=True):
                     dpg.add_spacer(width=20)
@@ -129,7 +129,7 @@ class Optimization(metaclass=SingletonOptimization):
 
             with dpg.window(label=title, modal=True, no_close=True, autosize=True,
                             pos=(9999, 9999)) as modal_id:
-                dpg.add_text("Nie moze byc wiecej rodzicow niz osobnikow w populacji!")
+                dpg.add_text("Nie może być więcej rodziców niż osobników w populacji!")
                 dpg.add_button(label="Ok", width=75, user_data=(modal_id, True), callback=selection_callback,
                                indent=220)
         dpg.split_frame()

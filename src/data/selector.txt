@@ -1,16 +1,16 @@
-Znajac jakosc poszczegolnych rozwiazan mozna
-przystapic do selekcji poszczegolnych osobnikow
+Znając jakość poszczególnych rozwiązań można
+przystąpić do selekcji poszczególnych osobników
 w celu utworzenia kolejnego pokolenia lub
-zakonczenia procesu ewolucji. Istnieje
-wiele roznych selektorow, jednak ich wspolna
-cecha jest to, ze osobniki o najlepszej jakosci
-maja najwieksza szanse wziac udzial w reprodukcji.
-Przykladowe selektory:
+zakończenia procesu ewolucji. Istnieje
+wiele różnych selektorów, jednak ich wspólną
+cecha jest to, ze osobniki o najlepszej jakości
+maja największą szanse wziąć udział w reprodukcji.
+Przykładowe selektory:
 
-Selekcja rankingowa: n najlepszych osobnikow
+Selekcja rankingowa: n najlepszych osobników
 zostaje wybranych do rozrodu.
 
-Metoda kola ruletki: kolo jest dzielone na
-obszary odpowiadajace jakosci danego osobnika.
-Im lepsza jakos tym wiekszy obszar, a co za tym
-idzie wieksza szansa na wylosowanie do rozrodu.
+Metoda kola ruletki: koło jest dzielone na
+obszary odpowiadające jakości danego osobnika.
+Im lepsza jakość tym większy obszar, a co za tym
+idzie większa szansa na wylosowanie do rozrodu.

@@ -23,7 +23,7 @@ class Fitness(metaclass=SingletonFitness):
         self.second_chromo = (1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0)
         self.third_chromo = (1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 1, 0)
         self.fourth_chromo = (0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 1)
-        with dpg.window(label="Ocena rozwiazania", autosize=True, tag="fitness", pos=[99999, 99999],
+        with dpg.window(label="Ocena rozwiązania", autosize=True, tag="fitness", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow")):
             dpg.hide_item("fitness")
             with dpg.table(width=1440, height=640, header_row=False):
@@ -32,12 +32,12 @@ class Fitness(metaclass=SingletonFitness):
                 with dpg.table_row():
                     with dpg.table_cell():
                         dpg.add_spacer(height=20)
-                        with open('data//fitness.txt') as f:
+                        with open('data//fitness.txt' , encoding="utf-8") as f:
                             lines = f.readlines()
                             for line in lines:
                                 dpg.add_text(line, indent=20)
                         dpg.add_spacer(height=20)
-                        with open('data//fitnessExamples.txt') as f:
+                        with open('data//fitnessExamples.txt' , encoding="utf-8") as f:
                             lines = f.readlines()
                             self.checkboxes.append((dpg.add_radio_button(lines, callback=self.values)))
 
@@ -208,7 +208,7 @@ class Fitness(metaclass=SingletonFitness):
             dpg.hide_item("mainWindow")
 
     def values(self, app_data, user_data):
-        if "ilosci" in user_data:
+        if "ilości" in user_data:
             dpg.configure_item("firstRadiLayer", show=True)
             dpg.configure_item("secondRadiLayer", show=False)
         else:

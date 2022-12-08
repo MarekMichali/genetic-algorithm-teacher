@@ -1,14 +1,14 @@
-Do opisu algorytmow genetycznych wykorzystuje sie slownictwo
+Do opisu algorytmów genetycznych wykorzystuje się słownictwo
 z genetyki naturalnej.
 
 Pierwszym krokiem jest zakodowanie w chromosomie informacji
-o proponowanym rozwiazaniu. W przypadku tej prezentacji
-uzywane bedzie kodowanie binarne chromosomu. Kazda "1"
-bedzie odpowiadac cechom pomagajacym przetrwac myszy,
-a "0" bedzie oznaczac brak takiej cechy. Jest to trywialny
-przyklad, poniewaz od razu mozna stwierdzic, ze najlepszy
-rezultat daje chromosom skladajacy sie z samych "1". Rzeczywiste
-problemy sa bardziej skomplikowane. Chromosomy moga byc kodowane
-przykladowo literami, a kazdy ich gen moze kodowac rozne pozytywne
-lub negatywne cechy, np. sklonnosc do chorob w przypadku gdy gen
-numer 4 od lewej strony ma wartosc "1".
+o proponowanym rozwiązaniu. W przypadku tej prezentacji
+używane będzie kodowanie binarne chromosomu. Każda "1"
+będzie odpowiadać cechom pomagającym przetrwać myszy,
+a "0" będzie oznaczać brak takiej cechy. Jest to trywialny
+przykład, ponieważ od razu można stwierdzić, ze najlepszy
+rezultat daje chromosom składający się z samych "1". Rzeczywiste
+problemy są bardziej skomplikowane. Chromosomy mogą być kodowane
+przykładowo literami, a każdy ich gen może kodować różne pozytywne
+lub negatywne cechy, np. skłonność do chorób w przypadku gdy gen
+numer 4 od lewej strony ma wartość "1".

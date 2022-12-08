@@ -1,6 +1,6 @@
-Po wykonaniu selekcji wybrane osobniki sa poddawane krzyzowaniu.
-Krzyzowanie polega na utworzeniu potomstwa na podstawie genow
-rodzicow. Chromosomy sa rozcinane w losowym miejscu i ich
-fragmenty sa wymieniane pomiedzy soba. Rozcinanie moze rowniez
-zostac wykonane w wielu miejscach jednoczesnie. Jest to zalezne
+Po wykonaniu selekcji wybrane osobniki są poddawane krzyżowaniu.
+Krzyżowanie polega na utworzeniu potomstwa na podstawie genów
+rodziców. Chromosomy są rozcinane w losowym miejscu i ich
+fragmenty są wymieniane pomiędzy sobą. Rozcinanie może również
+zostać wykonane w wielu miejscach jednocześnie. Jest to zależne
 od implementacji algorytmu.

@@ -18,7 +18,6 @@ class MainWindow(metaclass=SingletonMainWindow):
             with dpg.theme_component(dpg.mvAll):
                 dpg.add_theme_color(dpg.mvThemeCol_WindowBg, (60, 60, 61))
                 dpg.add_theme_color(dpg.mvThemeCol_PopupBg, (60, 60, 61))
-                dpg.add_theme_color(dpg.mvThemeCol_ModalWindowDimBg, (60, 60, 61))
                 dpg.add_theme_color(dpg.mvThemeCol_FrameBg, (70, 71, 75))
                 dpg.add_theme_color(dpg.mvThemeCol_Button, (70, 71, 75))
                 dpg.add_theme_color(dpg.mvPlotCol_Line, (255, 242, 0), category=dpg.mvThemeCat_Plots)
@@ -34,15 +33,15 @@ class MainWindow(metaclass=SingletonMainWindow):
             viewport_height = dpg.get_viewport_client_height()
             with dpg.window(label="Menu", autosize=True, tag="mainWindow", pos=config.mainWindowDefaultPos):
                 dpg.add_spacer(height=50)
-                dpg.add_text("Wybierz co chcesz zrobic", indent=120)
+                dpg.add_text("Wybierz co chcesz zrobić", indent=145)
                 dpg.add_spacer(height=50)
-                dpg.add_button(label="Rozpocznij nauke", width=config.mainWinButtonWidth,
+                dpg.add_button(label="Rozpocznij naukę", width=config.mainWinButtonWidth,
                                height=config.mainWinButtonHeight, callback=self.show_presentation)
-                dpg.add_button(label="Ewolucja szczurow", width=config.mainWinButtonWidth,
+                dpg.add_button(label="Ewolucja szczurów", width=config.mainWinButtonWidth,
                                height=config.mainWinButtonHeight, callback=self.show_ones)
-                dpg.add_button(label="Znajdowanie argumentow", width=config.mainWinButtonWidth,
+                dpg.add_button(label="Znajdowanie argumentów", width=config.mainWinButtonWidth,
                                height=config.mainWinButtonHeight, callback=self.show_opt)
-                dpg.add_button(label="Problem komiwojazera", width=config.mainWinButtonWidth,
+                dpg.add_button(label="Problem komiwojażera", width=config.mainWinButtonWidth,
                                height=config.mainWinButtonHeight, callback=self.show_tsp)
 
         dpg.set_item_pos("mainWindow", [1408 // 2 - config.mainWinButtonWidth // 2,

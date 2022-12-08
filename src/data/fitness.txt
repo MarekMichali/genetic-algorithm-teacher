@@ -1,16 +1,16 @@
 Po zakodowaniu kolejnym krokiem jest
-wygenerowanie populacji poczatkowej.
-Zazwyczaj tworzy sie populacje startowa
-o losowych cechach, jednak dla niektorych
-problemow mozna stworzyc populajcje
+wygenerowanie populacji początkowej.
+Zazwyczaj tworzy się populacje startowa
+o losowych cechach, jednak dla niektórych
+problemów można stworzyć populacje
 o predefiniowanych cechach.
 
-Majac juz populacje nalezy teraz poddac kazdego jej
-osobnika ocenie. Sluzy do tego funkcja
-przystosowania. Nalezy ja zdefiniowac w taki sposob
-aby zwracala wartosc liczbowa okreslajaca jakosc
-otrzymanego rozwiazania. Nastepnie wartosc ta
-uzywana jest do selekcji osobnikow, ktore wezma
-udzial w tworzeniu nowej populacji.
+Mając już populacje należy teraz poddać każdego jej
+osobnika ocenie. Śluzy do tego funkcja
+przystosowania. Należy ja zdefiniować w taki sposób
+aby zwracała wartość liczbowa określająca jakość
+otrzymanego rozwiązania. Następnie wartość ta
+używana jest do selekcji osobników, które wezmą
+udział w tworzeniu nowej populacji.
 
-Przykladowe wartosci funkcji oceny w zaleznosci od:
+Przykładowe wartości funkcji oceny w zależności od:
