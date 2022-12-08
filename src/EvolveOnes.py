@@ -16,7 +16,7 @@ class EvolveOnes(metaclass=SingletonEvolveOnes):
     def __init__(self):
         self.blue = (15, 86, 135, 255)
         self.y_offset = 100
-        self.x_offset = 5
+        self.x_offset = -1
         self.first_chromo = (0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
         self.last_fitness = 0
         with dpg.window(label="Ewolucja szczurow", autosize=True, tag="evolveOnes", pos=[99999, 99999],
@@ -66,9 +66,9 @@ class EvolveOnes(metaclass=SingletonEvolveOnes):
 
             with dpg.window(label=title, modal=True, no_close=True, autosize=True, tag="ones_plot",
                             pos=(9999, 9999)) as modal_id:
-                with dpg.plot(label="Jakosc rozwiazania w zaleznosci od generacji", width=1440, height=400,
+                with dpg.plot(label="Jakosc rozwiazania w zaleznosci od numer generacji", width=1440, height=400,
                               track_offset=5.0):
-                    dpg.add_plot_axis(dpg.mvXAxis, label="Generacja")
+                    dpg.add_plot_axis(dpg.mvXAxis, label="Numer generacji")
                     dpg.add_plot_axis(dpg.mvYAxis, label="Jakosc", tag="y_axis_ones")
                     dpg.add_line_series(list(range(0, 101)), best_sols, parent="y_axis_ones")
 
@@ -83,7 +83,7 @@ class EvolveOnes(metaclass=SingletonEvolveOnes):
 
                         x = 470
                         y = 5
-                        allel_x = 434
+                        allel_x = 433
                         allel_y = 9
                         for i in message:
                             dpg.draw_line((x, y), (x, 50 + y), color=self.blue, thickness=5)

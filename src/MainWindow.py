@@ -14,13 +14,21 @@ class SingletonMainWindow(type):
 
 class MainWindow(metaclass=SingletonMainWindow):
     def __init__(self):
-        with dpg.theme() as disabled_theme:
+        with dpg.theme() as global_theme:
+            with dpg.theme_component(dpg.mvAll):
+                dpg.add_theme_color(dpg.mvThemeCol_WindowBg, (60, 60, 61))
+                dpg.add_theme_color(dpg.mvThemeCol_PopupBg, (60, 60, 61))
+                dpg.add_theme_color(dpg.mvThemeCol_ModalWindowDimBg, (60, 60, 61))
+                dpg.add_theme_color(dpg.mvThemeCol_FrameBg, (70, 71, 75))
+                dpg.add_theme_color(dpg.mvThemeCol_Button, (70, 71, 75))
+                dpg.add_theme_color(dpg.mvPlotCol_Line, (255, 242, 0), category=dpg.mvThemeCat_Plots)
             with dpg.theme_component(dpg.mvButton, enabled_state=False):
                 dpg.add_theme_color(dpg.mvThemeCol_Text, [128, 128, 128])
                 dpg.add_theme_color(dpg.mvThemeCol_Button, [101, 101, 105])
                 dpg.add_theme_color(dpg.mvThemeCol_ButtonHovered, [101, 101, 105])
                 dpg.add_theme_color(dpg.mvThemeCol_ButtonActive, [101, 101, 105])
-        dpg.bind_theme(disabled_theme)
+        dpg.bind_theme(global_theme)
+
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()

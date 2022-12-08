@@ -17,7 +17,7 @@ class Mutation(metaclass=SingletonMutation):
     def __init__(self):
         self.blue = (15, 86, 135, 255)
         self.y_offset = 100
-        self.x_offset = 5
+        self.x_offset = -1
         self.first_chromo = (0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
         self.second_chromo = (1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0)
         self.renderCount = 0
@@ -45,7 +45,7 @@ class Mutation(metaclass=SingletonMutation):
 
                                 x = 100
                                 y = 50
-                                allel_x = 64
+                                allel_x = 63
                                 allel_y = 54
                                 counter = 0
                                 for i in self.first_chromo:
@@ -55,6 +55,31 @@ class Mutation(metaclass=SingletonMutation):
                                         x += 50
                                         allel_x += 50
                                         continue
+                                    if i == 0:
+                                        dpg.draw_text((allel_x, allel_y), "0", color=(250, 250, 250, 255), size=50)
+                                    else:
+                                        dpg.draw_text((allel_x + self.x_offset, allel_y), "1",
+                                                      color=(250, 250, 250, 255), size=50)
+                                    x += 50
+                                    allel_x += 50
+
+                            with dpg.draw_layer():
+                                dpg.draw_line((48, 150), (653, 150), color=self.blue, thickness=5)
+                                dpg.draw_line((50, 150), (50, 203), color=self.blue, thickness=5)
+                                dpg.draw_line((50, 200), (653, 200), color=self.blue, thickness=5)
+
+                                x = 100
+                                y = 150
+                                allel_x = 63
+                                allel_y = 154
+                                counter = 0
+                                for i in self.second_chromo:
+                                    counter += 1
+                                    dpg.draw_line((x, y), (x, 50 + y), color=self.blue, thickness=5)
+                                    #if counter == 9 or counter == 11:
+                                     #   x += 50
+                                      #  allel_x += 50
+                                       # continue
                                     if i == 0:
                                         dpg.draw_text((allel_x, allel_y), "0", color=(250, 250, 250, 255), size=50)
                                     else:
@@ -95,16 +120,42 @@ class Mutation(metaclass=SingletonMutation):
                                             dpg.draw_line((-75, 2), (-75, -52), color=self.blue, thickness=5)
                                             dpg.draw_line((-23, -50), (-77, -50), color=self.blue, thickness=5)
 
+                            with dpg.draw_layer(tag="shadowMut", show=False):
+                                dpg.draw_rectangle((350, 140), (401, 210), color=(60, 60, 61, 200),
+                                                   fill=(60, 60, 61, 200))
+                            with dpg.draw_layer(tag="hideMut", show=False):
+                                dpg.draw_rectangle((353, 153), (397, 198), color=(60, 60, 61, 255),
+                                                   fill=(60, 60, 61, 255))
+                            with dpg.draw_layer(tag="showMut", show=False):
+                                dpg.draw_text((363, -46 + 200), "1", color=(250, 250, 250, 255), size=50)
+                            with dpg.draw_layer(tag="shadowMut2", show=False):
+                                dpg.draw_rectangle((353, 153), (397, 198), color=(60, 60, 61, 200),
+                                                   fill=(60, 60, 61, 200))
+
                                 def animate():
                                     first_chromo_rot = dpg.get_item_user_data("mutation_first_anim") + 1
                                     second_chromo_rot = dpg.get_item_user_data("mutation_second_anim") + 1
 
+
+                                    if first_chromo_rot == 240:
+                                        dpg.configure_item("shadowMut", show=True)
+                                    if first_chromo_rot == 300:
+                                        dpg.configure_item("hideMut", show=True)
+                                        dpg.configure_item("showMut", show=True)
+                                        dpg.configure_item("shadowMut2", show=True)
+                                    if first_chromo_rot == 360:
+                                        dpg.configure_item("shadowMut", show=False)
+                                        dpg.configure_item("shadowMut2", show=False)
                                     if first_chromo_rot == 361:
                                         self.renderCount += 1
                                         if self.renderCount == 360:
                                             first_chromo_rot = 179
                                             second_chromo_rot = 359
                                             self.renderCount = 0
+                                            dpg.configure_item("hideMut", show=False)
+                                            dpg.configure_item("showMut", show=False)
+                                            dpg.configure_item("shadowMut2", show=False)
+                                            dpg.configure_item("shadowMut", show=False)
                                         else:
                                             return
                                     dpg.apply_transform("mutation_first_anim",

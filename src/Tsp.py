@@ -15,8 +15,8 @@ class SingletonTsp(type):
 
 class Tsp(metaclass=SingletonTsp):
     def __init__(self):
-        self.blue = (15, 86, 135, 255)
-        self.blue_line = (15, 86, 135, 128)
+        self.dot_color = (255, 242, 0, 255)
+        self.line_color = (255, 242, 0, 128)
         self.x_location = [8.0, 50.0, 18.0, 35.0, 90.0, 40.0, 84.0, 74.0, 34.0, 40.0, 60.0, 74.0]
         self.y_location = [3.0, 62.0, 20.0, 25.0, 89.0, 71.0, 7.0, 29.0, 45.0, 65.0, 69.0, 47.0]
 
@@ -122,40 +122,40 @@ class Tsp(metaclass=SingletonTsp):
                                     dpg.add_plot_axis(dpg.mvYAxis, label="y")
                                     dpg.set_axis_limits(dpg.last_item(), 0, 100)
 
-                                    dpg.add_drag_point(label="Warszawa", color=self.blue, tag="warszawa",
+                                    dpg.add_drag_point(label="Warszawa", color=self.dot_color, tag="warszawa",
                                                        default_value=(self.x_location[0], self.y_location[0]),
                                                        callback=print_val, user_data="warszawa", thickness=20)
-                                    dpg.add_drag_point(label="Berlin", color=self.blue, tag="berlin",
+                                    dpg.add_drag_point(label="Berlin", color=self.dot_color, tag="berlin",
                                                        default_value=(self.x_location[1], self.y_location[1]),
                                                        callback=print_val, user_data="berlin")
-                                    dpg.add_drag_point(label="Praga", color=self.blue, tag="praga",
+                                    dpg.add_drag_point(label="Praga", color=self.dot_color, tag="praga",
                                                        default_value=(self.x_location[2], self.y_location[2]),
                                                        callback=print_val, user_data="praga")
-                                    dpg.add_drag_point(label="Wieden", color=self.blue, tag="wieden",
+                                    dpg.add_drag_point(label="Wieden", color=self.dot_color, tag="wieden",
                                                        default_value=(self.x_location[3], self.y_location[3]),
                                                        callback=print_val, user_data="wieden")
-                                    dpg.add_drag_point(label="Bratyslawa", color=self.blue, tag="bratyslawa",
+                                    dpg.add_drag_point(label="Bratyslawa", color=self.dot_color, tag="bratyslawa",
                                                        default_value=(self.x_location[4], self.y_location[4]),
                                                        callback=print_val, user_data="bratyslawa")
-                                    dpg.add_drag_point(label="Londyn", color=self.blue, tag="londyn",
+                                    dpg.add_drag_point(label="Londyn", color=self.dot_color, tag="londyn",
                                                        default_value=(self.x_location[5], self.y_location[5]),
-                                                       callback=print_val,  user_data="londyn")
-                                    dpg.add_drag_point(label="Lizbona", color=self.blue, tag="lizbona",
+                                                       callback=print_val, user_data="londyn")
+                                    dpg.add_drag_point(label="Lizbona", color=self.dot_color, tag="lizbona",
                                                        default_value=(self.x_location[6], self.y_location[6]),
                                                        callback=print_val, user_data="lizbona")
-                                    dpg.add_drag_point(label="Wilno", color=self.blue, tag="wilno",
+                                    dpg.add_drag_point(label="Wilno", color=self.dot_color, tag="wilno",
                                                        default_value=(self.x_location[7], self.y_location[7]),
                                                        callback=print_val, user_data="wilno")
-                                    dpg.add_drag_point(label="Kopenhaga", color=self.blue, tag="kopenhaga",
+                                    dpg.add_drag_point(label="Kopenhaga", color=self.dot_color, tag="kopenhaga",
                                                        default_value=(self.x_location[8], self.y_location[8]),
                                                        callback=print_val, user_data="kopenhaga")
-                                    dpg.add_drag_point(label="Paryz", color=self.blue, tag="paryz",
+                                    dpg.add_drag_point(label="Paryz", color=self.dot_color, tag="paryz",
                                                        default_value=(self.x_location[9], self.y_location[9]),
                                                        callback=print_val, user_data="paryz")
-                                    dpg.add_drag_point(label="Rzym", color=self.blue, tag="rzym",
+                                    dpg.add_drag_point(label="Rzym", color=self.dot_color, tag="rzym",
                                                        default_value=(self.x_location[10], self.y_location[10]),
                                                        callback=print_val, user_data="rzym")
-                                    dpg.add_drag_point(label="Berno", color=self.blue, tag="berno",
+                                    dpg.add_drag_point(label="Berno", color=self.dot_color, tag="berno",
                                                        default_value=(self.x_location[11], self.y_location[11]),
                                                        callback=print_val, user_data="berno")
 
@@ -195,9 +195,9 @@ class Tsp(metaclass=SingletonTsp):
                 dpg.add_text("Otrzymane rozwiazanie", indent=620)
                 dpg.add_spacer(height=10)
                 with dpg.group(horizontal=True):
-                    with dpg.plot(label="Dlugosc trasy w zaleznosci od generacji", width=700, height=500,
+                    with dpg.plot(label="Dlugosc trasy w zaleznosci od numeru generacji", width=700, height=500,
                                   track_offset=5.0):
-                        dpg.add_plot_axis(dpg.mvXAxis, label="Generacja")
+                        dpg.add_plot_axis(dpg.mvXAxis, label="Numer generacji")
                         dpg.add_plot_axis(dpg.mvYAxis, label="Dlugosc trasy", tag="y_axis_tsp")
                         dpg.add_line_series(list(range(0, 101)), plot_data, parent="y_axis_tsp")
                     dpg.add_spacer(width=20)
@@ -206,7 +206,7 @@ class Tsp(metaclass=SingletonTsp):
                             j = 0
                             for i in self.x_location:
                                 dpg.draw_circle((x_indent + multiplier * i, y_invert - multiplier * self.y_location[j]),
-                                                radius=5, color=self.blue, fill=self.blue)
+                                                radius=5, color=self.dot_color, fill=self.dot_color)
                                 j += 1
 
                             i = 0
@@ -218,7 +218,7 @@ class Tsp(metaclass=SingletonTsp):
                                                    y_invert - multiplier * self.y_location[city_one]),
                                                   (x_indent + multiplier * self.x_location[city_two],
                                                    y_invert - multiplier * self.y_location[city_two]),
-                                                  color=self.blue_line, thickness=thickness)
+                                                  color=self.line_color, thickness=thickness)
                                 else:
                                     city_one = loc - 1
                                     city_two = message[i - 1] - 1
@@ -226,7 +226,7 @@ class Tsp(metaclass=SingletonTsp):
                                                    y_invert - multiplier * self.y_location[city_one]),
                                                   (x_indent + multiplier * self.x_location[city_two],
                                                    y_invert - multiplier * self.y_location[city_two]),
-                                                  color=self.blue_line, thickness=thickness)
+                                                  color=self.line_color, thickness=thickness)
                                 i += 1
 
                 with dpg.group(horizontal=True):

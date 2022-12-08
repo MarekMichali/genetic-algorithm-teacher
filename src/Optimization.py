@@ -73,9 +73,9 @@ class Optimization(metaclass=SingletonOptimization):
 
             with dpg.window(label=title, modal=True, no_close=True, autosize=True, tag="opt_plot",
                             pos=(9999, 9999)) as modal_id:
-                with dpg.plot(label="Jakosc rozwiazania w zaleznosci od generacji", width=1440, height=400,
+                with dpg.plot(label="Jakosc rozwiazania w zaleznosci od numeru generacji", width=1440, height=400,
                               track_offset=5.0):
-                    dpg.add_plot_axis(dpg.mvXAxis, label="Generacja")
+                    dpg.add_plot_axis(dpg.mvXAxis, label="Numer generacji")
                     dpg.add_plot_axis(dpg.mvYAxis, label="Jakosc", tag="y_axis_opt")
                     dpg.add_line_series(list(range(0, 101)), best_sols, parent="y_axis_opt")
 

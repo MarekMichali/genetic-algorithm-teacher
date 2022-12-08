@@ -17,7 +17,7 @@ class Dictionary(metaclass=SingletonDictionary):
         self.blue = (15, 86, 135, 255)
         self.checkboxes = []
         self.y_offset = 100
-        self.x_offset = 5
+        self.x_offset = -1
         self.first_chromo = (0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
         self.second_chromo = (1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0)
         with dpg.window(label="Podstawowe pojecia", autosize=True, tag="dictionary", pos=[99999, 99999],
@@ -61,7 +61,7 @@ class Dictionary(metaclass=SingletonDictionary):
 
                                 x = 100
                                 y = 50
-                                allel_x = 64
+                                allel_x = 63
                                 allel_y = 54
                                 for i in self.first_chromo:
                                     dpg.draw_line((x, y), (x, 2 * y), color=self.blue, thickness=5)
@@ -83,7 +83,7 @@ class Dictionary(metaclass=SingletonDictionary):
 
                                 x = 100
                                 y = 50
-                                allel_x = 64
+                                allel_x = 63
                                 allel_y = 54
                                 for i in self.second_chromo:
                                     dpg.draw_line((x, y + self.y_offset), (x, 2 * y + self.y_offset), color=self.blue,
@@ -98,13 +98,13 @@ class Dictionary(metaclass=SingletonDictionary):
                                     allel_x += 50
 
                             with dpg.draw_layer(tag="genLayer", show=False):
-                                dpg.draw_circle((125, 75), color=(255, 0, 0, 100), radius=38, thickness=5)
+                                dpg.draw_circle((125, 75), color=(255, 242, 0, 200), radius=38, thickness=5)
 
                             with dpg.draw_layer(tag="chromoLayer", show=False):
-                                dpg.draw_ellipse((25, 25), (675, 125), color=(255, 0, 0, 100), thickness=5)
+                                dpg.draw_ellipse((25, 25), (675, 125), color=(255, 242, 0, 200), thickness=5)
 
                             with dpg.draw_layer(tag="popuLayer", show=False):
-                                dpg.draw_ellipse((25, 25), (675, 125 + self.y_offset), color=(255, 0, 0, 100),
+                                dpg.draw_ellipse((25, 25), (675, 125 + self.y_offset), color=(255, 242, 0, 200),
                                                  thickness=5)
 
                     with dpg.table_cell(height=10):

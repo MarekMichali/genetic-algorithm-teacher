@@ -17,7 +17,7 @@ class Crossover(metaclass=SingletonCrossover):
     def __init__(self):
         self.blue = (15, 86, 135, 255)
         self.y_offset = 100
-        self.x_offset = 5
+        self.x_offset = -1
         self.first_chromo = (0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
         self.second_chromo = (1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0)
         self.render_count = 0
@@ -48,7 +48,7 @@ class Crossover(metaclass=SingletonCrossover):
 
                                 x = 100
                                 y = 250
-                                allel_x = 64
+                                allel_x = 63
                                 allel_y = 254
                                 counter = 0
                                 for i in self.first_chromo:
@@ -81,7 +81,7 @@ class Crossover(metaclass=SingletonCrossover):
                                               thickness=5)
                                 x = 100
                                 y = 250
-                                allel_x = 64
+                                allel_x = 63
                                 allel_y = 254
                                 counter = 0
                                 for i in self.second_chromo:
@@ -111,7 +111,7 @@ class Crossover(metaclass=SingletonCrossover):
 
                                 x = 100
                                 y = 50
-                                allel_x = 64
+                                allel_x = 63
                                 allel_y = 54
                                 counter = 0
                                 for i in self.first_chromo:
@@ -136,7 +136,7 @@ class Crossover(metaclass=SingletonCrossover):
                                               thickness=5)
                                 x = 100
                                 y = 50
-                                allel_x = 64
+                                allel_x = 63
                                 allel_y = 54
                                 counter = 0
                                 for i in self.second_chromo:

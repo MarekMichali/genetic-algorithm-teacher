@@ -19,7 +19,7 @@ class Selector(metaclass=SingletonSelector):
         self.checkboxes = []
         self.checkboxesData = []
         self.y_offset = 100
-        self.x_offset = 5
+        self.x_offset = -1
         self.x_move = 200
         self.count = 0
         self.whatRadio = 1
@@ -68,7 +68,7 @@ class Selector(metaclass=SingletonSelector):
 
                                 x = 100 + self.x_move
                                 y = 50
-                                allel_x = 64 + self.x_move
+                                allel_x = 63 + self.x_move
                                 allel_y = 54
                                 counter = 11
                                 for i in self.first_chromo:
@@ -92,7 +92,7 @@ class Selector(metaclass=SingletonSelector):
                                               (653 + self.x_move, 100 + self.y_offset), color=self.blue, thickness=5)
                                 x = 100 + self.x_move
                                 y = 50
-                                allel_x = 64 + self.x_move
+                                allel_x = 63 + self.x_move
                                 allel_y = 54
                                 for i in self.second_chromo:
                                     dpg.draw_line((x, y + self.y_offset), (x, 2 * y + self.y_offset), color=self.blue,
@@ -119,7 +119,7 @@ class Selector(metaclass=SingletonSelector):
                                               thickness=5)
                                 x = 100 + self.x_move
                                 y = 50
-                                allel_x = 64 + self.x_move
+                                allel_x = 63 + self.x_move
                                 allel_y = 54
                                 for i in self.third_chromo:
                                     dpg.draw_line((x, y + 2*self.y_offset), (x, 2 * y + 2 * self.y_offset),
@@ -145,7 +145,7 @@ class Selector(metaclass=SingletonSelector):
                                               thickness=5)
                                 x = 100 + self.x_move
                                 y = 50
-                                allel_x = 64 + self.x_move
+                                allel_x = 63 + self.x_move
                                 allel_y = 54
                                 for i in self.fourth_chromo:
                                     dpg.draw_line((x, y + 3*self.y_offset), (x, 2 * y + 3 * self.y_offset),
@@ -181,17 +181,17 @@ class Selector(metaclass=SingletonSelector):
                                               color=(250, 250, 250, 255), size=50)
 
                             with dpg.draw_layer(tag="hideFirst", show=True):
-                                dpg.draw_rectangle((0, 0), (1200, 125), color=(37, 37, 38, 200),
-                                                   fill=(37, 37, 38, 200))
+                                dpg.draw_rectangle((0, 0), (1200, 125), color=(60, 60, 61, 200),
+                                                   fill=(60, 60, 61, 200))
                             with dpg.draw_layer(tag="hideSecond", show=False):
-                                dpg.draw_rectangle((0, 125), (1200, 225), color=(37, 37, 38, 200),
-                                                   fill=(37, 37, 38, 200))
+                                dpg.draw_rectangle((0, 125), (1200, 225), color=(60, 60, 61, 200),
+                                                   fill=(60, 60, 61, 200))
                             with dpg.draw_layer(tag="hideThird", show=True):
-                                dpg.draw_rectangle((0, 225), (1200, 325), color=(37, 37, 38, 200),
-                                                   fill=(37, 37, 38, 200))
+                                dpg.draw_rectangle((0, 225), (1200, 325), color=(60, 60, 61, 200),
+                                                   fill=(60, 60, 61, 200))
                             with dpg.draw_layer(tag="hideFourth", show=False):
-                                dpg.draw_rectangle((0, 325), (1200, 425), color=(37, 37, 38, 200),
-                                                   fill=(37, 37, 38, 200))
+                                dpg.draw_rectangle((0, 325), (1200, 425), color=(60, 60, 61, 200),
+                                                   fill=(60, 60, 61, 200))
                             speed = 10
 
                             def animate():

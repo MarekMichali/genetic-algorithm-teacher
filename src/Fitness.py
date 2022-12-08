@@ -17,7 +17,7 @@ class Fitness(metaclass=SingletonFitness):
         self.blue = (15, 86, 135, 255)
         self.checkboxes = []
         self.y_offset = 100
-        self.x_offset = 5
+        self.x_offset = -1
         self.x_move = 200
         self.first_chromo = (0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
         self.second_chromo = (1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0)
@@ -54,7 +54,7 @@ class Fitness(metaclass=SingletonFitness):
 
                                 x = 100 + self.x_move
                                 y = 50
-                                allel_x = 64 + self.x_move
+                                allel_x = 63 + self.x_move
                                 allel_y = 54
                                 counter = 11
                                 for i in self.first_chromo:
@@ -78,7 +78,7 @@ class Fitness(metaclass=SingletonFitness):
                                               (653 + self.x_move, 100 + self.y_offset), color=self.blue, thickness=5)
                                 x = 100 + self.x_move
                                 y = 50
-                                allel_x = 64 + self.x_move
+                                allel_x = 63 + self.x_move
                                 allel_y = 54
                                 for i in self.second_chromo:
                                     dpg.draw_line((x, y + self.y_offset), (x, 2 * y + self.y_offset), color=self.blue,
@@ -104,7 +104,7 @@ class Fitness(metaclass=SingletonFitness):
                                               color=self.blue, thickness=5)
                                 x = 100 + self.x_move
                                 y = 50
-                                allel_x = 64 + self.x_move
+                                allel_x = 63 + self.x_move
                                 allel_y = 54
                                 for i in self.third_chromo:
                                     dpg.draw_line((x, y + 2*self.y_offset), (x, 2 * y + 2 * self.y_offset),
@@ -130,7 +130,7 @@ class Fitness(metaclass=SingletonFitness):
                                               thickness=5)
                                 x = 100 + self.x_move
                                 y = 50
-                                allel_x = 64 + self.x_move
+                                allel_x = 63 + self.x_move
                                 allel_y = 54
                                 for i in self.fourth_chromo:
                                     dpg.draw_line((x, y + 3*self.y_offset), (x, 2 * y + 3 * self.y_offset),
