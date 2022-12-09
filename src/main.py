@@ -9,6 +9,7 @@ from Selector import Selector
 from EvolveOnes import EvolveOnes
 from Optimization import Optimization
 from Tsp import Tsp
+from Diagram import Diagram
 
 
 def main():
@@ -28,6 +29,7 @@ def main():
     optimization = Optimization()
     tsp = Tsp()
     main_window = MainWindow()
+    diagram = Diagram()
 
     with dpg.font_registry():
         with dpg.font("data//calibri.ttf", 20, default_font=True) as calibri:
@@ -41,6 +43,7 @@ def main():
         dpg.add_menu_item(label="Selekcja", callback=lambda: selector.show_ext())
         dpg.add_menu_item(label="Krzyżowanie", callback=lambda: crossover.show_ext())
         dpg.add_menu_item(label="Mutacja", callback=lambda: mutation.show_ext())
+        dpg.add_menu_item(label="Diagram", callback=lambda: diagram.show_ext())
         dpg.add_menu_item(label="     ",)
         with dpg.menu(label="Przykłady"):
             dpg.add_menu_item(label="Ewolucja szczurów", callback=lambda: evolve_ones.show())
