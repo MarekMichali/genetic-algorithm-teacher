@@ -38,12 +38,12 @@ def main():
 
     with dpg.viewport_menu_bar():
         dpg.add_menu_item(label="Menu", callback=lambda: main_window.show())
+        dpg.add_menu_item(label="Diagram", callback=lambda: diagram.show_ext())
         dpg.add_menu_item(label="Podstawowe pojęcia", callback=lambda: dictionary.show_ext())
         dpg.add_menu_item(label="Ocena rozwiązania", callback=lambda: fitness.show_ext())
         dpg.add_menu_item(label="Selekcja", callback=lambda: selector.show_ext())
         dpg.add_menu_item(label="Krzyżowanie", callback=lambda: crossover.show_ext())
         dpg.add_menu_item(label="Mutacja", callback=lambda: mutation.show_ext())
-        dpg.add_menu_item(label="Diagram", callback=lambda: diagram.show_ext())
         dpg.add_menu_item(label="     ",)
         with dpg.menu(label="Przykłady"):
             dpg.add_menu_item(label="Ewolucja szczurów", callback=lambda: evolve_ones.show())

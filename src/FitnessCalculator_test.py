@@ -7,12 +7,12 @@ class MyTestCase(unittest.TestCase):
     def test_optimization_success(self):
         fitness_calculator = FitnessCalculator([1, 1])
         result = fitness_calculator.optimization(np.array([10, 90]))
-        self.assertEqual(0.01, result)
+        self.assertEqual(0.0099999999, result)
 
     def test_optimization_division_by_0(self):
         fitness_calculator = FitnessCalculator([1, -1])
         result = fitness_calculator.optimization(np.array([10, 10]))
-        self.assertEqual(999999, result)
+        self.assertEqual(1000000, result)
 
     def test_evolve_ones(self):
         fitness_calculator = FitnessCalculator([1, 1, 1])

@@ -1,4 +1,3 @@
-import math
 import dearpygui.dearpygui as dpg
 import config as c
 
@@ -28,24 +27,62 @@ class Diagram(metaclass=SingletonDiagram):
                 dpg.add_table_column()
                 with dpg.table_row():
                     with dpg.table_cell():
-                        dpg.add_spacer(height=50)
-                        with dpg.drawlist(width=1440, height=600):
+                        dpg.add_spacer(height=10)
+                        dpg.add_text("Schemat działania algorytmu genetycznego", indent=510)
+                        with dpg.drawlist(width=1400, height=590):
                             height = 50
                             width = 271
+
+                            dpg.draw_text([width - 100, height + 15], "Start", size=20)
+                            dpg.draw_arrow([width + 65, height + 25], [width - 45, height + 25], thickness=5,
+                                           color=self.blue, size=10)
+
                             dpg.draw_rectangle([width + 70, height], [width + 370, height + 50],
-                                               thickness=5, color=self.blue)
+                                               thickness=5, color=self.blue, tag="diagStart")
                             dpg.draw_text([width + 125, height + 5], "Generowanie populacji", size=20)
                             dpg.draw_text([width + 165, height + 25], "poczatkowej", size=20)
+                            dpg.draw_line([width + 220, height + 50], [width + 220, height + 225], thickness=5,
+                                          color=self.blue)
+                            dpg.draw_arrow([width + 265, height + 225], [width + 218, height + 225], thickness=5,
+                                           color=self.blue, size=10)
+
                             dpg.draw_rectangle([width + 470, height], [width + 770, height + 50],
-                                               thickness=5, color=self.blue)
+                                               thickness=5, color=self.blue, tag="diagCross")
+                            dpg.draw_text([width + 570, height + 15], "Krzyżowanie", size=20)
+                            dpg.draw_arrow([width + 620, height + 96], [width + 620, height + 50], thickness=5,
+                                           color=self.blue, size=10)
+
                             dpg.draw_rectangle([width + 470, height + 100], [width + 770, height + 150],
-                                               thickness=5, color=self.blue)
+                                               thickness=5, color=self.blue, tag="diagMut")
+                            dpg.draw_text([width + 588, height + 115], "Mutacja", size=20)
+                            dpg.draw_line([width + 620, height + 225], [width + 620, height + 150], thickness=5,
+                                          color=self.blue)
+                            dpg.draw_arrow([width + 575, height + 225], [width + 623, height + 225], thickness=5,
+                                           color=self.blue, size=10)
+
                             dpg.draw_rectangle([width + 270, height + 200], [width + 570, height + 250],
-                                               thickness=5, color=self.blue)
+                                               thickness=5, color=self.blue, tag="diagSel")
+                            dpg.draw_text([width + 315, height + 215], "Ocena populacji i selekcja", size=20)
+                            dpg.draw_arrow([width + 420, height + 296], [width + 420, height + 250], thickness=5,
+                                           color=self.blue, size=10)
+
                             dpg.draw_quad([width + 420, height + 300], [width + 520, height + 400],
                                           [width + 420, height + 500], [width + 320, height + 400],
-                                          thickness=5, color=self.blue)
+                                          thickness=5, color=self.blue, tag="diagDec")
+                            dpg.draw_text([width + 393, height + 375], "Koniec", size=20)
+                            dpg.draw_text([width + 385, height + 395], "ewolucji?", size=20)
 
+                            dpg.draw_text([width + 520, height + 370], "Nie", size=20)
+                            dpg.draw_text([width + 290, height + 370], "Tak", size=20)
+                            dpg.draw_line([width + 520, height + 400], [width + 863, height + 400], thickness=5,
+                                          color=self.blue)
+                            dpg.draw_line([width + 860, height + 400], [width + 860, height + 25], thickness=5,
+                                          color=self.blue)
+                            dpg.draw_arrow([width + 775, height + 25], [width + 863, height + 25], thickness=5,
+                                           color=self.blue, size=10)
+                            dpg.draw_arrow([width + 120, height + 400], [width + 320, height + 400], thickness=5,
+                                           color=self.blue, size=10)
+                            dpg.draw_text([width + 60, height + 390], "Stop", size=20)
 
             with dpg.group(horizontal=True):
                 dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left, indent=660,
@@ -80,27 +117,25 @@ class Diagram(metaclass=SingletonDiagram):
             dpg.hide_item("mainWindow")
 
     def back(self):
-        dpg.enable_item("crossoverLeft")
-        dpg.enable_item("crossoverRight")
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
-        dpg.show_item("crossover")
+        dpg.show_item("introSlide")
         dpg.split_frame()
-        width = dpg.get_item_width("crossover")
-        height = dpg.get_item_height("crossover")
-        dpg.set_item_pos("crossover", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
-        dpg.hide_item("mutation")
+        width = dpg.get_item_width("introSlide")
+        height = dpg.get_item_height("introSlide")
+        dpg.set_item_pos("introSlide", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+        dpg.hide_item("diagram")
 
     def next(self):
-        dpg.enable_item("selectorLeft")
-        dpg.enable_item("selectorRight")
+        dpg.enable_item("dictionaryLeft")
+        dpg.enable_item("dictionaryRight")
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
-        dpg.show_item("selector")
+        dpg.show_item("dictionary")
         dpg.split_frame()
-        width = dpg.get_item_width("selector")
-        height = dpg.get_item_height("selector")
-        dpg.set_item_pos("selector", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
-        dpg.hide_item("fitness")
+        width = dpg.get_item_width("dictionary")
+        height = dpg.get_item_height("dictionary")
+        dpg.set_item_pos("dictionary", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+        dpg.hide_item("diagram")

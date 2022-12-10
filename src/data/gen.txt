@@ -1,6 +1,6 @@
-Gen: najmniejszy element niosący informacje.
+Gen: najmniejszy element niosący informację.
 Chromosom: zbiór parametrów czyli genów, które określają
 cechy danego osobnika.
 Osobnik: pojedyncza propozycja rozwiązania, zawiera chromosom.
 Populacja: zbiór osobników, na których wykonywane są operacje.
-Allel: wszystkie możliwe wartości, jakie może przyjąć gen
+Allel: wszystkie możliwe wartości, jakie może przyjąć gen.

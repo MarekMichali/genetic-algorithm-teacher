@@ -94,7 +94,7 @@ class Tsp(metaclass=SingletonTsp):
                             " z którego zaczynał pokonując jak najkrótsza trasę.",
                             indent=20)
                         dpg.add_text(
-                            "Rozmieść punkty odpowiadające miastom przeciągając je myszka i skonfiguruj działanie"
+                            "Rozmieść punkty odpowiadające miastom przeciągając je myszką i skonfiguruj działanie"
                             " algorytmu genetycznego.",
                             indent=20)
                         dpg.add_spacer(height=20)

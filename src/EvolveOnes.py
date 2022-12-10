@@ -28,7 +28,7 @@ class EvolveOnes(metaclass=SingletonEvolveOnes):
                     with dpg.table_cell():
                         dpg.add_spacer(height=20)
                         dpg.add_text("Zadanie omawiane w prezentacji.", indent=240)
-                        dpg.add_text("Pozwala sprawdzić jaki wpływ na przebieg ewolucji maja poszczególne parametry.",
+                        dpg.add_text("Pozwala sprawdzić jaki wpływ na przebieg ewolucji mają poszczególne parametry.",
                                      indent=20)
                         dpg.add_spacer(height=20)
                         dpg.add_input_int(label=" Liczba generacji do zatrzymania ewolucji", tag="NoGe",

@@ -9,9 +9,7 @@ class FitnessCalculator:
     def optimization(self, solution):
         output = numpy.sum(solution * self.function_inputs)
         div = numpy.abs(output - self.result)
-        if div == 0:
-            return 999999
-        fitness = 1.0 / div
+        fitness = 1.0 / (div + 0.000001)
         return fitness
 
     def evolve_ones(self, solution):

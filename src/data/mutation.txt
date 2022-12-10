@@ -1,14 +1,16 @@
-Mutacja jest kolejnym etapem tworzenia potomstwa. Ma mieć
-miejsce po krzyżowaniu. Wprowadza dodatkowa różnorodność
-do procesu ewolucji i zmniejsza ryzyko przedwczesnego otrzymania
-wyniku, który jest daleko od optymalnego. Mutacja może zachodzić
-na kilka sposobów:
-zamiana losowych genów miejscami w chromosomie,
-zmiana wartości jednego genu lub wielu.
+Mutacja jest kolejnym etapem tworzenia potomstwa. Następuje po krzyżowaniu.
+Wprowadza dodatkowa różnorodność do procesu ewolucji i zmniejsza ryzyko
+przedwczesnego otrzymania wyniku, który jest daleki od optymalnego.
+Mutacja może zachodzić na kilka sposobów, dwa z nich przedstawiono na
+animacji.
+Zamiana losowych genów miejscami w chromosomie.
+Zmiana wartości losowego genu na inną wartość.
 
-Prawdopodobieństwo mutacji nie może być zbyt duże. W przypadku
-zbyt częstego zachodzenia tego procesu otrzymywane rozwiązania
-będą losowe i dalekie od optymalnego
+Prawdopodobieństwo mutacji nie może być zbyt duże. W przypadku zbyt częstego
+zachodzenia tego procesu, otrzymywane rozwiązania będą dalekie od optymalnego.
 
-Po mutacji następuje kolejna selekcja i każdy krok jest powtarzany
-aż do końca działania algorytmu
+Po mutacji następuje kolejna selekcja i każdy krok jest znów
+powtarzany aż do końca działania algorytmu.
+
+Mając podstawową wiedzę można przejść do przykładowych zadań, aby lepiej
+zapoznać się z działaniem algorytmów genetycznych.
