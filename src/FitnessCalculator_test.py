@@ -9,7 +9,7 @@ class MyTestCase(unittest.TestCase):
         result = fitness_calculator.optimization(np.array([10, 90]))
         self.assertEqual(0.0099999999, result)
 
-    def test_optimization_division_by_0(self):
+    def test_optimization_max_value(self):
         fitness_calculator = FitnessCalculator([1, -1])
         result = fitness_calculator.optimization(np.array([10, 10]))
         self.assertEqual(1000000, result)
