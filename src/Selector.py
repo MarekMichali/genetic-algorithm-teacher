@@ -15,7 +15,7 @@ class SingletonSelector(type):
 
 class Selector(metaclass=SingletonSelector):
     def __init__(self):
-        self.blue = (15, 86, 135, 255)
+        self.chromo_color = (15, 86, 135, 255)
         self.checkboxes = []
         self.checkboxesData = []
         self.y_offset = 100
@@ -59,11 +59,11 @@ class Selector(metaclass=SingletonSelector):
                         dpg.add_spacer(height=50)
                         with dpg.drawlist(width=1440, height=500, tag="selection_animation"):
                             with dpg.draw_layer():
-                                dpg.draw_line((48 + self.x_move, 50), (653 + self.x_move, 50), color=self.blue,
+                                dpg.draw_line((48 + self.x_move, 50), (653 + self.x_move, 50), color=self.chromo_color,
                                               thickness=5)
-                                dpg.draw_line((50 + self.x_move, 50), (50 + self.x_move, 103), color=self.blue,
+                                dpg.draw_line((50 + self.x_move, 50), (50 + self.x_move, 103), color=self.chromo_color,
                                               thickness=5)
-                                dpg.draw_line((50 + self.x_move, 100), (653 + self.x_move, 100), color=self.blue,
+                                dpg.draw_line((50 + self.x_move, 100), (653 + self.x_move, 100), color=self.chromo_color,
                                               thickness=5)
 
                                 x = 100 + self.x_move
@@ -73,7 +73,7 @@ class Selector(metaclass=SingletonSelector):
                                 counter = 11
                                 for i in self.first_chromo:
                                     counter -= 1
-                                    dpg.draw_line((x, y), (x, 2 * y), color=self.blue, thickness=5)
+                                    dpg.draw_line((x, y), (x, 2 * y), color=self.chromo_color, thickness=5)
                                     if i == 0:
                                         dpg.draw_text((allel_x, allel_y), "0", color=(250, 250, 250, 255), size=50)
                                     else:
@@ -85,17 +85,17 @@ class Selector(metaclass=SingletonSelector):
 
                             with dpg.draw_layer():
                                 dpg.draw_line((48 + self.x_move, 50 + self.y_offset),
-                                              (653 + self.x_move, 50 + self.y_offset), color=self.blue, thickness=5)
+                                              (653 + self.x_move, 50 + self.y_offset), color=self.chromo_color, thickness=5)
                                 dpg.draw_line((50 + self.x_move, 50 + self.y_offset),
-                                              (50 + self.x_move, 103 + self.y_offset), color=self.blue, thickness=5)
+                                              (50 + self.x_move, 103 + self.y_offset), color=self.chromo_color, thickness=5)
                                 dpg.draw_line((50 + self.x_move, 100 + self.y_offset),
-                                              (653 + self.x_move, 100 + self.y_offset), color=self.blue, thickness=5)
+                                              (653 + self.x_move, 100 + self.y_offset), color=self.chromo_color, thickness=5)
                                 x = 100 + self.x_move
                                 y = 50
                                 allel_x = 63 + self.x_move
                                 allel_y = 54
                                 for i in self.second_chromo:
-                                    dpg.draw_line((x, y + self.y_offset), (x, 2 * y + self.y_offset), color=self.blue,
+                                    dpg.draw_line((x, y + self.y_offset), (x, 2 * y + self.y_offset), color=self.chromo_color,
                                                   thickness=5)
                                     if i == 0:
                                         dpg.draw_text((allel_x, allel_y + self.y_offset), "0",
@@ -109,13 +109,13 @@ class Selector(metaclass=SingletonSelector):
 
                             with dpg.draw_layer():
                                 dpg.draw_line((48 + self.x_move, 50 + 2 * self.y_offset),
-                                              (653 + self.x_move, 50 + 2 * self.y_offset), color=self.blue,
+                                              (653 + self.x_move, 50 + 2 * self.y_offset), color=self.chromo_color,
                                               thickness=5)
                                 dpg.draw_line((50 + self.x_move, 50 + 2 * self.y_offset),
-                                              (50 + self.x_move, 103 + 2 * self.y_offset), color=self.blue,
+                                              (50 + self.x_move, 103 + 2 * self.y_offset), color=self.chromo_color,
                                               thickness=5)
                                 dpg.draw_line((50 + self.x_move, 100 + 2 * self.y_offset),
-                                              (653 + self.x_move, 100 + 2 * self.y_offset), color=self.blue,
+                                              (653 + self.x_move, 100 + 2 * self.y_offset), color=self.chromo_color,
                                               thickness=5)
                                 x = 100 + self.x_move
                                 y = 50
@@ -123,7 +123,7 @@ class Selector(metaclass=SingletonSelector):
                                 allel_y = 54
                                 for i in self.third_chromo:
                                     dpg.draw_line((x, y + 2*self.y_offset), (x, 2 * y + 2 * self.y_offset),
-                                                  color=self.blue, thickness=5)
+                                                  color=self.chromo_color, thickness=5)
                                     if i == 0:
                                         dpg.draw_text((allel_x, allel_y + 2*self.y_offset), "0",
                                                       color=(250, 250, 250, 255), size=50)
@@ -135,13 +135,13 @@ class Selector(metaclass=SingletonSelector):
 
                             with dpg.draw_layer():
                                 dpg.draw_line((48 + self.x_move, 50 + 3 * self.y_offset),
-                                              (653 + self.x_move, 50 + 3 * self.y_offset), color=self.blue,
+                                              (653 + self.x_move, 50 + 3 * self.y_offset), color=self.chromo_color,
                                               thickness=5)
                                 dpg.draw_line((50 + self.x_move, 50 + 3 * self.y_offset),
-                                              (50 + self.x_move, 103 + 3 * self.y_offset), color=self.blue,
+                                              (50 + self.x_move, 103 + 3 * self.y_offset), color=self.chromo_color,
                                               thickness=5)
                                 dpg.draw_line((50 + self.x_move, 100 + 3 * self.y_offset),
-                                              (653 + self.x_move, 100 + 3 * self.y_offset), color=self.blue,
+                                              (653 + self.x_move, 100 + 3 * self.y_offset), color=self.chromo_color,
                                               thickness=5)
                                 x = 100 + self.x_move
                                 y = 50
@@ -149,7 +149,7 @@ class Selector(metaclass=SingletonSelector):
                                 allel_y = 54
                                 for i in self.fourth_chromo:
                                     dpg.draw_line((x, y + 3*self.y_offset), (x, 2 * y + 3 * self.y_offset),
-                                                  color=self.blue, thickness=5)
+                                                  color=self.chromo_color, thickness=5)
                                     if i == 0:
                                         dpg.draw_text((allel_x, allel_y + 3*self.y_offset), "0",
                                                       color=(250, 250, 250, 255), size=50)

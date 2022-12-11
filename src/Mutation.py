@@ -15,7 +15,7 @@ class SingletonMutation(type):
 
 class Mutation(metaclass=SingletonMutation):
     def __init__(self):
-        self.blue = (15, 86, 135, 255)
+        self.chromo_color = (15, 86, 135, 255)
         self.y_offset = 100
         self.x_offset = -1
         self.first_chromo = (0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
@@ -39,9 +39,9 @@ class Mutation(metaclass=SingletonMutation):
                         dpg.add_spacer(height=50)
                         with dpg.drawlist(width=800, height=500, tag="mutation_animation"):
                             with dpg.draw_layer():
-                                dpg.draw_line((48, 50), (653, 50), color=self.blue, thickness=5)
-                                dpg.draw_line((50, 50), (50, 103), color=self.blue, thickness=5)
-                                dpg.draw_line((50, 100), (653, 100), color=self.blue, thickness=5)
+                                dpg.draw_line((48, 50), (653, 50), color=self.chromo_color, thickness=5)
+                                dpg.draw_line((50, 50), (50, 103), color=self.chromo_color, thickness=5)
+                                dpg.draw_line((50, 100), (653, 100), color=self.chromo_color, thickness=5)
 
                                 x = 100
                                 y = 50
@@ -50,7 +50,7 @@ class Mutation(metaclass=SingletonMutation):
                                 counter = 0
                                 for i in self.first_chromo:
                                     counter += 1
-                                    dpg.draw_line((x, y), (x, 2 * y), color=self.blue, thickness=5)
+                                    dpg.draw_line((x, y), (x, 2 * y), color=self.chromo_color, thickness=5)
                                     if counter == 9 or counter == 11:
                                         x += 50
                                         allel_x += 50
@@ -64,9 +64,9 @@ class Mutation(metaclass=SingletonMutation):
                                     allel_x += 50
 
                             with dpg.draw_layer():
-                                dpg.draw_line((48, 150), (653, 150), color=self.blue, thickness=5)
-                                dpg.draw_line((50, 150), (50, 203), color=self.blue, thickness=5)
-                                dpg.draw_line((50, 200), (653, 200), color=self.blue, thickness=5)
+                                dpg.draw_line((48, 150), (653, 150), color=self.chromo_color, thickness=5)
+                                dpg.draw_line((50, 150), (50, 203), color=self.chromo_color, thickness=5)
+                                dpg.draw_line((50, 200), (653, 200), color=self.chromo_color, thickness=5)
 
                                 x = 100
                                 y = 150
@@ -75,7 +75,7 @@ class Mutation(metaclass=SingletonMutation):
                                 counter = 0
                                 for i in self.second_chromo:
                                     counter += 1
-                                    dpg.draw_line((x, y), (x, 50 + y), color=self.blue, thickness=5)
+                                    dpg.draw_line((x, y), (x, 50 + y), color=self.chromo_color, thickness=5)
                                     if i == 0:
                                         dpg.draw_text((allel_x, allel_y), "0", color=(250, 250, 250, 255), size=50)
                                     else:
@@ -95,11 +95,11 @@ class Mutation(metaclass=SingletonMutation):
 
                                         with dpg.draw_node(tag="mutation_first_chromo", user_data=45.0):
                                             dpg.apply_transform(dpg.last_item(), dpg.create_translation_matrix([25, 0]))
-                                            dpg.draw_line((-23, 0), (-77, 0), color=self.blue, thickness=5)
+                                            dpg.draw_line((-23, 0), (-77, 0), color=self.chromo_color, thickness=5)
                                             dpg.draw_text((-60, -46), "0", color=(250, 250, 250, 255), size=50)
-                                            dpg.draw_line((-25, 2), (-25, -52), color=self.blue, thickness=5)
-                                            dpg.draw_line((-75, 2), (-75, -52), color=self.blue, thickness=5)
-                                            dpg.draw_line((-23, -50), (-77, -50), color=self.blue, thickness=5)
+                                            dpg.draw_line((-25, 2), (-25, -52), color=self.chromo_color, thickness=5)
+                                            dpg.draw_line((-75, 2), (-75, -52), color=self.chromo_color, thickness=5)
+                                            dpg.draw_line((-23, -50), (-77, -50), color=self.chromo_color, thickness=5)
 
                                     with dpg.draw_node(tag="mutation_second_anim", user_data=359.0):
                                         dpg.apply_transform(dpg.last_item(),
@@ -109,12 +109,12 @@ class Mutation(metaclass=SingletonMutation):
 
                                         with dpg.draw_node(tag="mutation_second_chromo", user_data=45.0):
                                             dpg.apply_transform(dpg.last_item(), dpg.create_translation_matrix([25, 0]))
-                                            dpg.draw_line((-23, 0), (-77, 0), color=self.blue, thickness=5)
+                                            dpg.draw_line((-23, 0), (-77, 0), color=self.chromo_color, thickness=5)
                                             dpg.draw_text((-60 + self.x_offset, -46), "1", color=(250, 250, 250, 255),
                                                           size=50)
-                                            dpg.draw_line((-25, 2), (-25, -52), color=self.blue, thickness=5)
-                                            dpg.draw_line((-75, 2), (-75, -52), color=self.blue, thickness=5)
-                                            dpg.draw_line((-23, -50), (-77, -50), color=self.blue, thickness=5)
+                                            dpg.draw_line((-25, 2), (-25, -52), color=self.chromo_color, thickness=5)
+                                            dpg.draw_line((-75, 2), (-75, -52), color=self.chromo_color, thickness=5)
+                                            dpg.draw_line((-23, -50), (-77, -50), color=self.chromo_color, thickness=5)
 
                             with dpg.draw_layer(tag="shadowMut", show=False):
                                 dpg.draw_rectangle((350, 140), (401, 210), color=(60, 60, 61, 200),

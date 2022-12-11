@@ -31,7 +31,7 @@ class MainWindow(metaclass=SingletonMainWindow):
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
-            with dpg.window(label="Menu", autosize=True, tag="mainWindow", pos=config.mainWindowDefaultPos):
+            with dpg.window(label="Menu", autosize=True, tag="mainWindow", pos=[99999, 99999]):
                 dpg.add_spacer(height=50)
                 dpg.add_text("Wybierz co chcesz zrobić", indent=145)
                 dpg.add_spacer(height=50)

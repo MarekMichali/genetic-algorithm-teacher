@@ -15,7 +15,7 @@ class SingletonCrossover(type):
 
 class Crossover(metaclass=SingletonCrossover):
     def __init__(self):
-        self.blue = (15, 86, 135, 255)
+        self.chromo_color = (15, 86, 135, 255)
         self.y_offset = 100
         self.x_offset = -1
         self.first_chromo = (0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
@@ -40,11 +40,11 @@ class Crossover(metaclass=SingletonCrossover):
                         dpg.add_spacer(height=50)
                         with dpg.drawlist(width=800, height=500, tag="cross_animation"):
                             with dpg.draw_layer():
-                                dpg.draw_line((48, 250), (203, 250), color=self.blue, thickness=5)
-                                dpg.draw_line((348, 250), (653, 250), color=self.blue, thickness=5)
-                                dpg.draw_line((50, 250), (50, 303), color=self.blue, thickness=5)
-                                dpg.draw_line((50, 300), (203, 300), color=self.blue, thickness=5)
-                                dpg.draw_line((348, 300), (653, 300), color=self.blue, thickness=5)
+                                dpg.draw_line((48, 250), (203, 250), color=self.chromo_color, thickness=5)
+                                dpg.draw_line((348, 250), (653, 250), color=self.chromo_color, thickness=5)
+                                dpg.draw_line((50, 250), (50, 303), color=self.chromo_color, thickness=5)
+                                dpg.draw_line((50, 300), (203, 300), color=self.chromo_color, thickness=5)
+                                dpg.draw_line((348, 300), (653, 300), color=self.chromo_color, thickness=5)
 
                                 x = 100
                                 y = 250
@@ -55,11 +55,11 @@ class Crossover(metaclass=SingletonCrossover):
                                     counter += 1
                                     if counter == 4 or counter == 5 or counter == 6:
                                         if counter == 6:
-                                            dpg.draw_line((x, y), (x, y + 50), color=self.blue, thickness=5)
+                                            dpg.draw_line((x, y), (x, y + 50), color=self.chromo_color, thickness=5)
                                         x += 50
                                         allel_x += 50
                                         continue
-                                    dpg.draw_line((x, y), (x, y + 50), color=self.blue, thickness=5)
+                                    dpg.draw_line((x, y), (x, y + 50), color=self.chromo_color, thickness=5)
                                     if i == 0:
                                         dpg.draw_text((allel_x, allel_y), "0", color=(250, 250, 250, 255), size=50)
                                     else:
@@ -69,15 +69,15 @@ class Crossover(metaclass=SingletonCrossover):
                                     allel_x += 50
 
                             with dpg.draw_layer():
-                                dpg.draw_line((48, 250 + self.y_offset), (203, 250 + self.y_offset), color=self.blue,
+                                dpg.draw_line((48, 250 + self.y_offset), (203, 250 + self.y_offset), color=self.chromo_color,
                                               thickness=5)
-                                dpg.draw_line((348, 250 + self.y_offset), (653, 250 + self.y_offset), color=self.blue,
+                                dpg.draw_line((348, 250 + self.y_offset), (653, 250 + self.y_offset), color=self.chromo_color,
                                               thickness=5)
-                                dpg.draw_line((50, 250 + self.y_offset), (50, 303 + self.y_offset), color=self.blue,
+                                dpg.draw_line((50, 250 + self.y_offset), (50, 303 + self.y_offset), color=self.chromo_color,
                                               thickness=5)
-                                dpg.draw_line((50, 300 + self.y_offset), (203, 300 + self.y_offset), color=self.blue,
+                                dpg.draw_line((50, 300 + self.y_offset), (203, 300 + self.y_offset), color=self.chromo_color,
                                               thickness=5)
-                                dpg.draw_line((348, 300 + self.y_offset), (653, 300 + self.y_offset), color=self.blue,
+                                dpg.draw_line((348, 300 + self.y_offset), (653, 300 + self.y_offset), color=self.chromo_color,
                                               thickness=5)
                                 x = 100
                                 y = 250
@@ -89,11 +89,11 @@ class Crossover(metaclass=SingletonCrossover):
                                     if counter == 4 or counter == 5 or counter == 6:
                                         if counter == 6:
                                             dpg.draw_line((x, y + self.y_offset), (x, y + 50 + self.y_offset),
-                                                          color=self.blue, thickness=5)
+                                                          color=self.chromo_color, thickness=5)
                                         x += 50
                                         allel_x += 50
                                         continue
-                                    dpg.draw_line((x, y + self.y_offset), (x, y + 50 + self.y_offset), color=self.blue,
+                                    dpg.draw_line((x, y + self.y_offset), (x, y + 50 + self.y_offset), color=self.chromo_color,
                                                   thickness=5)
                                     if i == 0:
                                         dpg.draw_text((allel_x, allel_y + self.y_offset), "0",
@@ -105,9 +105,9 @@ class Crossover(metaclass=SingletonCrossover):
                                     allel_x += 50
 
                             with dpg.draw_layer():
-                                dpg.draw_line((48, 50), (503, 50), color=self.blue, thickness=5)
-                                dpg.draw_line((50, 50), (50, 103), color=self.blue, thickness=5)
-                                dpg.draw_line((50, 100), (503, 100), color=self.blue, thickness=5)
+                                dpg.draw_line((48, 50), (503, 50), color=self.chromo_color, thickness=5)
+                                dpg.draw_line((50, 50), (50, 103), color=self.chromo_color, thickness=5)
+                                dpg.draw_line((50, 100), (503, 100), color=self.chromo_color, thickness=5)
 
                                 x = 100
                                 y = 50
@@ -118,7 +118,7 @@ class Crossover(metaclass=SingletonCrossover):
                                     counter += 1
                                     if counter == 10:
                                         break
-                                    dpg.draw_line((x, y), (x, 2 * y), color=self.blue, thickness=5)
+                                    dpg.draw_line((x, y), (x, 2 * y), color=self.chromo_color, thickness=5)
                                     if i == 0:
                                         dpg.draw_text((allel_x, allel_y), "0", color=(250, 250, 250, 255), size=50)
                                     else:
@@ -128,11 +128,11 @@ class Crossover(metaclass=SingletonCrossover):
                                     allel_x += 50
 
                             with dpg.draw_layer():
-                                dpg.draw_line((48, 50 + self.y_offset), (503, 50 + self.y_offset), color=self.blue,
+                                dpg.draw_line((48, 50 + self.y_offset), (503, 50 + self.y_offset), color=self.chromo_color,
                                               thickness=5)
-                                dpg.draw_line((50, 50 + self.y_offset), (50, 103 + self.y_offset), color=self.blue,
+                                dpg.draw_line((50, 50 + self.y_offset), (50, 103 + self.y_offset), color=self.chromo_color,
                                               thickness=5)
-                                dpg.draw_line((50, 100 + self.y_offset), (503, 100 + self.y_offset), color=self.blue,
+                                dpg.draw_line((50, 100 + self.y_offset), (503, 100 + self.y_offset), color=self.chromo_color,
                                               thickness=5)
                                 x = 100
                                 y = 50
@@ -143,7 +143,7 @@ class Crossover(metaclass=SingletonCrossover):
                                     counter += 1
                                     if counter == 10:
                                         break
-                                    dpg.draw_line((x, y + self.y_offset), (x, 2 * y + self.y_offset), color=self.blue,
+                                    dpg.draw_line((x, y + self.y_offset), (x, 2 * y + self.y_offset), color=self.chromo_color,
                                                   thickness=5)
                                     if i == 0:
                                         dpg.draw_text((allel_x, allel_y + self.y_offset), "0",
@@ -165,18 +165,18 @@ class Crossover(metaclass=SingletonCrossover):
                                             dpg.apply_transform(dpg.last_item(),
                                                                 dpg.create_translation_matrix(
                                                                     [25, 0]))
-                                            dpg.draw_line((0, 0), (77, 0), color=self.blue, thickness=5)
-                                            dpg.draw_line((0, 0), (-77, 0), color=self.blue, thickness=5)
-                                            dpg.draw_line((25, 2), (25, -52), color=self.blue, thickness=5)
+                                            dpg.draw_line((0, 0), (77, 0), color=self.chromo_color, thickness=5)
+                                            dpg.draw_line((0, 0), (-77, 0), color=self.chromo_color, thickness=5)
+                                            dpg.draw_line((25, 2), (25, -52), color=self.chromo_color, thickness=5)
                                             dpg.draw_text((-10, -46), "0", color=(250, 250, 250, 255), size=50)
-                                            dpg.draw_line((75, 2), (75, -52), color=self.blue, thickness=5)
+                                            dpg.draw_line((75, 2), (75, -52), color=self.chromo_color, thickness=5)
                                             dpg.draw_text((-60, -46), "0", color=(250, 250, 250, 255), size=50)
-                                            dpg.draw_line((-25, 2), (-25, -52), color=self.blue, thickness=5)
+                                            dpg.draw_line((-25, 2), (-25, -52), color=self.chromo_color, thickness=5)
                                             dpg.draw_text((40 + self.x_offset, -46), "1",
                                                           color=(250, 250, 250, 255), size=50)
-                                            dpg.draw_line((-75, 2), (-75, -52), color=self.blue, thickness=5)
-                                            dpg.draw_line((0, -50), (77, -50), color=self.blue, thickness=5)
-                                            dpg.draw_line((0, -50), (-77, -50), color=self.blue, thickness=5)
+                                            dpg.draw_line((-75, 2), (-75, -52), color=self.chromo_color, thickness=5)
+                                            dpg.draw_line((0, -50), (77, -50), color=self.chromo_color, thickness=5)
+                                            dpg.draw_line((0, -50), (-77, -50), color=self.chromo_color, thickness=5)
 
                                     with dpg.draw_node(tag="cross_second_anim", user_data=270.0):
                                         dpg.apply_transform(dpg.last_item(),
@@ -186,20 +186,20 @@ class Crossover(metaclass=SingletonCrossover):
                                         with dpg.draw_node(tag="cross_second_chromo", user_data=45.0):
                                             dpg.apply_transform(dpg.last_item(),
                                                                 dpg.create_translation_matrix([25, 0]))
-                                            dpg.draw_line((0, 0), (77, 0), color=self.blue, thickness=5)
-                                            dpg.draw_line((0, 0), (-77, 0), color=self.blue, thickness=5)
+                                            dpg.draw_line((0, 0), (77, 0), color=self.chromo_color, thickness=5)
+                                            dpg.draw_line((0, 0), (-77, 0), color=self.chromo_color, thickness=5)
 
-                                            dpg.draw_line((25, 2), (25, -52), color=self.blue, thickness=5)
+                                            dpg.draw_line((25, 2), (25, -52), color=self.chromo_color, thickness=5)
                                             dpg.draw_text((-10, -46), "0", color=(250, 250, 250, 255), size=50)
-                                            dpg.draw_line((75, 2), (75, -52), color=self.blue, thickness=5)
+                                            dpg.draw_line((75, 2), (75, -52), color=self.chromo_color, thickness=5)
                                             dpg.draw_text((-60 + self.x_offset, -46), "1", color=(250, 250, 250, 255),
                                                           size=50)
-                                            dpg.draw_line((-25, 2), (-25, -52), color=self.blue, thickness=5)
+                                            dpg.draw_line((-25, 2), (-25, -52), color=self.chromo_color, thickness=5)
                                             dpg.draw_text((40, -46), "0",
                                                           color=(250, 250, 250, 255), size=50)
-                                            dpg.draw_line((-75, 2), (-75, -52), color=self.blue, thickness=5)
-                                            dpg.draw_line((0, -50), (77, -50), color=self.blue, thickness=5)
-                                            dpg.draw_line((0, -50), (-77, -50), color=self.blue, thickness=5)
+                                            dpg.draw_line((-75, 2), (-75, -52), color=self.chromo_color, thickness=5)
+                                            dpg.draw_line((0, -50), (77, -50), color=self.chromo_color, thickness=5)
+                                            dpg.draw_line((0, -50), (-77, -50), color=self.chromo_color, thickness=5)
 
                                 with dpg.draw_node():
                                     dpg.apply_transform(dpg.last_item(), dpg.create_translation_matrix([250, 350]))
@@ -212,22 +212,22 @@ class Crossover(metaclass=SingletonCrossover):
                                         with dpg.draw_node(tag="cross_third_chromo", user_data=45.0):
                                             dpg.apply_transform(dpg.last_item(),
                                                                 dpg.create_translation_matrix([25, 0]))
-                                            dpg.draw_line((0, 0), (77, 0), color=self.blue, thickness=5)
-                                            dpg.draw_line((0, 0), (-77, 0), color=self.blue, thickness=5)
+                                            dpg.draw_line((0, 0), (77, 0), color=self.chromo_color, thickness=5)
+                                            dpg.draw_line((0, 0), (-77, 0), color=self.chromo_color, thickness=5)
 
-                                            dpg.draw_line((25, 2), (25, -52), color=self.blue, thickness=5)
+                                            dpg.draw_line((25, 2), (25, -52), color=self.chromo_color, thickness=5)
                                             dpg.draw_text((-10 + self.x_offset, -46), "1", color=(250, 250, 250, 255),
                                                           size=50)
-                                            dpg.draw_line((75, 2), (75, -52), color=self.blue, thickness=5)
+                                            dpg.draw_line((75, 2), (75, -52), color=self.chromo_color, thickness=5)
                                             dpg.draw_text((-60 + self.x_offset, -46), "1", color=(250, 250, 250, 255),
                                                           size=50)
-                                            dpg.draw_line((-25, 2), (-25, -52), color=self.blue, thickness=5)
+                                            dpg.draw_line((-25, 2), (-25, -52), color=self.chromo_color, thickness=5)
                                             dpg.draw_text((40, -46), "0",
                                                           color=(250, 250, 250, 255), size=50)
-                                            dpg.draw_line((-75, 2), (-75, -52), color=self.blue, thickness=5)
+                                            dpg.draw_line((-75, 2), (-75, -52), color=self.chromo_color, thickness=5)
 
-                                            dpg.draw_line((0, -50), (77, -50), color=self.blue, thickness=5)
-                                            dpg.draw_line((0, -50), (-77, -50), color=self.blue, thickness=5)
+                                            dpg.draw_line((0, -50), (77, -50), color=self.chromo_color, thickness=5)
+                                            dpg.draw_line((0, -50), (-77, -50), color=self.chromo_color, thickness=5)
 
                                     #
                                     with dpg.draw_node(tag="cross_fourth_anim", user_data=270.0):
@@ -239,21 +239,21 @@ class Crossover(metaclass=SingletonCrossover):
                                         with dpg.draw_node(tag="cross_fourth_chromo", user_data=45.0):
                                             dpg.apply_transform(dpg.last_item(),
                                                                 dpg.create_translation_matrix([25, 0]))
-                                            dpg.draw_line((0, 0), (77, 0), color=self.blue, thickness=5)
-                                            dpg.draw_line((0, 0), (-77, 0), color=self.blue, thickness=5)
+                                            dpg.draw_line((0, 0), (77, 0), color=self.chromo_color, thickness=5)
+                                            dpg.draw_line((0, 0), (-77, 0), color=self.chromo_color, thickness=5)
 
-                                            dpg.draw_line((25, 2), (25, -52), color=self.blue, thickness=5)
+                                            dpg.draw_line((25, 2), (25, -52), color=self.chromo_color, thickness=5)
                                             dpg.draw_text((-10, -46), "0", color=(250, 250, 250, 255), size=50)
-                                            dpg.draw_line((75, 2), (75, -52), color=self.blue, thickness=5)
+                                            dpg.draw_line((75, 2), (75, -52), color=self.chromo_color, thickness=5)
                                             dpg.draw_text((-60 + + self.x_offset, -46), "1", color=(250, 250, 250, 255),
                                                           size=50)
-                                            dpg.draw_line((-25, 2), (-25, -52), color=self.blue, thickness=5)
+                                            dpg.draw_line((-25, 2), (-25, -52), color=self.chromo_color, thickness=5)
                                             dpg.draw_text((40, -46), "0",
                                                           color=(250, 250, 250, 255), size=50)
-                                            dpg.draw_line((-75, 2), (-75, -52), color=self.blue, thickness=5)
+                                            dpg.draw_line((-75, 2), (-75, -52), color=self.chromo_color, thickness=5)
 
-                                            dpg.draw_line((0, -50), (77, -50), color=self.blue, thickness=5)
-                                            dpg.draw_line((0, -50), (-77, -50), color=self.blue, thickness=5)
+                                            dpg.draw_line((0, -50), (77, -50), color=self.chromo_color, thickness=5)
+                                            dpg.draw_line((0, -50), (-77, -50), color=self.chromo_color, thickness=5)
 
                                 def animate():
                                     first_chromo_rot = dpg.get_item_user_data("cross_first_anim") + 1

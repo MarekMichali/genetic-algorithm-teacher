@@ -14,7 +14,7 @@ class SingletonDiagram(type):
 
 class Diagram(metaclass=SingletonDiagram):
     def __init__(self):
-        self.blue = (15, 86, 135, 255)
+        self.chromo_color = (15, 86, 135, 255)
         self.y_offset = 100
         self.x_offset = -1
         self.first_chromo = (0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
@@ -35,53 +35,53 @@ class Diagram(metaclass=SingletonDiagram):
 
                             dpg.draw_text([width - 100, height + 15], "Start", size=20)
                             dpg.draw_arrow([width + 65, height + 25], [width - 45, height + 25], thickness=5,
-                                           color=self.blue, size=10)
+                                           color=self.chromo_color, size=10)
 
                             dpg.draw_rectangle([width + 70, height], [width + 370, height + 50],
-                                               thickness=5, color=self.blue, tag="diagStart")
+                                               thickness=5, color=self.chromo_color, tag="diagStart")
                             dpg.draw_text([width + 125, height + 5], "Generowanie populacji", size=20)
                             dpg.draw_text([width + 165, height + 25], "poczatkowej", size=20)
                             dpg.draw_line([width + 220, height + 50], [width + 220, height + 225], thickness=5,
-                                          color=self.blue)
+                                          color=self.chromo_color)
                             dpg.draw_arrow([width + 265, height + 225], [width + 218, height + 225], thickness=5,
-                                           color=self.blue, size=10)
+                                           color=self.chromo_color, size=10)
 
                             dpg.draw_rectangle([width + 470, height], [width + 770, height + 50],
-                                               thickness=5, color=self.blue, tag="diagCross")
+                                               thickness=5, color=self.chromo_color, tag="diagCross")
                             dpg.draw_text([width + 570, height + 15], "Krzyżowanie", size=20)
                             dpg.draw_arrow([width + 620, height + 96], [width + 620, height + 50], thickness=5,
-                                           color=self.blue, size=10)
+                                           color=self.chromo_color, size=10)
 
                             dpg.draw_rectangle([width + 470, height + 100], [width + 770, height + 150],
-                                               thickness=5, color=self.blue, tag="diagMut")
+                                               thickness=5, color=self.chromo_color, tag="diagMut")
                             dpg.draw_text([width + 588, height + 115], "Mutacja", size=20)
                             dpg.draw_line([width + 620, height + 225], [width + 620, height + 150], thickness=5,
-                                          color=self.blue)
+                                          color=self.chromo_color)
                             dpg.draw_arrow([width + 575, height + 225], [width + 623, height + 225], thickness=5,
-                                           color=self.blue, size=10)
+                                           color=self.chromo_color, size=10)
 
                             dpg.draw_rectangle([width + 270, height + 200], [width + 570, height + 250],
-                                               thickness=5, color=self.blue, tag="diagSel")
+                                               thickness=5, color=self.chromo_color, tag="diagSel")
                             dpg.draw_text([width + 315, height + 215], "Ocena populacji i selekcja", size=20)
                             dpg.draw_arrow([width + 420, height + 296], [width + 420, height + 250], thickness=5,
-                                           color=self.blue, size=10)
+                                           color=self.chromo_color, size=10)
 
                             dpg.draw_quad([width + 420, height + 300], [width + 520, height + 400],
                                           [width + 420, height + 500], [width + 320, height + 400],
-                                          thickness=5, color=self.blue, tag="diagDec")
+                                          thickness=5, color=self.chromo_color, tag="diagDec")
                             dpg.draw_text([width + 393, height + 375], "Koniec", size=20)
                             dpg.draw_text([width + 385, height + 395], "ewolucji?", size=20)
 
                             dpg.draw_text([width + 520, height + 370], "Nie", size=20)
                             dpg.draw_text([width + 290, height + 370], "Tak", size=20)
                             dpg.draw_line([width + 520, height + 400], [width + 863, height + 400], thickness=5,
-                                          color=self.blue)
+                                          color=self.chromo_color)
                             dpg.draw_line([width + 860, height + 400], [width + 860, height + 25], thickness=5,
-                                          color=self.blue)
+                                          color=self.chromo_color)
                             dpg.draw_arrow([width + 775, height + 25], [width + 863, height + 25], thickness=5,
-                                           color=self.blue, size=10)
+                                           color=self.chromo_color, size=10)
                             dpg.draw_arrow([width + 120, height + 400], [width + 320, height + 400], thickness=5,
-                                           color=self.blue, size=10)
+                                           color=self.chromo_color, size=10)
                             dpg.draw_text([width + 60, height + 390], "Stop", size=20)
 
             with dpg.group(horizontal=True):
