@@ -334,11 +334,11 @@ class Crossover(metaclass=SingletonCrossover):
             with dpg.mutex():
                 viewport_width = dpg.get_viewport_client_width()
                 viewport_height = dpg.get_viewport_client_height()
-            dpg.show_item("crossover")
             dpg.split_frame()
             width = dpg.get_item_width("crossover")
             height = dpg.get_item_height("crossover")
-            dpg.set_item_pos("crossover", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+            dpg.set_item_pos("crossover", dpg.get_item_pos("selector"))
+            dpg.show_item("crossover")
             dpg.hide_item("mainWindow")
 
     def show_ext(self):
@@ -360,11 +360,11 @@ class Crossover(metaclass=SingletonCrossover):
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
-        dpg.show_item("mutation")
         dpg.split_frame()
         width = dpg.get_item_width("mutation")
         height = dpg.get_item_height("mutation")
-        dpg.set_item_pos("mutation", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+        dpg.set_item_pos("mutation", dpg.get_item_pos("crossover"))
+        dpg.show_item("mutation")
         dpg.hide_item("crossover")
 
     def back(self):
@@ -373,9 +373,9 @@ class Crossover(metaclass=SingletonCrossover):
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
-        dpg.show_item("selector")
         dpg.split_frame()
         width = dpg.get_item_width("selector")
         height = dpg.get_item_height("selector")
-        dpg.set_item_pos("selector", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+        dpg.set_item_pos("selector", dpg.get_item_pos("crossover"))
+        dpg.show_item("selector")
         dpg.hide_item("crossover")

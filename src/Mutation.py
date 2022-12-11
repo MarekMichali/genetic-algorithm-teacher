@@ -191,11 +191,11 @@ class Mutation(metaclass=SingletonMutation):
             with dpg.mutex():
                 viewport_width = dpg.get_viewport_client_width()
                 viewport_height = dpg.get_viewport_client_height()
-            dpg.show_item("mutation")
             dpg.split_frame()
             width = dpg.get_item_width("mutation")
             height = dpg.get_item_height("mutation")
-            dpg.set_item_pos("mutation", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+            dpg.set_item_pos("mutation",  dpg.get_item_pos("crossover"))
+            dpg.show_item("mutation")
             dpg.hide_item("mainWindow")
 
     def show_ext(self):
@@ -217,9 +217,9 @@ class Mutation(metaclass=SingletonMutation):
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
-        dpg.show_item("crossover")
         dpg.split_frame()
         width = dpg.get_item_width("crossover")
         height = dpg.get_item_height("crossover")
-        dpg.set_item_pos("crossover", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+        dpg.set_item_pos("crossover",  dpg.get_item_pos("mutation"))
+        dpg.show_item("crossover")
         dpg.hide_item("mutation")

@@ -95,11 +95,11 @@ class Diagram(metaclass=SingletonDiagram):
             with dpg.mutex():
                 viewport_width = dpg.get_viewport_client_width()
                 viewport_height = dpg.get_viewport_client_height()
-            dpg.show_item("diagram")
             dpg.split_frame()
             width = dpg.get_item_width("diagram")
             height = dpg.get_item_height("diagram")
-            dpg.set_item_pos("diagram", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+            dpg.set_item_pos("diagram", dpg.get_item_pos("introSlide"))
+            dpg.show_item("diagram")
             dpg.hide_item("mainWindow")
 
     def show_ext(self):
@@ -120,11 +120,11 @@ class Diagram(metaclass=SingletonDiagram):
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
-        dpg.show_item("introSlide")
         dpg.split_frame()
         width = dpg.get_item_width("introSlide")
         height = dpg.get_item_height("introSlide")
-        dpg.set_item_pos("introSlide", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+        dpg.set_item_pos("introSlide", dpg.get_item_pos("diagram"))
+        dpg.show_item("introSlide")
         dpg.hide_item("diagram")
 
     def next(self):
@@ -133,9 +133,9 @@ class Diagram(metaclass=SingletonDiagram):
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
-        dpg.show_item("dictionary")
         dpg.split_frame()
         width = dpg.get_item_width("dictionary")
         height = dpg.get_item_height("dictionary")
-        dpg.set_item_pos("dictionary", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+        dpg.set_item_pos("dictionary", dpg.get_item_pos("diagram"))
+        dpg.show_item("dictionary")
         dpg.hide_item("diagram")

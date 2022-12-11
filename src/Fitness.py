@@ -186,11 +186,11 @@ class Fitness(metaclass=SingletonFitness):
             with dpg.mutex():
                 viewport_width = dpg.get_viewport_client_width()
                 viewport_height = dpg.get_viewport_client_height()
-            dpg.show_item("fitness")
             dpg.split_frame()
             width = dpg.get_item_width("fitness")
             height = dpg.get_item_height("fitness")
-            dpg.set_item_pos("fitness", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+            dpg.set_item_pos("fitness", dpg.get_item_pos("dictionary"))
+            dpg.show_item("fitness")
             dpg.hide_item("mainWindow")
 
     def show_ext(self):
@@ -221,11 +221,11 @@ class Fitness(metaclass=SingletonFitness):
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
-        dpg.show_item("selector")
         dpg.split_frame()
         width = dpg.get_item_width("selector")
         height = dpg.get_item_height("selector")
-        dpg.set_item_pos("selector", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+        dpg.set_item_pos("selector", dpg.get_item_pos("fitness"))
+        dpg.show_item("selector")
         dpg.hide_item("fitness")
 
     def back(self):
@@ -234,9 +234,9 @@ class Fitness(metaclass=SingletonFitness):
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
-        dpg.show_item("dictionary")
         dpg.split_frame()
         width = dpg.get_item_width("dictionary")
         height = dpg.get_item_height("dictionary")
-        dpg.set_item_pos("dictionary", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+        dpg.set_item_pos("dictionary", dpg.get_item_pos("fitness"))
+        dpg.show_item("dictionary")
         dpg.hide_item("fitness")

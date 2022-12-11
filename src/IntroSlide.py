@@ -51,10 +51,10 @@ class IntroSlide(metaclass=SingletonIntroSlide):
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
-        dpg.show_item("diagram")
         dpg.split_frame()
         width = dpg.get_item_width("diagram")
         height = dpg.get_item_height("diagram")
-        dpg.set_item_pos("diagram", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
+        dpg.set_item_pos("diagram", dpg.get_item_pos("introSlide"))
+        dpg.show_item("diagram")
         dpg.hide_item("introSlide")
 
