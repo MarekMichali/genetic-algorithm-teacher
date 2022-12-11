@@ -75,20 +75,20 @@ class Dictionary(PresentationInterface.PresentationInterface, config.Config, met
                                     allel_x += 50
 
                             with dpg.draw_layer():
-                                dpg.draw_line((48, 50 + self.y_offset), (653, 50 + self.y_offset), color=self.chromo_color,
-                                              thickness=5)
-                                dpg.draw_line((50, 50 + self.y_offset), (50, 103 + self.y_offset), color=self.chromo_color,
-                                              thickness=5)
-                                dpg.draw_line((50, 100 + self.y_offset), (653, 100 + self.y_offset), color=self.chromo_color,
-                                              thickness=5)
+                                dpg.draw_line((48, 50 + self.y_offset), (653, 50 + self.y_offset),
+                                              color=self.chromo_color, thickness=5)
+                                dpg.draw_line((50, 50 + self.y_offset), (50, 103 + self.y_offset),
+                                              color=self.chromo_color, thickness=5)
+                                dpg.draw_line((50, 100 + self.y_offset), (653, 100 + self.y_offset),
+                                              color=self.chromo_color, thickness=5)
 
                                 x = 100
                                 y = 50
                                 allel_x = 63
                                 allel_y = 54
                                 for i in self.second_chromo:
-                                    dpg.draw_line((x, y + self.y_offset), (x, 2 * y + self.y_offset), color=self.chromo_color,
-                                                  thickness=5)
+                                    dpg.draw_line((x, y + self.y_offset), (x, 2 * y + self.y_offset),
+                                                  color=self.chromo_color, thickness=5)
                                     if i == 0:
                                         dpg.draw_text((allel_x, allel_y + self.y_offset), "0",
                                                       color=(250, 250, 250, 255), size=50)
@@ -116,12 +116,7 @@ class Dictionary(PresentationInterface.PresentationInterface, config.Config, met
 
     def show(self):
         if not dpg.is_item_visible("dictionary"):
-            with dpg.mutex():
-                viewport_width = dpg.get_viewport_client_width()
-                viewport_height = dpg.get_viewport_client_height()
             dpg.split_frame()
-            width = dpg.get_item_width("dictionary")
-            height = dpg.get_item_height("dictionary")
             dpg.set_item_pos("dictionary", dpg.get_item_pos("diagram"))
             dpg.show_item("dictionary")
             dpg.hide_item("mainWindow")
@@ -157,12 +152,7 @@ class Dictionary(PresentationInterface.PresentationInterface, config.Config, met
     def next(self):
         dpg.enable_item("fitnessLeft")
         dpg.enable_item("fitnessRight")
-        with dpg.mutex():
-            viewport_width = dpg.get_viewport_client_width()
-            viewport_height = dpg.get_viewport_client_height()
         dpg.split_frame()
-        width = dpg.get_item_width("fitness")
-        height = dpg.get_item_height("fitness")
         dpg.set_item_pos("fitness", dpg.get_item_pos("dictionary"))
         dpg.show_item("fitness")
         dpg.hide_item("dictionary")
@@ -170,12 +160,7 @@ class Dictionary(PresentationInterface.PresentationInterface, config.Config, met
     def back(self):
         dpg.enable_item("diagramLeft")
         dpg.enable_item("diagramRight")
-        with dpg.mutex():
-            viewport_width = dpg.get_viewport_client_width()
-            viewport_height = dpg.get_viewport_client_height()
         dpg.split_frame()
-        width = dpg.get_item_width("diagram")
-        height = dpg.get_item_height("diagram")
         dpg.set_item_pos("diagram",  dpg.get_item_pos("dictionary"))
         dpg.show_item("diagram")
         dpg.hide_item("dictionary")

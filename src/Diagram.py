@@ -93,12 +93,7 @@ class Diagram(PresentationInterface.PresentationInterface, config.Config, metacl
 
     def show(self):
         if not dpg.is_item_visible("diagram"):
-            with dpg.mutex():
-                viewport_width = dpg.get_viewport_client_width()
-                viewport_height = dpg.get_viewport_client_height()
             dpg.split_frame()
-            width = dpg.get_item_width("diagram")
-            height = dpg.get_item_height("diagram")
             dpg.set_item_pos("diagram", dpg.get_item_pos("introSlide"))
             dpg.show_item("diagram")
             dpg.hide_item("mainWindow")
@@ -118,12 +113,7 @@ class Diagram(PresentationInterface.PresentationInterface, config.Config, metacl
             dpg.hide_item("mainWindow")
 
     def back(self):
-        with dpg.mutex():
-            viewport_width = dpg.get_viewport_client_width()
-            viewport_height = dpg.get_viewport_client_height()
         dpg.split_frame()
-        width = dpg.get_item_width("introSlide")
-        height = dpg.get_item_height("introSlide")
         dpg.set_item_pos("introSlide", dpg.get_item_pos("diagram"))
         dpg.show_item("introSlide")
         dpg.hide_item("diagram")
@@ -131,12 +121,7 @@ class Diagram(PresentationInterface.PresentationInterface, config.Config, metacl
     def next(self):
         dpg.enable_item("dictionaryLeft")
         dpg.enable_item("dictionaryRight")
-        with dpg.mutex():
-            viewport_width = dpg.get_viewport_client_width()
-            viewport_height = dpg.get_viewport_client_height()
         dpg.split_frame()
-        width = dpg.get_item_width("dictionary")
-        height = dpg.get_item_height("dictionary")
         dpg.set_item_pos("dictionary", dpg.get_item_pos("diagram"))
         dpg.show_item("dictionary")
         dpg.hide_item("diagram")

@@ -2,6 +2,7 @@ import dearpygui.dearpygui as dpg
 from EvovleOnesGA import EvolveOnesGA
 import ExampleInterface
 
+
 class SingletonEvolveOnes(type):
     _instances = {}
 

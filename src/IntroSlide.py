@@ -18,7 +18,7 @@ class IntroSlide(PresentationInterface.PresentationInterface, config.Config, met
         with dpg.window(label="Wprowadzenie", autosize=True, tag="introSlide", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow"), height=7000):
             dpg.hide_item("introSlide")
-            with open('data//introSlide.txt' , encoding="utf-8") as f:
+            with open('data//introSlide.txt', encoding="utf-8") as f:
                 lines = f.readlines()
 
             with dpg.table(width=1440, height=640, header_row=False):
@@ -49,12 +49,7 @@ class IntroSlide(PresentationInterface.PresentationInterface, config.Config, met
     def next(self):
         dpg.enable_item("diagramLeft")
         dpg.enable_item("diagramRight")
-        with dpg.mutex():
-            viewport_width = dpg.get_viewport_client_width()
-            viewport_height = dpg.get_viewport_client_height()
         dpg.split_frame()
-        width = dpg.get_item_width("diagram")
-        height = dpg.get_item_height("diagram")
         dpg.set_item_pos("diagram", dpg.get_item_pos("introSlide"))
         dpg.show_item("diagram")
         dpg.hide_item("introSlide")

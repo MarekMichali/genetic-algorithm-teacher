@@ -3,6 +3,7 @@ import dearpygui.dearpygui as dpg
 import config
 import PresentationInterface
 
+
 class SingletonMutation(type):
     _instances = {}
 
@@ -188,12 +189,7 @@ class Mutation(PresentationInterface.PresentationInterface, config.Config ,metac
 
     def show(self):
         if not dpg.is_item_visible("mutation"):
-            with dpg.mutex():
-                viewport_width = dpg.get_viewport_client_width()
-                viewport_height = dpg.get_viewport_client_height()
             dpg.split_frame()
-            width = dpg.get_item_width("mutation")
-            height = dpg.get_item_height("mutation")
             dpg.set_item_pos("mutation",  dpg.get_item_pos("crossover"))
             dpg.show_item("mutation")
             dpg.hide_item("mainWindow")
@@ -214,15 +210,11 @@ class Mutation(PresentationInterface.PresentationInterface, config.Config ,metac
     def back(self):
         dpg.enable_item("crossoverLeft")
         dpg.enable_item("crossoverRight")
-        with dpg.mutex():
-            viewport_width = dpg.get_viewport_client_width()
-            viewport_height = dpg.get_viewport_client_height()
         dpg.split_frame()
-        width = dpg.get_item_width("crossover")
-        height = dpg.get_item_height("crossover")
         dpg.set_item_pos("crossover",  dpg.get_item_pos("mutation"))
         dpg.show_item("crossover")
         dpg.hide_item("mutation")
 
     def next(self):
         pass
+    

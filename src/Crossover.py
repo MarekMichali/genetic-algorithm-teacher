@@ -69,16 +69,16 @@ class Crossover(PresentationInterface.PresentationInterface, config.Config, meta
                                     allel_x += 50
 
                             with dpg.draw_layer():
-                                dpg.draw_line((48, 250 + self.y_offset), (203, 250 + self.y_offset), color=self.chromo_color,
-                                              thickness=5)
-                                dpg.draw_line((348, 250 + self.y_offset), (653, 250 + self.y_offset), color=self.chromo_color,
-                                              thickness=5)
-                                dpg.draw_line((50, 250 + self.y_offset), (50, 303 + self.y_offset), color=self.chromo_color,
-                                              thickness=5)
-                                dpg.draw_line((50, 300 + self.y_offset), (203, 300 + self.y_offset), color=self.chromo_color,
-                                              thickness=5)
-                                dpg.draw_line((348, 300 + self.y_offset), (653, 300 + self.y_offset), color=self.chromo_color,
-                                              thickness=5)
+                                dpg.draw_line((48, 250 + self.y_offset), (203, 250 + self.y_offset),
+                                              color=self.chromo_color, thickness=5)
+                                dpg.draw_line((348, 250 + self.y_offset), (653, 250 + self.y_offset),
+                                              color=self.chromo_color, thickness=5)
+                                dpg.draw_line((50, 250 + self.y_offset), (50, 303 + self.y_offset),
+                                              color=self.chromo_color, thickness=5)
+                                dpg.draw_line((50, 300 + self.y_offset), (203, 300 + self.y_offset),
+                                              color=self.chromo_color, thickness=5)
+                                dpg.draw_line((348, 300 + self.y_offset), (653, 300 + self.y_offset),
+                                              color=self.chromo_color, thickness=5)
                                 x = 100
                                 y = 250
                                 allel_x = 63
@@ -93,8 +93,8 @@ class Crossover(PresentationInterface.PresentationInterface, config.Config, meta
                                         x += 50
                                         allel_x += 50
                                         continue
-                                    dpg.draw_line((x, y + self.y_offset), (x, y + 50 + self.y_offset), color=self.chromo_color,
-                                                  thickness=5)
+                                    dpg.draw_line((x, y + self.y_offset), (x, y + 50 + self.y_offset),
+                                                  color=self.chromo_color, thickness=5)
                                     if i == 0:
                                         dpg.draw_text((allel_x, allel_y + self.y_offset), "0",
                                                       color=(250, 250, 250, 255), size=50)
@@ -128,12 +128,12 @@ class Crossover(PresentationInterface.PresentationInterface, config.Config, meta
                                     allel_x += 50
 
                             with dpg.draw_layer():
-                                dpg.draw_line((48, 50 + self.y_offset), (503, 50 + self.y_offset), color=self.chromo_color,
-                                              thickness=5)
-                                dpg.draw_line((50, 50 + self.y_offset), (50, 103 + self.y_offset), color=self.chromo_color,
-                                              thickness=5)
-                                dpg.draw_line((50, 100 + self.y_offset), (503, 100 + self.y_offset), color=self.chromo_color,
-                                              thickness=5)
+                                dpg.draw_line((48, 50 + self.y_offset), (503, 50 + self.y_offset),
+                                              color=self.chromo_color, thickness=5)
+                                dpg.draw_line((50, 50 + self.y_offset), (50, 103 + self.y_offset),
+                                              color=self.chromo_color, thickness=5)
+                                dpg.draw_line((50, 100 + self.y_offset), (503, 100 + self.y_offset),
+                                              color=self.chromo_color, thickness=5)
                                 x = 100
                                 y = 50
                                 allel_x = 63
@@ -143,8 +143,8 @@ class Crossover(PresentationInterface.PresentationInterface, config.Config, meta
                                     counter += 1
                                     if counter == 10:
                                         break
-                                    dpg.draw_line((x, y + self.y_offset), (x, 2 * y + self.y_offset), color=self.chromo_color,
-                                                  thickness=5)
+                                    dpg.draw_line((x, y + self.y_offset), (x, 2 * y + self.y_offset),
+                                                  color=self.chromo_color, thickness=5)
                                     if i == 0:
                                         dpg.draw_text((allel_x, allel_y + self.y_offset), "0",
                                                       color=(250, 250, 250, 255), size=50)
@@ -331,12 +331,7 @@ class Crossover(PresentationInterface.PresentationInterface, config.Config, meta
 
     def show(self):
         if not dpg.is_item_visible("crossover"):
-            with dpg.mutex():
-                viewport_width = dpg.get_viewport_client_width()
-                viewport_height = dpg.get_viewport_client_height()
             dpg.split_frame()
-            width = dpg.get_item_width("crossover")
-            height = dpg.get_item_height("crossover")
             dpg.set_item_pos("crossover", dpg.get_item_pos("selector"))
             dpg.show_item("crossover")
             dpg.hide_item("mainWindow")
@@ -357,12 +352,7 @@ class Crossover(PresentationInterface.PresentationInterface, config.Config, meta
 
     def next(self):
         dpg.enable_item("mutationLeft")
-        with dpg.mutex():
-            viewport_width = dpg.get_viewport_client_width()
-            viewport_height = dpg.get_viewport_client_height()
         dpg.split_frame()
-        width = dpg.get_item_width("mutation")
-        height = dpg.get_item_height("mutation")
         dpg.set_item_pos("mutation", dpg.get_item_pos("crossover"))
         dpg.show_item("mutation")
         dpg.hide_item("crossover")
@@ -370,12 +360,7 @@ class Crossover(PresentationInterface.PresentationInterface, config.Config, meta
     def back(self):
         dpg.enable_item("selectorLeft")
         dpg.enable_item("selectorRight")
-        with dpg.mutex():
-            viewport_width = dpg.get_viewport_client_width()
-            viewport_height = dpg.get_viewport_client_height()
         dpg.split_frame()
-        width = dpg.get_item_width("selector")
-        height = dpg.get_item_height("selector")
         dpg.set_item_pos("selector", dpg.get_item_pos("crossover"))
         dpg.show_item("selector")
         dpg.hide_item("crossover")

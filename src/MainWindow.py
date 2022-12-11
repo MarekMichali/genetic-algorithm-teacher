@@ -14,7 +14,6 @@ class SingletonMainWindow(type):
 
 class MainWindow(config.Config, metaclass=SingletonMainWindow):
     def __init__(self):
-        c = config.Config()
         with dpg.theme() as global_theme:
             with dpg.theme_component(dpg.mvAll):
                 dpg.add_theme_color(dpg.mvThemeCol_WindowBg, (60, 60, 61))
@@ -30,7 +29,6 @@ class MainWindow(config.Config, metaclass=SingletonMainWindow):
         dpg.bind_theme(global_theme)
 
         with dpg.mutex():
-            viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
             with dpg.window(label="Menu", autosize=True, tag="mainWindow", pos=[99999, 99999]):
                 dpg.add_spacer(height=50)

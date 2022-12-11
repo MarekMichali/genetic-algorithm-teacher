@@ -3,6 +3,7 @@ import dearpygui.dearpygui as dpg
 import config
 import PresentationInterface
 
+
 class SingletonSelector(type):
     _instances = {}
 
@@ -59,12 +60,12 @@ class Selector(PresentationInterface.PresentationInterface, config.Config, metac
                         dpg.add_spacer(height=50)
                         with dpg.drawlist(width=1440, height=500, tag="selection_animation"):
                             with dpg.draw_layer():
-                                dpg.draw_line((48 + self.x_move, 50), (653 + self.x_move, 50), color=self.chromo_color,
-                                              thickness=5)
-                                dpg.draw_line((50 + self.x_move, 50), (50 + self.x_move, 103), color=self.chromo_color,
-                                              thickness=5)
-                                dpg.draw_line((50 + self.x_move, 100), (653 + self.x_move, 100), color=self.chromo_color,
-                                              thickness=5)
+                                dpg.draw_line((48 + self.x_move, 50), (653 + self.x_move, 50),
+                                              color=self.chromo_color, thickness=5)
+                                dpg.draw_line((50 + self.x_move, 50), (50 + self.x_move, 103),
+                                              color=self.chromo_color, thickness=5)
+                                dpg.draw_line((50 + self.x_move, 100), (653 + self.x_move, 100),
+                                              color=self.chromo_color, thickness=5)
 
                                 x = 100 + self.x_move
                                 y = 50
@@ -85,18 +86,21 @@ class Selector(PresentationInterface.PresentationInterface, config.Config, metac
 
                             with dpg.draw_layer():
                                 dpg.draw_line((48 + self.x_move, 50 + self.y_offset),
-                                              (653 + self.x_move, 50 + self.y_offset), color=self.chromo_color, thickness=5)
+                                              (653 + self.x_move, 50 + self.y_offset), color=self.chromo_color,
+                                              thickness=5)
                                 dpg.draw_line((50 + self.x_move, 50 + self.y_offset),
-                                              (50 + self.x_move, 103 + self.y_offset), color=self.chromo_color, thickness=5)
+                                              (50 + self.x_move, 103 + self.y_offset), color=self.chromo_color,
+                                              thickness=5)
                                 dpg.draw_line((50 + self.x_move, 100 + self.y_offset),
-                                              (653 + self.x_move, 100 + self.y_offset), color=self.chromo_color, thickness=5)
+                                              (653 + self.x_move, 100 + self.y_offset), color=self.chromo_color,
+                                              thickness=5)
                                 x = 100 + self.x_move
                                 y = 50
                                 allel_x = 63 + self.x_move
                                 allel_y = 54
                                 for i in self.second_chromo:
-                                    dpg.draw_line((x, y + self.y_offset), (x, 2 * y + self.y_offset), color=self.chromo_color,
-                                                  thickness=5)
+                                    dpg.draw_line((x, y + self.y_offset), (x, 2 * y + self.y_offset),
+                                                  color=self.chromo_color, thickness=5)
                                     if i == 0:
                                         dpg.draw_text((allel_x, allel_y + self.y_offset), "0",
                                                       color=(250, 250, 250, 255), size=50)
@@ -243,12 +247,7 @@ class Selector(PresentationInterface.PresentationInterface, config.Config, metac
 
     def show(self):
         if not dpg.is_item_visible("selector"):
-            with dpg.mutex():
-                viewport_width = dpg.get_viewport_client_width()
-                viewport_height = dpg.get_viewport_client_height()
             dpg.split_frame()
-            width = dpg.get_item_width("selector")
-            height = dpg.get_item_height("selector")
             dpg.set_item_pos("selector", dpg.get_item_pos("fitness"))
             dpg.show_item("selector")
             dpg.hide_item("mainWindow")
@@ -284,12 +283,7 @@ class Selector(PresentationInterface.PresentationInterface, config.Config, metac
     def next(self):
         dpg.enable_item("crossoverLeft")
         dpg.enable_item("crossoverRight")
-        with dpg.mutex():
-            viewport_width = dpg.get_viewport_client_width()
-            viewport_height = dpg.get_viewport_client_height()
         dpg.split_frame()
-        width = dpg.get_item_width("crossover")
-        height = dpg.get_item_height("crossover")
         dpg.set_item_pos("crossover", dpg.get_item_pos("selector"))
         dpg.show_item("crossover")
         dpg.hide_item("selector")
@@ -297,12 +291,7 @@ class Selector(PresentationInterface.PresentationInterface, config.Config, metac
     def back(self):
         dpg.enable_item("fitnessLeft")
         dpg.enable_item("fitnessRight")
-        with dpg.mutex():
-            viewport_width = dpg.get_viewport_client_width()
-            viewport_height = dpg.get_viewport_client_height()
         dpg.split_frame()
-        width = dpg.get_item_width("fitness")
-        height = dpg.get_item_height("fitness")
         dpg.set_item_pos("fitness", dpg.get_item_pos("selector"))
         dpg.show_item("fitness")
         dpg.hide_item("selector")
