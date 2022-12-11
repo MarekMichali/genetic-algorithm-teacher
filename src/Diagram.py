@@ -1,5 +1,6 @@
 import dearpygui.dearpygui as dpg
-import config as c
+import config
+import PresentationInterface
 
 
 class SingletonDiagram(type):
@@ -12,7 +13,7 @@ class SingletonDiagram(type):
         return cls._instances[cls]
 
 
-class Diagram(metaclass=SingletonDiagram):
+class Diagram(PresentationInterface.PresentationInterface, config.Config, metaclass=SingletonDiagram):
     def __init__(self):
         self.chromo_color = (15, 86, 135, 255)
         self.y_offset = 100
@@ -85,8 +86,8 @@ class Diagram(metaclass=SingletonDiagram):
                             dpg.draw_text([width + 60, height + 390], "Stop", size=20)
 
             with dpg.group(horizontal=True):
-                dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left, indent=660,
-                               callback=lambda: self.back(), tag="diagramLeft")
+                dpg.add_button(width=self.navBut[0], height=self.navBut[1], arrow=True, direction=dpg.mvDir_Left,
+                               indent=660, callback=lambda: self.back(), tag="diagramLeft")
                 dpg.add_button(width=200, height=20, arrow=True, direction=dpg.mvDir_Right,
                                callback=lambda: self.next(), tag="diagramRight")
 

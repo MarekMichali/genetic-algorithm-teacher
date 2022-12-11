@@ -1,6 +1,7 @@
 import random
 import dearpygui.dearpygui as dpg
 from TspGA import TspGA
+import ExampleInterface
 
 
 class SingletonTsp(type):
@@ -13,7 +14,7 @@ class SingletonTsp(type):
         return cls._instances[cls]
 
 
-class Tsp(metaclass=SingletonTsp):
+class Tsp(ExampleInterface.ExampleInterface, metaclass=SingletonTsp):
     def __init__(self):
         self.dot_color = (255, 242, 0, 255)
         self.line_color = (255, 242, 0, 128)

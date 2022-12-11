@@ -1,5 +1,5 @@
 import dearpygui.dearpygui as dpg
-import config as c
+import config
 
 
 class SingletonFitness(type):
@@ -12,7 +12,7 @@ class SingletonFitness(type):
         return cls._instances[cls]
 
 
-class Fitness(metaclass=SingletonFitness):
+class Fitness(config.Config, metaclass=SingletonFitness):
     def __init__(self):
         self.chromo_color = (15, 86, 135, 255)
         self.checkboxes = []
@@ -176,7 +176,7 @@ class Fitness(metaclass=SingletonFitness):
                                               color=(250, 250, 250, 255), size=50)
 
             with dpg.group(horizontal=True):
-                dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left,
+                dpg.add_button(width=self.navBut[0], height=self.navBut[1], arrow=True, direction=dpg.mvDir_Left,
                                indent=660, callback=lambda: self.back(), tag="fitnessLeft")
                 dpg.add_button(width=200, height=20, arrow=True, direction=dpg.mvDir_Right,
                                callback=lambda: self.next(), tag="fitnessRight")

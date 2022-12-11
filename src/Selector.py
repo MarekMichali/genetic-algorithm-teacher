@@ -1,7 +1,7 @@
 import random
 import dearpygui.dearpygui as dpg
-import config as c
-
+import config
+import PresentationInterface
 
 class SingletonSelector(type):
     _instances = {}
@@ -13,7 +13,7 @@ class SingletonSelector(type):
         return cls._instances[cls]
 
 
-class Selector(metaclass=SingletonSelector):
+class Selector(PresentationInterface.PresentationInterface, config.Config, metaclass=SingletonSelector):
     def __init__(self):
         self.chromo_color = (15, 86, 135, 255)
         self.checkboxes = []
@@ -236,8 +236,8 @@ class Selector(metaclass=SingletonSelector):
                             dpg.bind_item_handler_registry("selection_animation", dpg.last_container())
 
             with dpg.group(horizontal=True):
-                dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left, indent=660,
-                               callback=lambda: self.back(), tag="selectorLeft")
+                dpg.add_button(width=self.navBut[0], height=self.navBut[1], arrow=True, direction=dpg.mvDir_Left,
+                               indent=660, callback=lambda: self.back(), tag="selectorLeft")
                 dpg.add_button(width=200, height=20, arrow=True, direction=dpg.mvDir_Right,
                                callback=lambda: self.next(), tag="selectorRight")
 

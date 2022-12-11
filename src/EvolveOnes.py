@@ -1,6 +1,6 @@
 import dearpygui.dearpygui as dpg
 from EvovleOnesGA import EvolveOnesGA
-
+import ExampleInterface
 
 class SingletonEvolveOnes(type):
     _instances = {}
@@ -12,7 +12,7 @@ class SingletonEvolveOnes(type):
         return cls._instances[cls]
 
 
-class EvolveOnes(metaclass=SingletonEvolveOnes):
+class EvolveOnes(ExampleInterface.ExampleInterface, metaclass=SingletonEvolveOnes):
     def __init__(self):
         self.chromo_color = (15, 86, 135, 255)
         self.y_offset = 100
@@ -53,7 +53,7 @@ class EvolveOnes(metaclass=SingletonEvolveOnes):
 
         evolve_ones_ga = EvolveOnesGA(num_generations, num_parents_mating, mut_prop, sol_per_pop, function_inputs)
         solution, solution_fitness, best_solutions_fitness = evolve_ones_ga.start()
-
+        print(type(solution))
         if solution[0] == -1 and solution_fitness[0] == -1 and best_solutions_fitness[0] == -1:
             self.error("Błąd", self.on_selection)
             return

@@ -1,6 +1,7 @@
 import dearpygui.dearpygui as dpg
 import numpy
 from OptimizationGA import OptimizationGA
+import ExampleInterface
 
 
 class SingletonOptimization(type):
@@ -13,7 +14,7 @@ class SingletonOptimization(type):
         return cls._instances[cls]
 
 
-class Optimization(metaclass=SingletonOptimization):
+class Optimization(ExampleInterface.ExampleInterface, metaclass=SingletonOptimization):
     def __init__(self):
         self.prediction = 0
         with dpg.window(label="Znajdowanie argumentów", autosize=True, tag="optimalization", pos=[99999, 99999],

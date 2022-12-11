@@ -1,6 +1,7 @@
 import math
 import dearpygui.dearpygui as dpg
-import config as c
+import config
+import PresentationInterface
 
 
 class SingletonCrossover(type):
@@ -13,7 +14,7 @@ class SingletonCrossover(type):
         return cls._instances[cls]
 
 
-class Crossover(metaclass=SingletonCrossover):
+class Crossover(PresentationInterface.PresentationInterface, config.Config, metaclass=SingletonCrossover):
     def __init__(self):
         self.chromo_color = (15, 86, 135, 255)
         self.y_offset = 100
@@ -21,7 +22,6 @@ class Crossover(metaclass=SingletonCrossover):
         self.first_chromo = (0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 0, 1)
         self.second_chromo = (1, 1, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0)
         self.render_count = 0
-
         with dpg.window(label="Krzyżowanie", autosize=True, tag="crossover", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow")):
             dpg.hide_item("crossover")
@@ -324,8 +324,8 @@ class Crossover(metaclass=SingletonCrossover):
                                 dpg.bind_item_handler_registry("cross_animation", dpg.last_container())
 
             with dpg.group(horizontal=True):
-                dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left, indent=660,
-                               callback=lambda: self.back(), tag="crossoverLeft")
+                dpg.add_button(width=self.navBut[0], height=self.navBut[1], arrow=True, direction=dpg.mvDir_Left,
+                               indent=660, callback=lambda: self.back(), tag="crossoverLeft")
                 dpg.add_button(width=200, height=20, arrow=True, direction=dpg.mvDir_Right,
                                callback=lambda: self.next(), tag="crossoverRight")
 

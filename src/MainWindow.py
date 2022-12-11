@@ -12,8 +12,9 @@ class SingletonMainWindow(type):
         return cls._instances[cls]
 
 
-class MainWindow(metaclass=SingletonMainWindow):
+class MainWindow(config.Config, metaclass=SingletonMainWindow):
     def __init__(self):
+        c = config.Config()
         with dpg.theme() as global_theme:
             with dpg.theme_component(dpg.mvAll):
                 dpg.add_theme_color(dpg.mvThemeCol_WindowBg, (60, 60, 61))
@@ -35,17 +36,17 @@ class MainWindow(metaclass=SingletonMainWindow):
                 dpg.add_spacer(height=50)
                 dpg.add_text("Wybierz co chcesz zrobić", indent=145)
                 dpg.add_spacer(height=50)
-                dpg.add_button(label="Rozpocznij naukę", width=config.mainWinButtonWidth,
-                               height=config.mainWinButtonHeight, callback=self.show_presentation)
-                dpg.add_button(label="Ewolucja szczurów", width=config.mainWinButtonWidth,
-                               height=config.mainWinButtonHeight, callback=self.show_ones)
-                dpg.add_button(label="Znajdowanie argumentów", width=config.mainWinButtonWidth,
-                               height=config.mainWinButtonHeight, callback=self.show_opt)
-                dpg.add_button(label="Problem komiwojażera", width=config.mainWinButtonWidth,
-                               height=config.mainWinButtonHeight, callback=self.show_tsp)
+                dpg.add_button(label="Rozpocznij naukę", width=self.mainWinButtonWidth,
+                               height=self.mainWinButtonHeight, callback=self.show_presentation)
+                dpg.add_button(label="Ewolucja szczurów", width=self.mainWinButtonWidth,
+                               height=self.mainWinButtonHeight, callback=self.show_ones)
+                dpg.add_button(label="Znajdowanie argumentów", width=self.mainWinButtonWidth,
+                               height=self.mainWinButtonHeight, callback=self.show_opt)
+                dpg.add_button(label="Problem komiwojażera", width=self.mainWinButtonWidth,
+                               height=self.mainWinButtonHeight, callback=self.show_tsp)
 
-        dpg.set_item_pos("mainWindow", [1408 // 2 - config.mainWinButtonWidth // 2,
-                                        viewport_height // 2 - config.mainWinButtonHeight - 323 // 2])
+        dpg.set_item_pos("mainWindow", [1408 // 2 - self.mainWinButtonWidth // 2,
+                                        viewport_height // 2 - self.mainWinButtonHeight - 323 // 2])
 
     def show(self):
         if not dpg.is_item_visible("mainWindow"):

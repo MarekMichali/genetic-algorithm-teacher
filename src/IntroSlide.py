@@ -1,5 +1,6 @@
 import dearpygui.dearpygui as dpg
-import config as c
+import config
+import PresentationInterface
 
 
 class SingletonIntroSlide(type):
@@ -12,7 +13,7 @@ class SingletonIntroSlide(type):
         return cls._instances[cls]
 
 
-class IntroSlide(metaclass=SingletonIntroSlide):
+class IntroSlide(PresentationInterface.PresentationInterface, config.Config, metaclass=SingletonIntroSlide):
     def __init__(self):
         with dpg.window(label="Wprowadzenie", autosize=True, tag="introSlide", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow"), height=7000):
@@ -28,8 +29,8 @@ class IntroSlide(metaclass=SingletonIntroSlide):
                         for line in lines:
                             dpg.add_text(line, indent=20)
             with dpg.group(horizontal=True):
-                dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left, indent=660,
-                               enabled=False)
+                dpg.add_button(width=self.navBut[0], height=self.navBut[1], arrow=True, direction=dpg.mvDir_Left,
+                               indent=660, enabled=False)
                 dpg.add_button(width=200, height=20, arrow=True, direction=dpg.mvDir_Right,
                                callback=lambda: self.next())
 
@@ -58,3 +59,8 @@ class IntroSlide(metaclass=SingletonIntroSlide):
         dpg.show_item("diagram")
         dpg.hide_item("introSlide")
 
+    def back(self):
+        pass
+
+    def show_ext(self):
+        pass

@@ -1,7 +1,7 @@
 import math
 import dearpygui.dearpygui as dpg
-import config as c
-
+import config
+import PresentationInterface
 
 class SingletonMutation(type):
     _instances = {}
@@ -13,7 +13,7 @@ class SingletonMutation(type):
         return cls._instances[cls]
 
 
-class Mutation(metaclass=SingletonMutation):
+class Mutation(PresentationInterface.PresentationInterface, config.Config ,metaclass=SingletonMutation):
     def __init__(self):
         self.chromo_color = (15, 86, 135, 255)
         self.y_offset = 100
@@ -182,8 +182,8 @@ class Mutation(metaclass=SingletonMutation):
                                 dpg.bind_item_handler_registry("mutation_animation", dpg.last_container())
 
             with dpg.group(horizontal=True):
-                dpg.add_button(width=c.navBut[0], height=c.navBut[1], arrow=True, direction=dpg.mvDir_Left, indent=660,
-                               callback=lambda: self.back(), tag="mutationLeft")
+                dpg.add_button(width=self.navBut[0], height=self.navBut[1], arrow=True, direction=dpg.mvDir_Left,
+                               indent=660, callback=lambda: self.back(), tag="mutationLeft")
                 dpg.add_button(width=200, height=20, arrow=True, direction=dpg.mvDir_Right, enabled=False)
 
     def show(self):
@@ -223,3 +223,6 @@ class Mutation(metaclass=SingletonMutation):
         dpg.set_item_pos("crossover",  dpg.get_item_pos("mutation"))
         dpg.show_item("crossover")
         dpg.hide_item("mutation")
+
+    def next(self):
+        pass
