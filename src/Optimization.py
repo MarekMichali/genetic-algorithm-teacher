@@ -27,6 +27,9 @@ class Optimization(ExampleInterface.ExampleInterface, metaclass=SingletonOptimiz
                         dpg.add_spacer(height=20)
                         dpg.add_text("Znajdowanie wartości argumentów x, y, z", indent=220)
                         dpg.add_spacer(height=20)
+                        dpg.add_button(label="Sprawdź kodowanie chromosomu",
+                                       callback=lambda: self.show_chromosome(self.on_selection), indent=250)
+                        dpg.add_spacer(height=20)
                         with dpg.group(horizontal=True):
                             dpg.add_input_float(label="x", tag="inX", width=100, step=0, default_value=6, indent=170)
                             dpg.add_input_float(label="y", tag="inY", width=100, step=0, default_value=-18)
@@ -148,3 +151,29 @@ class Optimization(ExampleInterface.ExampleInterface, metaclass=SingletonOptimiz
         height = dpg.get_item_height("optimalization")
         dpg.set_item_pos("optimalization", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
         dpg.hide_item("mainWindow")
+
+    def show_chromosome(self, selection_callback):
+        with dpg.mutex():
+            viewport_width = dpg.get_viewport_client_width()
+            viewport_height = dpg.get_viewport_client_height()
+            with dpg.window(label="Kodowanie chromosomu", modal=True, no_close=True, autosize=True, tag="optimizationChromosome",
+                            pos=(9999, 9999)) as modal_id:
+                dpg.add_spacer(height=20)
+                with open('data//optimization.txt', encoding="utf-8") as f:
+                    lines = f.readlines()
+                    for line in lines:
+                        dpg.add_text(line, indent=20)
+                dpg.add_spacer(height=20, width=570)
+                dpg.add_text("Przykładowy chromosom", indent=20)
+                dpg.add_spacer(height=5)
+                dpg.add_text("[123.515|86.25|-7.6812]", indent=20)
+                dpg.add_spacer(height=10)
+
+                with dpg.group(horizontal=True):
+                    dpg.add_button(label="Ok", width=75, user_data=(modal_id, True), callback=selection_callback,
+                                   indent=247)
+
+        dpg.split_frame()
+        width = dpg.get_item_width(modal_id)
+        height = dpg.get_item_height(modal_id)
+        dpg.set_item_pos(modal_id, [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])

@@ -1,0 +1,10 @@
+Każdy gen odpowiada jednemu miastu, które należy odwiedzić.
+Nie może zdarzyć się sytuacja, że dwa geny mają taką samą
+wartość. Algorytm genetyczny jest odpowiednio
+skonfigurowany i pilnuje, aby w trakcie tworzenia potomstwa
+nie pojawiły się duplikaty miast w chromosomie. Każde
+miasto ma swoje położenie na układzie współrzędnych.
+Funkcja oceny oblicza trasę pomiędzy miastami, które są
+obok siebie w chromosomie. Obliczana jest również trasa
+pomiędzy pierwszym i ostatnim miastem. Następnie wartości te
+są sumowane, aby otrzymać długość całej trasy.

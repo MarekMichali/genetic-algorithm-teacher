@@ -1,0 +1,5 @@
+Chromosom składa się z trzech genów. Geny odpowiadają
+kolejno wartościom argumentów x, y, z. Algorytm poszukuje
+takich wartości dla argumentów, aby po podstawieniu ich
+do równania otrzymać jak najbardziej zbliżony wynik do
+pożądanego.

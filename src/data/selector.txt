@@ -2,16 +2,16 @@ Znając jakość poszczególnych osobników można przystąpić
 do ich selekcji w celu utworzenia kolejnego pokolenia
 lub zakończenia procesu ewolucji. Istnieje wiele różnych
 selektorów, jednak ich wspólną cechą jest to, że osobniki
-o najlepszej jakości mają największą szanse wziąć udział
-w reprodukcji czyli stać się rodzicami. Ilość rodziców
+o najlepszej jakości mają największą szansę wziąć udział
+w reprodukcji, czyli stać się rodzicami. Liczba rodziców
 nie powinna być zbyt mała, ponieważ wpłynie to
 negatywnie na zróżnicowanie genetyczne nowej populacji
 i proces ewolucji. Przykładowe selektory:
 
 Selekcja rankingowa: n najlepszych osobników zostaje
-wybranych do rozrodu.
+wybranych do reprodukcji.
 
-Metoda kola ruletki: koło jest dzielone na obszary
+Metoda koła ruletki: koło jest dzielone na obszary
 odpowiadające jakości danego osobnika. Im lepsza jakość
 tym większy obszar, a co za tym idzie większa szansa na
-wylosowanie do rozrodu.
+wylosowanie do etapu reprodukcji.

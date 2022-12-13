@@ -102,6 +102,9 @@ class Tsp(ExampleInterface.ExampleInterface, metaclass=SingletonTsp):
                         with dpg.group(horizontal=True):
                             with dpg.group():
                                 dpg.add_spacer(height=100)
+                                dpg.add_button(label="Sprawdź kodowanie chromosomu",
+                                               callback=lambda: self.show_chromosome(self.on_selection), indent=140)
+                                dpg.add_spacer(height=20)
                                 dpg.add_button(label="Losuj położenie miast", callback=shuffle, indent=187)
                                 dpg.add_spacer(height=20)
                                 dpg.add_input_int(label=" Liczba generacji do zatrzymania ewolucji", tag="NoGt",
@@ -268,3 +271,29 @@ class Tsp(ExampleInterface.ExampleInterface, metaclass=SingletonTsp):
         height = dpg.get_item_height("tsp")
         dpg.set_item_pos("tsp", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
         dpg.hide_item("mainWindow")
+
+    def show_chromosome(self, selection_callback):
+        with dpg.mutex():
+            viewport_width = dpg.get_viewport_client_width()
+            viewport_height = dpg.get_viewport_client_height()
+            with dpg.window(label="Kodowanie chromosomu", modal=True, no_close=True, autosize=True, tag="tpsChromosome",
+                            pos=(9999, 9999)) as modal_id:
+                dpg.add_spacer(height=20)
+                with open('data//tsp.txt', encoding="utf-8") as f:
+                    lines = f.readlines()
+                    for line in lines:
+                        dpg.add_text(line, indent=20)
+                dpg.add_spacer(height=20, width=570)
+                dpg.add_text("Przykładowe ułożenie miast w chromosomie", indent=20)
+                dpg.add_spacer(height=5)
+                dpg.add_text("[WAW|BER|PRG|VIE|BTS|LON|LIS|VNO|CPH|PAR|ROM|BRN]", indent=20)
+                dpg.add_spacer(height=10)
+
+                with dpg.group(horizontal=True):
+                    dpg.add_button(label="Ok", width=75, user_data=(modal_id, True), callback=selection_callback,
+                                   indent=247)
+
+        dpg.split_frame()
+        width = dpg.get_item_width(modal_id)
+        height = dpg.get_item_height(modal_id)
+        dpg.set_item_pos(modal_id, [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
