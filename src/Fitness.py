@@ -207,7 +207,7 @@ class Fitness(PresentationInterface.PresentationInterface, config.Config, metacl
             dpg.hide_item("mainWindow")
 
     def values(self, app_data, user_data):
-        if "ilości" in user_data:
+        if "iloś" in user_data:
             dpg.configure_item("firstRadiLayer", show=True)
             dpg.configure_item("secondRadiLayer", show=False)
         else:

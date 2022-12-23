@@ -13,4 +13,4 @@ rozwiązania. Następnie wartość ta używana jest do
 selekcji osobników, które wezmą udział w tworzeniu
 nowej populacji.
 
-Przykładowe wartości funkcji oceny w zależności od:
+Przykładowe funkcje oceny:

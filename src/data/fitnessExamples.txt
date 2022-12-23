@@ -1,2 +1,2 @@
-ilości "jedynek" w chromosomie
-umiejscowienia "jedynki" w chromosomie
+ilość "jedynek" w chromosomie
+chromosom jako liczba binarna
