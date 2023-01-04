@@ -1,6 +1,6 @@
 import numpy
 import pygad
-from src.FitnessCalculator import FitnessCalculator
+from FitnessCalculator import FitnessCalculator
 
 
 class TspGA:

@@ -1,15 +1,15 @@
 import dearpygui.dearpygui as dpg
-from src.MainWindow import MainWindow
-from src.Dictionary import Dictionary
-from src.Crossover import Crossover
-from src.IntroSlide import IntroSlide
-from src.Mutation import Mutation
-from src.Fitness import Fitness
-from src.Selector import Selector
-from src.EvolveOnes import EvolveOnes
-from src.Optimization import Optimization
-from src.Tsp import Tsp
-from src.Diagram import Diagram
+from MainWindow import MainWindow
+from Dictionary import Dictionary
+from Crossover import Crossover
+from IntroSlide import IntroSlide
+from Mutation import Mutation
+from Fitness import Fitness
+from Selector import Selector
+from EvolveOnes import EvolveOnes
+from Optimization import Optimization
+from Tsp import Tsp
+from Diagram import Diagram
 
 
 def main():

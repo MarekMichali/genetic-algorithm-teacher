@@ -1,7 +1,7 @@
 import random
 import dearpygui.dearpygui as dpg
-from src.TspGA import TspGA
-import src.ExampleInterface as ExampleInterface
+from TspGA import TspGA
+import ExampleInterface as ExampleInterface
 
 
 class SingletonTsp(type):

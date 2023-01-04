@@ -1,7 +1,7 @@
 import random
 import dearpygui.dearpygui as dpg
-import src.config as config
-import src.PresentationInterface as PresentationInterface
+import config as config
+import PresentationInterface as PresentationInterface
 
 
 class SingletonSelector(type):
@@ -295,7 +295,6 @@ class Selector(PresentationInterface.PresentationInterface, config.Config, metac
             self.selected_chromo = random.choice(self.randoms)
             self.rolCounterStop = random.randrange(50, 200)
             self.rolCounter = 0
-            print(self.selected_chromo)
 
     def next(self):
         """

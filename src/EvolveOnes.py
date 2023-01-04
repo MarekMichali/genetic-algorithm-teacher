@@ -1,6 +1,6 @@
 import dearpygui.dearpygui as dpg
-from src.EvovleOnesGA import EvolveOnesGA
-import src.ExampleInterface as ExampleInterface
+from EvovleOnesGA import EvolveOnesGA
+import ExampleInterface as ExampleInterface
 
 
 class SingletonEvolveOnes(type):
@@ -63,7 +63,6 @@ class EvolveOnes(ExampleInterface.ExampleInterface, metaclass=SingletonEvolveOne
 
         evolve_ones_ga = EvolveOnesGA(num_generations, num_parents_mating, mut_prop, sol_per_pop, function_inputs)
         solution, solution_fitness, best_solutions_fitness = evolve_ones_ga.start()
-        print(type(solution))
         if solution[0] == -1 and solution_fitness[0] == -1 and best_solutions_fitness[0] == -1:
             self.error("Błąd", self.on_selection)
             return

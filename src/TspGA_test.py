@@ -1,5 +1,5 @@
 import unittest
-from src.TspGA import TspGA
+from TspGA import TspGA
 
 
 class MyTestCase(unittest.TestCase):

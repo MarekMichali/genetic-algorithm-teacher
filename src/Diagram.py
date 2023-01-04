@@ -1,6 +1,6 @@
 import dearpygui.dearpygui as dpg
-import src.config as config
-import src.PresentationInterface as PresentationInterface
+import config as config
+import PresentationInterface as PresentationInterface
 
 
 class SingletonDiagram(type):

@@ -1,7 +1,7 @@
 import dearpygui.dearpygui as dpg
 import numpy
-from src.OptimizationGA import OptimizationGA
-import src.ExampleInterface as ExampleInterface
+from OptimizationGA import OptimizationGA
+import ExampleInterface as ExampleInterface
 
 
 class SingletonOptimization(type):

@@ -1,5 +1,5 @@
 import unittest
-from src.EvovleOnesGA import EvolveOnesGA
+from EvovleOnesGA import EvolveOnesGA
 
 
 class MyTestCase(unittest.TestCase):

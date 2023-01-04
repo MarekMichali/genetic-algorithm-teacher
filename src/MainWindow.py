@@ -1,5 +1,5 @@
 import dearpygui.dearpygui as dpg
-import src.config as config
+import config as config
 
 
 class SingletonMainWindow(type):

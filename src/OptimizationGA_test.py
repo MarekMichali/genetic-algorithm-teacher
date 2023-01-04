@@ -1,5 +1,5 @@
 import unittest
-from src.OptimizationGA import OptimizationGA
+from OptimizationGA import OptimizationGA
 
 
 class MyTestCase(unittest.TestCase):

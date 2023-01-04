@@ -1,6 +1,6 @@
 import unittest
 import numpy as np
-from src.FitnessCalculator import FitnessCalculator
+from FitnessCalculator import FitnessCalculator
 
 
 class MyTestCase(unittest.TestCase):
