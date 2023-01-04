@@ -1,9 +1,19 @@
 import pygad
-from FitnessCalculator import FitnessCalculator
+from src.FitnessCalculator import FitnessCalculator
 
 
 class EvolveOnesGA:
+    """
+        Klasa odpowiedzialna za wykonanie przykładowego zadania ewolucji szczurów
+    """
     def __init__(self, num_generations=0, num_parents_mating=0, mut_prop=0, sol_per_pop=0, function_inputs=None):
+        """
+            :param num_generations: liczba generacji
+            :param num_parents_mating: liczba rodzicow
+            :param mut_prop: prawdopodobienstwo mutacji
+            :param sol_per_pop: liczba osobnikow
+            :param function_inputs: funkcja oceny
+        """
         self.num_generations = num_generations
         self.num_parents_mating = num_parents_mating
         self.mut_prop = mut_prop
@@ -11,6 +21,12 @@ class EvolveOnesGA:
         self.function_inputs = function_inputs
 
     def start(self):
+        """
+            Rozpoczyna działanie algorytmu genetycznego
+        :return: - najlepsze rozwiązanie w aktualnej populacji,
+                 - jakość najlepszego rozwiązania,
+                 - najlepsze rozwiązanie
+        """
         if self.num_parents_mating > self.sol_per_pop:
             return [-1], [-1], [-1]
 

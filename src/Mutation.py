@@ -1,10 +1,13 @@
 import math
 import dearpygui.dearpygui as dpg
-import config
-import PresentationInterface
+import src.config as config
+import src.PresentationInterface as PresentationInterface
 
 
 class SingletonMutation(type):
+    """
+        Klasa odpowiedzialna za implementację singletonu dla klasy Mutation
+    """
     _instances = {}
 
     def __call__(cls, *args, **kwargs):
@@ -15,6 +18,9 @@ class SingletonMutation(type):
 
 
 class Mutation(PresentationInterface.PresentationInterface, config.Config ,metaclass=SingletonMutation):
+    """
+        Klasa odpowiedzialna za slajd przedstawiający mutację
+    """
     def __init__(self):
         self.chromo_color = (15, 86, 135, 255)
         self.y_offset = 100
@@ -188,6 +194,9 @@ class Mutation(PresentationInterface.PresentationInterface, config.Config ,metac
                 dpg.add_button(width=200, height=20, arrow=True, direction=dpg.mvDir_Right, enabled=False)
 
     def show(self):
+        """
+            Pokazuje slajd
+        """
         if not dpg.is_item_visible("mutation"):
             dpg.split_frame()
             dpg.set_item_pos("mutation",  dpg.get_item_pos("crossover"))
@@ -195,6 +204,9 @@ class Mutation(PresentationInterface.PresentationInterface, config.Config ,metac
             dpg.hide_item("mainWindow")
 
     def show_ext(self):
+        """
+            Pokazuje slajd niezależnie od prezentacji
+        """
         dpg.disable_item("mutationLeft")
         if not dpg.is_item_visible("mutation"):
             with dpg.mutex():
@@ -208,6 +220,9 @@ class Mutation(PresentationInterface.PresentationInterface, config.Config ,metac
             dpg.hide_item("mainWindow")
 
     def back(self):
+        """
+             Zmienia slajd na poprzedni
+        """
         dpg.enable_item("crossoverLeft")
         dpg.enable_item("crossoverRight")
         dpg.split_frame()
@@ -216,5 +231,8 @@ class Mutation(PresentationInterface.PresentationInterface, config.Config ,metac
         dpg.hide_item("mutation")
 
     def next(self):
+        """
+             Nic nie robi, spełnia wymagania interfejsu
+        """
         pass
     

@@ -1,9 +1,12 @@
 import dearpygui.dearpygui as dpg
-import config
-import PresentationInterface
+import src.config as config
+import src.PresentationInterface as PresentationInterface
 
 
 class SingletonDiagram(type):
+    """
+        Klasa odpowiedzialna za implementację singletonu dla klasy Diagram
+    """
     _instances = {}
 
     def __call__(cls, *args, **kwargs):
@@ -14,6 +17,9 @@ class SingletonDiagram(type):
 
 
 class Diagram(PresentationInterface.PresentationInterface, config.Config, metaclass=SingletonDiagram):
+    """
+        Klasa odpowiedzialna za slajd przedstawiający diagram blokowy
+    """
     def __init__(self):
         self.chromo_color = (15, 86, 135, 255)
         self.y_offset = 100
@@ -92,6 +98,9 @@ class Diagram(PresentationInterface.PresentationInterface, config.Config, metacl
                                callback=lambda: self.next(), tag="diagramRight")
 
     def show(self):
+        """
+            Pokazuje slajd
+        """
         if not dpg.is_item_visible("diagram"):
             dpg.split_frame()
             dpg.set_item_pos("diagram", dpg.get_item_pos("introSlide"))
@@ -99,6 +108,9 @@ class Diagram(PresentationInterface.PresentationInterface, config.Config, metacl
             dpg.hide_item("mainWindow")
 
     def show_ext(self):
+        """
+            Pokazuje slajd niezależnie od prezentacji
+        """
         dpg.disable_item("diagramLeft")
         dpg.disable_item("diagramRight")
         if not dpg.is_item_visible("diagram"):
@@ -113,12 +125,18 @@ class Diagram(PresentationInterface.PresentationInterface, config.Config, metacl
             dpg.hide_item("mainWindow")
 
     def back(self):
+        """
+             Zmienia slajd na poprzedni
+        """
         dpg.split_frame()
         dpg.set_item_pos("introSlide", dpg.get_item_pos("diagram"))
         dpg.show_item("introSlide")
         dpg.hide_item("diagram")
 
     def next(self):
+        """
+            Zmienia slajd na kolejny
+        """
         dpg.enable_item("dictionaryLeft")
         dpg.enable_item("dictionaryRight")
         dpg.split_frame()

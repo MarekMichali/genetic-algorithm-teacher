@@ -1,9 +1,12 @@
 import unittest
-from EvovleOnesGA import EvolveOnesGA
+from src.EvovleOnesGA import EvolveOnesGA
 
 
 class MyTestCase(unittest.TestCase):
     def test_bad_parameter(self):
+        """
+            Sprawdza poprawność walidacji dla przykładu ewolucji szczurów
+        """
         evolve_ones_ga = EvolveOnesGA(num_parents_mating=5, sol_per_pop=4)
         x, y, z = evolve_ones_ga.start()
         self.assertEqual(x[0], -1)

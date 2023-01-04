@@ -1,10 +1,13 @@
 import dearpygui.dearpygui as dpg
 import numpy
-from OptimizationGA import OptimizationGA
-import ExampleInterface
+from src.OptimizationGA import OptimizationGA
+import src.ExampleInterface as ExampleInterface
 
 
 class SingletonOptimization(type):
+    """
+        Klasa odpowiedzialna za implementację singletonu dla klasy Optimization
+    """
     _instances = {}
 
     def __call__(cls, *args, **kwargs):
@@ -15,6 +18,9 @@ class SingletonOptimization(type):
 
 
 class Optimization(ExampleInterface.ExampleInterface, metaclass=SingletonOptimization):
+    """
+        Klasa odpowiedzialna za wyświetlenie przykładu szukania wartości argumentów
+    """
     def __init__(self):
         self.prediction = 0
         with dpg.window(label="Znajdowanie argumentów", autosize=True, tag="optimalization", pos=[99999, 99999],
@@ -50,6 +56,9 @@ class Optimization(ExampleInterface.ExampleInterface, metaclass=SingletonOptimiz
                         dpg.add_button(label="Wykonaj", callback=self.start, indent=340, tag="optStart")
 
     def start(self):
+        """
+            Rozpoczyna walidację i działanie algorytmu genetycznego
+        """
         dpg.disable_item("optStart")
 
         function_inputs = [dpg.get_value("inX"), dpg.get_value("inY"), dpg.get_value("inZ")]
@@ -71,6 +80,13 @@ class Optimization(ExampleInterface.ExampleInterface, metaclass=SingletonOptimiz
         self.show_info("Rozwiązanie", solution, self.on_selection, best_solutions_fitness)
 
     def show_info(self, title, message, selection_callback, best_sols):
+        """
+            Wyświetla informację o uzyskanym wyniku działania algorytmu genetycznego
+        :param title: tytuł okienka
+        :param message: wiadomość do wyświetlenia
+        :param selection_callback: funkcja służąca do zamknięcia tego okienka
+        :param best_sols: wynik działania algorytmu genetycznego
+        """
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
@@ -123,10 +139,21 @@ class Optimization(ExampleInterface.ExampleInterface, metaclass=SingletonOptimiz
         dpg.set_item_pos(modal_id, [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
 
     def on_selection(self, sender, unused, user_data):
+        """
+            Zamyka okienko i odblokowywuje przycisk wykonania algorytmu genetycznego
+        :param sender: wymagane przez DearPyGui, nieużywane
+        :param unused: wymagane przez DearPyGui, nieużywane
+        :param user_data: okienko, które należy zamknąć
+        """
         dpg.delete_item(user_data[0])
         dpg.enable_item("optStart")
 
     def error(self, title, selection_callback):
+        """
+            Wyświetla okienko informujące o napotkanym błędzie
+        :param title: tytuł okienka
+        :param selection_callback: funkcja służąca do zamknięcia tego okienka
+        """
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
@@ -142,6 +169,9 @@ class Optimization(ExampleInterface.ExampleInterface, metaclass=SingletonOptimiz
         dpg.set_item_pos(modal_id, [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
 
     def show(self):
+        """
+            Pokazuje przykładowe zadanie
+        """
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
@@ -153,6 +183,9 @@ class Optimization(ExampleInterface.ExampleInterface, metaclass=SingletonOptimiz
         dpg.hide_item("mainWindow")
 
     def show_chromosome(self, selection_callback):
+        """
+            Wyświetla informacje o kodowaniu chromosomu
+        """
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()

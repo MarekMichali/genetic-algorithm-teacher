@@ -1,10 +1,13 @@
 import random
 import dearpygui.dearpygui as dpg
-from TspGA import TspGA
-import ExampleInterface
+from src.TspGA import TspGA
+import src.ExampleInterface as ExampleInterface
 
 
 class SingletonTsp(type):
+    """
+        Klasa odpowiedzialna za implementację singletonu dla klasy Tsp
+    """
     _instances = {}
 
     def __call__(cls, *args, **kwargs):
@@ -15,6 +18,9 @@ class SingletonTsp(type):
 
 
 class Tsp(ExampleInterface.ExampleInterface, metaclass=SingletonTsp):
+    """
+        Klasa odpowiedzialna za wyświetlenie przykładu problemu komiwojażera
+    """
     def __init__(self):
         self.dot_color = (255, 242, 0, 255)
         self.line_color = (255, 242, 0, 128)
@@ -164,6 +170,9 @@ class Tsp(ExampleInterface.ExampleInterface, metaclass=SingletonTsp):
                                                        callback=print_val, user_data="berno")
 
     def start(self):
+        """
+            Rozpoczyna walidację i działanie algorytmu genetycznego
+        """
         dpg.disable_item("tspStart")
 
         num_generations = dpg.get_value("NoGt")
@@ -180,6 +189,13 @@ class Tsp(ExampleInterface.ExampleInterface, metaclass=SingletonTsp):
         self.show_info("Rozwiązanie", solution, self.on_selection, best_solutions_fitness)
 
     def show_info(self, title, message, selection_callback, best_sols):
+        """
+            Wyświetla informację o uzyskanym wyniku działania algorytmu genetycznego
+        :param title: tytuł okienka
+        :param message: wiadomość do wyświetlenia
+        :param selection_callback: funkcja służąca do zamknięcia tego okienka
+        :param best_sols: wynik działania algorytmu genetycznego
+        """
         y_invert = 505
         x_indent = 10
         multiplier = 5
@@ -243,10 +259,21 @@ class Tsp(ExampleInterface.ExampleInterface, metaclass=SingletonTsp):
         dpg.set_item_pos(modal_id, [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
 
     def on_selection(self, sender, unused, user_data):
+        """
+            Zamyka okienko i odblokowywuje przycisk wykonania algorytmu genetycznego
+        :param sender: wymagane przez DearPyGui, nieużywane
+        :param unused: wymagane przez DearPyGui, nieużywane
+        :param user_data: okienko, które należy zamknąć
+        """
         dpg.delete_item(user_data[0])
         dpg.enable_item("tspStart")
 
     def error(self, title, selection_callback):
+        """
+            Wyświetla okienko informujące o napotkanym błędzie
+        :param title: tytuł okienka
+        :param selection_callback: funkcja służąca do zamknięcia tego okienka
+        """
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
@@ -262,6 +289,9 @@ class Tsp(ExampleInterface.ExampleInterface, metaclass=SingletonTsp):
         dpg.set_item_pos(modal_id, [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
 
     def show(self):
+        """
+            Pokazuje przykładowe zadanie
+        """
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
@@ -273,6 +303,9 @@ class Tsp(ExampleInterface.ExampleInterface, metaclass=SingletonTsp):
         dpg.hide_item("mainWindow")
 
     def show_chromosome(self, selection_callback):
+        """
+            Wyświetla informacje o kodowaniu chromosomu
+        """
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()

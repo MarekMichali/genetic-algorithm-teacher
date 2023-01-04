@@ -1,9 +1,11 @@
 import dearpygui.dearpygui as dpg
-import config
-import PresentationInterface
-
+import src.config as config
+import src.PresentationInterface as PresentationInterface
 
 class SingletonIntroSlide(type):
+    """
+        Klasa odpowiedzialna za implementację singletonu dla klasy IntroSlide
+    """
     _instances = {}
 
     def __call__(cls, *args, **kwargs):
@@ -14,6 +16,9 @@ class SingletonIntroSlide(type):
 
 
 class IntroSlide(PresentationInterface.PresentationInterface, config.Config, metaclass=SingletonIntroSlide):
+    """
+        Klasa odpowiedzialna za slajd wprowadzający do prezentacji
+    """
     def __init__(self):
         with dpg.window(label="Wprowadzenie", autosize=True, tag="introSlide", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow"), height=7000):
@@ -35,6 +40,9 @@ class IntroSlide(PresentationInterface.PresentationInterface, config.Config, met
                                callback=lambda: self.next())
 
     def show(self):
+        """
+            Pokazuje slajd
+        """
         if not dpg.is_item_visible("introSlide"):
             with dpg.mutex():
                 viewport_width = dpg.get_viewport_client_width()
@@ -47,6 +55,9 @@ class IntroSlide(PresentationInterface.PresentationInterface, config.Config, met
             dpg.hide_item("mainWindow")
 
     def next(self):
+        """
+            Zmienia slajd na kolejny
+        """
         dpg.enable_item("diagramLeft")
         dpg.enable_item("diagramRight")
         dpg.split_frame()
@@ -55,7 +66,13 @@ class IntroSlide(PresentationInterface.PresentationInterface, config.Config, met
         dpg.hide_item("introSlide")
 
     def back(self):
+        """
+             Nic nie robi, spełnia wymagania interfejsu
+        """
         pass
 
     def show_ext(self):
+        """
+             Nic nie robi, spełnia wymagania interfejsu
+        """
         pass

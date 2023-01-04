@@ -1,10 +1,21 @@
 import pygad
-from FitnessCalculator import FitnessCalculator
+from src.FitnessCalculator import FitnessCalculator
 
 
 class OptimizationGA:
+    """
+        Klasa odpowiedzialna za wykonanie przykładowego zadania szukania wartośći argumentów
+    """
     def __init__(self, num_generations=0, num_parents_mating=0, mut_prop=0, sol_per_pop=0,
                  function_inputs=None, result=0):
+        """
+            :param num_generations: liczba generacji
+            :param num_parents_mating: liczba rodzicow
+            :param mut_prop: prawdopodobienstwo mutacji
+            :param sol_per_pop: liczba osobnikow
+            :param function_inputs: funkcja oceny
+            :param result: oczekiwany wynik
+        """
         self.num_generations = num_generations
         self.num_parents_mating = num_parents_mating
         self.mut_prop = mut_prop
@@ -13,6 +24,12 @@ class OptimizationGA:
         self.result = result
 
     def start(self):
+        """
+            Rozpoczyna działanie algorytmu genetycznego
+        :return: - najlepsze rozwiązanie w aktualnej populacji,
+                 - jakość najlepszego rozwiązania,
+                 - najlepsze rozwiązanie
+        """
         if self.num_parents_mating > self.sol_per_pop:
             return [-1], [-1], [-1]
 

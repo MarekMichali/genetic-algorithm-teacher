@@ -1,9 +1,12 @@
 import dearpygui.dearpygui as dpg
-import config
-import PresentationInterface
+import src.config as config
+import src.PresentationInterface as PresentationInterface
 
 
 class SingletonDictionary(type):
+    """
+        Klasa odpowiedzialna za implementację singletonu dla klasy Dictionary
+    """
     _instances = {}
 
     def __call__(cls, *args, **kwargs):
@@ -14,6 +17,9 @@ class SingletonDictionary(type):
 
 
 class Dictionary(PresentationInterface.PresentationInterface, config.Config, metaclass=SingletonDictionary):
+    """
+        Klasa odpowiedzialna za slajd przedstawiający podstawowe pojęcia
+    """
     def __init__(self):
         self.chromo_color = (15, 86, 135, 255)
         self.checkboxes = []
@@ -115,6 +121,9 @@ class Dictionary(PresentationInterface.PresentationInterface, config.Config, met
                                callback=lambda: self.next(), tag="dictionaryRight")
 
     def show(self):
+        """
+            Pokazuje slajd
+        """
         if not dpg.is_item_visible("dictionary"):
             dpg.split_frame()
             dpg.set_item_pos("dictionary", dpg.get_item_pos("diagram"))
@@ -122,6 +131,9 @@ class Dictionary(PresentationInterface.PresentationInterface, config.Config, met
             dpg.hide_item("mainWindow")
 
     def show_ext(self):
+        """
+            Pokazuje slajd niezależnie od prezentacji
+        """
         if not dpg.is_item_visible("dictionary"):
             dpg.disable_item("dictionaryLeft")
             dpg.disable_item("dictionaryRight")
@@ -136,6 +148,10 @@ class Dictionary(PresentationInterface.PresentationInterface, config.Config, met
             dpg.hide_item("mainWindow")
 
     def show_layer(self, sender):
+        """
+            Zaznacza lub odznacza wybrany element do podświetlenia
+        :param sender: jaki element ma zostać zmieniony
+        """
         show_value = dpg.get_value(sender)
         i = 0
         for x in self.checkboxes:
@@ -150,6 +166,9 @@ class Dictionary(PresentationInterface.PresentationInterface, config.Config, met
             i += 1
 
     def next(self):
+        """
+            Zmienia slajd na kolejny
+        """
         dpg.enable_item("fitnessLeft")
         dpg.enable_item("fitnessRight")
         dpg.split_frame()
@@ -158,6 +177,9 @@ class Dictionary(PresentationInterface.PresentationInterface, config.Config, met
         dpg.hide_item("dictionary")
 
     def back(self):
+        """
+             Zmienia slajd na poprzedni
+        """
         dpg.enable_item("diagramLeft")
         dpg.enable_item("diagramRight")
         dpg.split_frame()

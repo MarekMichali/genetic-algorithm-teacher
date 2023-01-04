@@ -1,21 +1,20 @@
 import dearpygui.dearpygui as dpg
-from MainWindow import MainWindow
-from Dictionary import Dictionary
-from Crossover import Crossover
-from IntroSlide import IntroSlide
-from Mutation import Mutation
-from Fitness import Fitness
-from Selector import Selector
-from EvolveOnes import EvolveOnes
-from Optimization import Optimization
-from Tsp import Tsp
-from Diagram import Diagram
+from src.MainWindow import MainWindow
+from src.Dictionary import Dictionary
+from src.Crossover import Crossover
+from src.IntroSlide import IntroSlide
+from src.Mutation import Mutation
+from src.Fitness import Fitness
+from src.Selector import Selector
+from src.EvolveOnes import EvolveOnes
+from src.Optimization import Optimization
+from src.Tsp import Tsp
+from src.Diagram import Diagram
 
 
 def main():
     dpg.create_context()
-    dpg.create_viewport(title='Aplikacja do nauki zasad dzialania algorytmow genetycznych', width=1440, height=810,
-                        clear_color=(50, 50, 51))
+    dpg.create_viewport(title='Aplikacja do nauki zasad dzialania algorytmow genetycznych', width=1440, height=810, clear_color=(50, 50, 51))
     dpg.set_viewport_pos(pos=[0.0, 0.0])
     dpg.setup_dearpygui()
 
@@ -46,7 +45,7 @@ def main():
         dpg.add_menu_item(label="Mutacja", callback=lambda: mutation.show_ext())
         dpg.add_menu_item(label="     ",)
         with dpg.menu(label="Przykłady"):
-            dpg.add_menu_item(label="Ewolucja szczurów", callback=lambda: evolve_ones.show())
+            dpg.add_menu_item(label ="Ewolucja szczurów", callback=lambda: evolve_ones.show())
             dpg.add_menu_item(label="Znajdowanie argumentów", callback=lambda: optimization.show())
             dpg.add_menu_item(label="Problem komiwojażera", callback=lambda: tsp.show())
 

@@ -1,10 +1,13 @@
 import random
 import dearpygui.dearpygui as dpg
-import config
-import PresentationInterface
+import src.config as config
+import src.PresentationInterface as PresentationInterface
 
 
 class SingletonSelector(type):
+    """
+        Klasa odpowiedzialna za implementację singletonu dla klasy Selector
+    """
     _instances = {}
 
     def __call__(cls, *args, **kwargs):
@@ -15,6 +18,9 @@ class SingletonSelector(type):
 
 
 class Selector(PresentationInterface.PresentationInterface, config.Config, metaclass=SingletonSelector):
+    """
+        Klasa odpowiedzialna za slajd przedstawiający działanie selekcji
+    """
     def __init__(self):
         self.chromo_color = (15, 86, 135, 255)
         self.checkboxes = []
@@ -246,6 +252,9 @@ class Selector(PresentationInterface.PresentationInterface, config.Config, metac
                                callback=lambda: self.next(), tag="selectorRight")
 
     def show(self):
+        """
+            Pokazuje slajd
+        """
         if not dpg.is_item_visible("selector"):
             dpg.split_frame()
             dpg.set_item_pos("selector", dpg.get_item_pos("fitness"))
@@ -253,6 +262,9 @@ class Selector(PresentationInterface.PresentationInterface, config.Config, metac
             dpg.hide_item("mainWindow")
 
     def show_ext(self):
+        """
+            Pokazuje slajd niezależnie od prezentacji
+        """
         if not dpg.is_item_visible("selector"):
             dpg.disable_item("selectorLeft")
             dpg.disable_item("selectorRight")
@@ -267,6 +279,11 @@ class Selector(PresentationInterface.PresentationInterface, config.Config, metac
             dpg.hide_item("mainWindow")
 
     def wartosc(self, app_data, user_data):
+        """
+            Zmienia wyświetlaną funkcję oceny
+        :param app_data: wymagane przez DearPyGui, nieużywane
+        :param user_data: wybrany selektor do wyświetlenia
+        """
         if "rankingowa" in user_data:
             self.whatRadio = 1
             dpg.configure_item("hideFirst", show=True)
@@ -281,6 +298,9 @@ class Selector(PresentationInterface.PresentationInterface, config.Config, metac
             print(self.selected_chromo)
 
     def next(self):
+        """
+            Zmienia slajd na kolejny
+        """
         dpg.enable_item("crossoverLeft")
         dpg.enable_item("crossoverRight")
         dpg.split_frame()
@@ -289,6 +309,9 @@ class Selector(PresentationInterface.PresentationInterface, config.Config, metac
         dpg.hide_item("selector")
 
     def back(self):
+        """
+             Zmienia slajd na poprzedni
+        """
         dpg.enable_item("fitnessLeft")
         dpg.enable_item("fitnessRight")
         dpg.split_frame()

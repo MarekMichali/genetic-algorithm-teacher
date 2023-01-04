@@ -1,8 +1,11 @@
 import dearpygui.dearpygui as dpg
-import config
+import src.config as config
 
 
 class SingletonMainWindow(type):
+    """
+        Klasa odpowiedzialna za implementację singletonu dla klasy MainWindow
+    """
     _instances = {}
 
     def __call__(cls, *args, **kwargs):
@@ -13,6 +16,9 @@ class SingletonMainWindow(type):
 
 
 class MainWindow(config.Config, metaclass=SingletonMainWindow):
+    """
+        Klasa odpowiedzialna za główne menu
+    """
     def __init__(self):
         with dpg.theme() as global_theme:
             with dpg.theme_component(dpg.mvAll):
@@ -47,6 +53,9 @@ class MainWindow(config.Config, metaclass=SingletonMainWindow):
                                         viewport_height // 2 - self.mainWinButtonHeight - 323 // 2])
 
     def show(self):
+        """
+            Pokazuje główne menu
+        """
         if not dpg.is_item_visible("mainWindow"):
             with dpg.mutex():
                 viewport_width = dpg.get_viewport_client_width()
@@ -58,9 +67,15 @@ class MainWindow(config.Config, metaclass=SingletonMainWindow):
             dpg.set_item_pos("mainWindow", [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
 
     def close_main_window(self):
+        """
+            Zamyka główne menu
+        """
         dpg.delete_item("mainWindow")
 
     def show_ones(self):
+        """
+            Wyświetla przykładowe zadanie ewolucji szczurów
+        """
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
@@ -72,6 +87,9 @@ class MainWindow(config.Config, metaclass=SingletonMainWindow):
         dpg.hide_item("mainWindow")
 
     def show_presentation(self):
+        """
+            Wyświetla prezentację
+        """
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
@@ -83,6 +101,9 @@ class MainWindow(config.Config, metaclass=SingletonMainWindow):
         dpg.hide_item("mainWindow")
 
     def show_opt(self):
+        """
+            Wyświetla przykładowe zadanie szukania wartośći argumentów
+        """
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
@@ -94,6 +115,9 @@ class MainWindow(config.Config, metaclass=SingletonMainWindow):
         dpg.hide_item("mainWindow")
 
     def show_tsp(self):
+        """
+            Wyświetla przykładowe zadanie problemu komiwojażera
+        """
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()

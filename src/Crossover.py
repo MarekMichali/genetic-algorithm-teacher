@@ -1,10 +1,13 @@
 import math
 import dearpygui.dearpygui as dpg
-import config
-import PresentationInterface
+import src.config as config
+import src.PresentationInterface as PresentationInterface
 
 
 class SingletonCrossover(type):
+    """
+        Klasa odpowiedzialna za implementację singletonu dla klasy Crossover
+    """
     _instances = {}
 
     def __call__(cls, *args, **kwargs):
@@ -15,6 +18,9 @@ class SingletonCrossover(type):
 
 
 class Crossover(PresentationInterface.PresentationInterface, config.Config, metaclass=SingletonCrossover):
+    """
+        Klasa odpowiedzialna za slajd przedstawiający krzyżowanie
+    """
     def __init__(self):
         self.chromo_color = (15, 86, 135, 255)
         self.y_offset = 100
@@ -330,6 +336,9 @@ class Crossover(PresentationInterface.PresentationInterface, config.Config, meta
                                callback=lambda: self.next(), tag="crossoverRight")
 
     def show(self):
+        """
+            Pokazuje slajd
+        """
         if not dpg.is_item_visible("crossover"):
             dpg.split_frame()
             dpg.set_item_pos("crossover", dpg.get_item_pos("selector"))
@@ -337,6 +346,9 @@ class Crossover(PresentationInterface.PresentationInterface, config.Config, meta
             dpg.hide_item("mainWindow")
 
     def show_ext(self):
+        """
+            Pokazuje slajd niezależnie od prezentacji
+        """
         if not dpg.is_item_visible("crossover"):
             dpg.disable_item("crossoverLeft")
             dpg.disable_item("crossoverRight")
@@ -351,6 +363,9 @@ class Crossover(PresentationInterface.PresentationInterface, config.Config, meta
             dpg.hide_item("mainWindow")
 
     def next(self):
+        """
+            Zmienia slajd na kolejny
+        """
         dpg.enable_item("mutationLeft")
         dpg.split_frame()
         dpg.set_item_pos("mutation", dpg.get_item_pos("crossover"))
@@ -358,6 +373,9 @@ class Crossover(PresentationInterface.PresentationInterface, config.Config, meta
         dpg.hide_item("crossover")
 
     def back(self):
+        """
+             Zmienia slajd na poprzedni
+        """
         dpg.enable_item("selectorLeft")
         dpg.enable_item("selectorRight")
         dpg.split_frame()

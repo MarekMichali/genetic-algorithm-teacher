@@ -1,9 +1,12 @@
 import dearpygui.dearpygui as dpg
-from EvovleOnesGA import EvolveOnesGA
-import ExampleInterface
+from src.EvovleOnesGA import EvolveOnesGA
+import src.ExampleInterface as ExampleInterface
 
 
 class SingletonEvolveOnes(type):
+    """
+        Klasa odpowiedzialna za implementację singletonu dla klasy EvoleOnes
+    """
     _instances = {}
 
     def __call__(cls, *args, **kwargs):
@@ -14,6 +17,9 @@ class SingletonEvolveOnes(type):
 
 
 class EvolveOnes(ExampleInterface.ExampleInterface, metaclass=SingletonEvolveOnes):
+    """
+        Klasa odpowiedzialna za wyświetlenie przykładu ewolucji szczurów
+    """
     def __init__(self):
         self.chromo_color = (15, 86, 135, 255)
         self.y_offset = 100
@@ -45,6 +51,9 @@ class EvolveOnes(ExampleInterface.ExampleInterface, metaclass=SingletonEvolveOne
                         dpg.add_button(label="Wykonaj", callback=self.start, indent=340, tag="evoStart")
 
     def start(self):
+        """
+            Rozpoczyna walidację i działanie algorytmu genetycznego
+        """
         dpg.disable_item("evoStart")
         num_generations = dpg.get_value("NoGe")
         num_parents_mating = dpg.get_value("NoPe")
@@ -61,6 +70,13 @@ class EvolveOnes(ExampleInterface.ExampleInterface, metaclass=SingletonEvolveOne
         self.show_info("Rozwiązanie", solution, self.on_selection, best_solutions_fitness)
 
     def show_info(self, title, message, selection_callback, best_sols):
+        """
+            Wyświetla informację o uzyskanym wyniku działania algorytmu genetycznego
+        :param title: tytuł okienka
+        :param message: wiadomość do wyświetlenia
+        :param selection_callback: funkcja służąca do zamknięcia tego okienka
+        :param best_sols: wynik działania algorytmu genetycznego
+        """
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
@@ -106,10 +122,21 @@ class EvolveOnes(ExampleInterface.ExampleInterface, metaclass=SingletonEvolveOne
         dpg.set_item_pos(modal_id, [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
 
     def on_selection(self, sender, unused, user_data):
+        """
+            Zamyka okienko i odblokowywuje przycisk wykonania algorytmu genetycznego
+        :param sender: wymagane przez DearPyGui, nieużywane
+        :param unused: wymagane przez DearPyGui, nieużywane
+        :param user_data: okienko, które należy zamknąć
+        """
         dpg.delete_item(user_data[0])
         dpg.enable_item("evoStart")
 
     def error(self, title, selection_callback):
+        """
+            Wyświetla okienko informujące o napotkanym błędzie
+        :param title: tytuł okienka
+        :param selection_callback: funkcja służąca do zamknięcia tego okienka
+        """
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
@@ -125,6 +152,9 @@ class EvolveOnes(ExampleInterface.ExampleInterface, metaclass=SingletonEvolveOne
         dpg.set_item_pos(modal_id, [viewport_width // 2 - width // 2, viewport_height // 2 - height // 2])
 
     def show(self):
+        """
+            Pokazuje przykładowe zadanie
+        """
         with dpg.mutex():
             viewport_width = dpg.get_viewport_client_width()
             viewport_height = dpg.get_viewport_client_height()
