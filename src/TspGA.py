@@ -20,6 +20,7 @@ class TspGA:
         self.sol_per_pop = sol_per_pop
         self.x_location = x_location
         self.y_location = y_location
+        self.cities_count = len(self.x_location)
 
     def start(self):
         """
@@ -33,7 +34,7 @@ class TspGA:
 
         fitness_calculator = FitnessCalculator()
         population_list = []
-        gene_space = [i for i in range(1, 13)]
+        gene_space = [i for i in range(1, self.cities_count + 1)]
         for i in range(self.sol_per_pop):
             nxm_random_num = list(numpy.random.permutation(gene_space))
             population_list.append(nxm_random_num)
