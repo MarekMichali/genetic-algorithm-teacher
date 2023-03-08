@@ -21,72 +21,37 @@ class Tsp(ExampleInterface.ExampleInterface, metaclass=SingletonTsp):
     """
         Klasa odpowiedzialna za wyświetlenie przykładu problemu komiwojażera
     """
-    def __init__(self):
+    def __init__(self, cities_count=10):
         self.dot_color = (255, 242, 0, 255)
         self.line_color = (255, 242, 0, 128)
-        self.x_location = [8.0, 50.0, 18.0, 35.0, 90.0, 40.0, 84.0, 74.0, 34.0, 40.0, 60.0, 74.0]
-        self.y_location = [3.0, 62.0, 20.0, 25.0, 89.0, 71.0, 7.0, 29.0, 45.0, 65.0, 69.0, 47.0]
+        self.x_location = []
+        self.y_location = []
+        self.cities = []
+        self.cities_count = cities_count
+        for i in range(0, self.cities_count):
+            self.cities.append(i)
+            self.x_location.append(random.randint(1, 99))
+            self.y_location.append(random.randint(1, 99))
 
         def print_val(sender, app_data, user_data):
             location = dpg.get_value(sender)
             x = location[0]
             y = location[1]
-            if user_data == "warszawa":
-                self.x_location[0] = x
-                self.y_location[0] = y
-            elif user_data == "berlin":
-                self.x_location[1] = x
-                self.y_location[1] = y
-            elif user_data == "praga":
-                self.x_location[2] = x
-                self.y_location[2] = y
-            elif user_data == "wieden":
-                self.x_location[3] = x
-                self.y_location[3] = y
-            elif user_data == "bratyslawa":
-                self.x_location[4] = x
-                self.y_location[4] = y
-            elif user_data == "londyn":
-                self.x_location[5] = x
-                self.y_location[5] = y
-            elif user_data == "lizbona":
-                self.x_location[6] = x
-                self.y_location[6] = y
-            elif user_data == "wilno":
-                self.x_location[7] = x
-                self.y_location[7] = y
-            elif user_data == "kopenhaga":
-                self.x_location[8] = x
-                self.y_location[8] = y
-            elif user_data == "paryz":
-                self.x_location[9] = x
-                self.y_location[9] = y
-            elif user_data == "rzym":
-                self.x_location[10] = x
-                self.y_location[10] = y
-            elif user_data == "berno":
-                self.x_location[11] = x
-                self.y_location[11] = y
+            for i in self.cities:
+                if user_data == str(i):
+                    self.x_location[i] = x
+                    self.y_location[i] = y
 
         def shuffle(sender, app_data, user_data):
-            for i in range(12):
+            for i in range(self.cities_count):
                 rx = random.randint(1, 99)
                 ry = random.randint(1, 99)
                 self.x_location[i] = rx
                 self.y_location[i] = ry
 
-            dpg.set_value("warszawa", value=[self.x_location[0], self.y_location[0]])
-            dpg.set_value("berlin", value=[self.x_location[1], self.y_location[1]])
-            dpg.set_value("praga", value=[self.x_location[2], self.y_location[2]])
-            dpg.set_value("wieden", value=[self.x_location[3], self.y_location[3]])
-            dpg.set_value("bratyslawa", value=[self.x_location[4], self.y_location[4]])
-            dpg.set_value("londyn", value=[self.x_location[5], self.y_location[5]])
-            dpg.set_value("lizbona", value=[self.x_location[6], self.y_location[6]])
-            dpg.set_value("wilno", value=[self.x_location[7], self.y_location[7]])
-            dpg.set_value("kopenhaga", value=[self.x_location[8], self.y_location[8]])
-            dpg.set_value("paryz", value=[self.x_location[9], self.y_location[9]])
-            dpg.set_value("rzym", value=[self.x_location[10], self.y_location[10]])
-            dpg.set_value("berno", value=[self.x_location[11], self.y_location[11]])
+            for i in self.cities:
+                dpg.set_value(str(i), value=[self.x_location[i], self.y_location[i]])
+
 
         with dpg.window(label="Problem komiwojażera", autosize=True, tag="tsp", pos=[99999, 99999],
                         on_close=lambda: dpg.show_item("mainWindow")):
@@ -132,42 +97,11 @@ class Tsp(ExampleInterface.ExampleInterface, metaclass=SingletonTsp):
                                     dpg.add_plot_axis(dpg.mvYAxis, label="y")
                                     dpg.set_axis_limits(dpg.last_item(), 0, 100)
 
-                                    dpg.add_drag_point(label="Warszawa", color=self.dot_color, tag="warszawa",
-                                                       default_value=(self.x_location[0], self.y_location[0]),
-                                                       callback=print_val, user_data="warszawa", thickness=20)
-                                    dpg.add_drag_point(label="Berlin", color=self.dot_color, tag="berlin",
-                                                       default_value=(self.x_location[1], self.y_location[1]),
-                                                       callback=print_val, user_data="berlin")
-                                    dpg.add_drag_point(label="Praga", color=self.dot_color, tag="praga",
-                                                       default_value=(self.x_location[2], self.y_location[2]),
-                                                       callback=print_val, user_data="praga")
-                                    dpg.add_drag_point(label="Wieden", color=self.dot_color, tag="wieden",
-                                                       default_value=(self.x_location[3], self.y_location[3]),
-                                                       callback=print_val, user_data="wieden")
-                                    dpg.add_drag_point(label="Bratyslawa", color=self.dot_color, tag="bratyslawa",
-                                                       default_value=(self.x_location[4], self.y_location[4]),
-                                                       callback=print_val, user_data="bratyslawa")
-                                    dpg.add_drag_point(label="Londyn", color=self.dot_color, tag="londyn",
-                                                       default_value=(self.x_location[5], self.y_location[5]),
-                                                       callback=print_val, user_data="londyn")
-                                    dpg.add_drag_point(label="Lizbona", color=self.dot_color, tag="lizbona",
-                                                       default_value=(self.x_location[6], self.y_location[6]),
-                                                       callback=print_val, user_data="lizbona")
-                                    dpg.add_drag_point(label="Wilno", color=self.dot_color, tag="wilno",
-                                                       default_value=(self.x_location[7], self.y_location[7]),
-                                                       callback=print_val, user_data="wilno")
-                                    dpg.add_drag_point(label="Kopenhaga", color=self.dot_color, tag="kopenhaga",
-                                                       default_value=(self.x_location[8], self.y_location[8]),
-                                                       callback=print_val, user_data="kopenhaga")
-                                    dpg.add_drag_point(label="Paryz", color=self.dot_color, tag="paryz",
-                                                       default_value=(self.x_location[9], self.y_location[9]),
-                                                       callback=print_val, user_data="paryz")
-                                    dpg.add_drag_point(label="Rzym", color=self.dot_color, tag="rzym",
-                                                       default_value=(self.x_location[10], self.y_location[10]),
-                                                       callback=print_val, user_data="rzym")
-                                    dpg.add_drag_point(label="Berno", color=self.dot_color, tag="berno",
-                                                       default_value=(self.x_location[11], self.y_location[11]),
-                                                       callback=print_val, user_data="berno")
+                                    for i in self.cities:
+                                        dpg.add_drag_point(label=str(i), color=self.dot_color, tag=str(i),
+                                                           default_value=(self.x_location[i], self.y_location[i]),
+                                                           callback=print_val, user_data=str(i), thickness=20)
+
 
     def start(self):
         """
@@ -179,7 +113,7 @@ class Tsp(ExampleInterface.ExampleInterface, metaclass=SingletonTsp):
         num_parents_mating = dpg.get_value("NoPt")
         sol_per_pop = dpg.get_value("NoOt")
 
-        tsp_ga = TspGA(num_generations, num_parents_mating, sol_per_pop, self.x_location, self.y_location)
+        tsp_ga = TspGA(num_generations, num_parents_mating, sol_per_pop, self.x_location, self.y_location) #tu
         solution, solution_fitness, best_solutions_fitness = tsp_ga.start()
 
         if solution[0] == -1 and solution_fitness[0] == -1 and best_solutions_fitness[0] == -1:

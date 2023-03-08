@@ -1,3 +1,5 @@
+import sys
+
 import dearpygui.dearpygui as dpg
 from MainWindow import MainWindow
 from Dictionary import Dictionary
@@ -12,7 +14,7 @@ from Tsp import Tsp
 from Diagram import Diagram
 
 
-def main():
+def main(city_count):
     dpg.create_context()
     dpg.create_viewport(title='Aplikacja do nauki zasad dzialania algorytmow genetycznych', width=1440, height=810, clear_color=(50, 50, 51))
     dpg.set_viewport_pos(pos=[0.0, 0.0])
@@ -26,7 +28,7 @@ def main():
     selector = Selector()
     evolve_ones = EvolveOnes()
     optimization = Optimization()
-    tsp = Tsp()
+    tsp = Tsp(city_count)
     main_window = MainWindow()
     diagram = Diagram()
 
@@ -55,4 +57,14 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    city_count = 12
+    if len(sys.argv) == 2:
+        try:
+            city_count = int(sys.argv[1])
+            if city_count < 1:
+                print("Błędna ilość miast, przyjęto wartość 12")
+                city_count = 12
+        except ValueError:
+            print("Błędna ilość miast, przyjęto wartość 12")
+            city_count = 12
+    main(city_count)
